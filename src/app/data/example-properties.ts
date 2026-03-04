@@ -1,0 +1,116 @@
+import type { PropertyCard } from '../models/types/propertyCard';
+
+export const EXAMPLE_PROPERTIES: PropertyCard[] = [
+  {
+    id: 'a1b2c3d4-0001-0000-0000-000000000000',
+    name: 'Ocean Breeze Villa',
+    address: '12 Sunset Boulevard',
+    city: 'Malibu',
+    state: 'CA',
+    country: 'United States',
+    price: 320,
+    pictureUrl: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
+    rating: 9.4,
+    rankingScore: 97.2,
+    reviewCount: 214,
+    availableUnits: 2,
+    tags: [
+      'Beachfront',
+      'Pool',
+      'Free parking'
+    ],
+  },
+  {
+    id: 'a1b2c3d4-0002-0000-0000-000000000000',
+    name: 'Downtown Loft Studio',
+    address: '88 Market Street',
+    city: 'San Francisco',
+    state: 'CA',
+    country: 'United States',
+    price: 175,
+    pictureUrl: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80',
+    rating: 8.7,
+    rankingScore: 88.5,
+    reviewCount: 432,
+    availableUnits: 5,
+    tags: [
+      'City center',
+      'Free parking'
+    ],
+  },
+  {
+    id: 'a1b2c3d4-0003-0000-0000-000000000000',
+    name: 'Alpine Chalet Retreat',
+    address: '3 Bergweg',
+    city: 'Zermatt',
+    state: 'Valais',
+    country: 'Switzerland',
+    price: 490,
+    pictureUrl: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80',
+    rating: 9.8,
+    rankingScore: 99.1,
+    reviewCount: 87,
+    availableUnits: 1,
+    tags: [
+      'Spa',
+      'Breakfast included',
+      'Pet-friendly'
+    ],
+  },
+  {
+    id: 'a1b2c3d4-0004-0000-0000-000000000000',
+    name: 'Kyoto Garden Inn',
+    address: '45 Higashiyama',
+    city: 'Kyoto',
+    state: 'Kyoto Prefecture',
+    country: 'Japan',
+    price: 210,
+    pictureUrl: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80',
+    rating: 9.1,
+    rankingScore: 93.0,
+    reviewCount: 318,
+    availableUnits: 3,
+    tags: [
+      'Breakfast included',
+      'Family-friendly'
+    ],
+  },
+  {
+    id: 'a1b2c3d4-0005-0000-0000-000000000000',
+    name: 'Santorini Clifftop Suite',
+    address: '7 Oia Caldera Path',
+    city: 'Oia',
+    state: 'South Aegean',
+    country: 'Greece',
+    price: 580,
+    pictureUrl: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80',
+    rating: 9.6,
+    rankingScore: 98.3,
+    reviewCount: 156,
+    availableUnits: 2,
+    tags: [
+      'Pool',
+      'Beachfront',
+      'Spa'
+    ],
+  },
+  {
+    id: 'a1b2c3d4-0006-0000-0000-000000000000',
+    name: 'Marrakech Riad Oasis',
+    address: '19 Derb el Hammam',
+    city: 'Marrakech',
+    state: 'Marrakech-Safi',
+    country: 'Morocco',
+    price: 145,
+    pictureUrl: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&q=80',
+    rating: 8.9,
+    rankingScore: 91.4,
+    reviewCount: 267,
+    availableUnits: 4,
+    tags: [
+      'Breakfast included',
+      'Pool',
+      'Pet-friendly'
+    ],
+  },
+];

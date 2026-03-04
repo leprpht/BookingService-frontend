@@ -1,0 +1,172 @@
+<form [formGroup]="filterForm" (ngSubmit)="onSearch()">
+
+  <div class="search-bar-container">
+
+    <mat-form-field class="search-bar-field">
+      <mat-label>Search destinations</mat-label>
+      <input matInput type="text" formControlName="searchQuery">
+      @if (filterForm.get('searchQuery')?.value) {
+        <button matSuffix matIconButton aria-label="Clear" (click)="filterForm.get('searchQuery')?.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker" formGroupName="period" [min]="minDate">
+        <input matStartDate formControlName="from" placeholder="Start date">
+        <input matEndDate formControlName="to" placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <button
+      matButton="tonal"
+      class="search-button"
+      type="submit"
+      [disabled]="!filterForm.get('period.from')?.value || !filterForm.get('period.to')?.value"
+    >
+      Search
+      <mat-icon>search</mat-icon>
+    </button>
+
+  </div>
+
+  <mat-accordion class="additional-filters-accordion">
+    <mat-expansion-panel>
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>Additional filters</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <!-- Tags -->
+      <div class="tag-chip-list-container">
+        <div class="label-container">
+          <label class="name-label"><strong>Tags</strong></label>
+        </div>
+        <mat-form-field class="tag-chip-list">
+          <mat-label>Select tags</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Tag selection">
+            @for (tag of selectedTags(); track tag.id) {
+              <mat-chip-row (removed)="removeTag(tag)">
+                {{ tag.name }}
+                <button matChipRemove [attr.aria-label]="'remove ' + tag.name">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
+          </mat-chip-grid>
+          <input
+            placeholder="Add tag..."
+            #tagInput
+            [formControl]="tagInputControl"
+            [matChipInputFor]="chipGrid"
+            [matAutocomplete]="tagAuto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          />
+          <mat-autocomplete #tagAuto="matAutocomplete" (optionSelected)="selectTag($event); tagInput.value = ''">
+            @for (tag of filteredTags(); track tag.id) {
+              <mat-option [value]="tag">{{ tag.name }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- City -->
+      <div class="city-select-container">
+        <div class="label-container">
+          <label class="name-label"><strong>City</strong></label>
+        </div>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input
+            matInput
+            placeholder="Search city..."
+            formControlName="city"
+            [matAutocomplete]="cityAuto"
+          />
+          <mat-autocomplete #cityAuto="matAutocomplete">
+            @for (city of filteredCities(); track city) {
+              <mat-option [value]="city">{{ city }}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Country -->
+      <div class="country-select-container">
+        <div class="label-container">
+          <label class="name-label"><strong>Country</strong></label>
+        </div>
+        <mat-form-field>
+          <mat-label>Country</mat-label>
+          <select matNativeControl formControlName="country">
+            <option value="" selected>Select a country</option>
+            <optgroup label="---">
+              @for (country of countries; track country) {
+                <option [value]="country.name">{{ country.emoji }} {{ country.name }}</option>
+              }
+            </optgroup>
+          </select>
+        </mat-form-field>
+      </div>
+
+      <!-- Price range -->
+      <div class="price-range-inputs">
+        <div class="label-container">
+          <label class="name-label"><strong>Budget (per night):</strong></label>
+          <label class="value-label">{{ ` ${priceString}` }}</label>
+        </div>
+        <mat-slider min="10" max="210" step="5">
+          <input matSliderStartThumb formControlName="minPrice">
+          <input matSliderEndThumb formControlName="maxPrice">
+        </mat-slider>
+      </div>
+
+      <!-- Min rating -->
+      <div class="min-rating-container">
+        <div class="label-container">
+          <label class="name-label"><strong>Minimum rating</strong></label>
+        </div>
+        <mat-button-toggle-group class="rating-toggle-group">
+          @for (rating of ratingOptions; track rating) {
+            <mat-button-toggle
+              [value]="rating"
+              [checked]="filterForm.controls.minRating.value === rating"
+              (change)="setMinRating(rating)"
+            >
+              @if (rating === 10) {
+                {{ rating }}
+              } @else {
+                {{ rating }}+
+              }
+            </mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
+
+      <!-- Capacities -->
+      <div class="capacities-container">
+        <div class="label-container">
+          <label class="name-label"><strong>Guests</strong></label>
+        </div>
+        <mat-button-toggle-group multiple class="capacity-toggle-group">
+          @for (cap of capacityOptions; track cap) {
+            <mat-button-toggle
+              [value]="cap"
+              [checked]="isCapacitySelected(cap)"
+              (change)="toggleCapacity(cap)"
+            >
+              {{ cap === 8 ? '8+' : cap }}
+            </mat-button-toggle>
+          }
+        </mat-button-toggle-group>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</form>

@@ -1,0 +1,221 @@
+.recommended-list {
+  padding: 24px 0;
+  margin: 0 20px;
+
+  .list-header {
+    margin-bottom: 24px;
+
+    .list-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: var(--mat-sys-on-surface);
+
+      .city-name { color: var(--mat-sys-primary); }
+    }
+
+    .list-subtitle {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--mat-sys-on-surface-variant);
+    }
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 18px;
+
+    @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 640px)  { grid-template-columns: repeat(2, 1fr); }
+  }
+}
+
+.property-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+
+    .card-image { transform: scale(1.04); }
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: 0 !important;
+      display: block;
+      transition: transform 300ms ease;
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      border-radius: 20px;
+      padding: 2px 7px 2px 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      backdrop-filter: blur(4px);
+
+      mat-icon {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+        color: #fbbf24;
+      }
+    }
+
+    .card-urgency {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      background: var(--mat-sys-error);
+      color: var(--mat-sys-on-error);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+  }
+
+  mat-card-header {
+    padding: 8px 10px 0;
+
+    .card-title {
+      font-size: 0.8rem !important;
+      font-weight: 600 !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-subtitle {
+      display: flex !important;
+      align-items: center;
+      gap: 2px;
+      font-size: 0.7rem !important;
+
+      mat-icon {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  mat-card-content {
+    flex: 1;
+    padding: 6px 10px 0 !important;
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-bottom: 6px;
+
+      .property-tag {
+        height: 20px !important;
+        font-size: 0.63rem !important;
+        padding: 0 5px !important;
+        min-height: unset !important;
+      }
+    }
+
+    .reviews-row {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.7rem;
+      color: var(--mat-sys-on-surface-variant);
+
+      mat-icon {
+        font-size: 12px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  mat-card-actions {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px 8px !important;
+
+    .price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+
+      .price-amount {
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .price-unit {
+        font-size: 0.65rem;
+        color: var(--mat-sys-on-surface-variant);
+      }
+    }
+
+    .view-button {
+      min-width: 64px;
+    }
+  }
+}
+
+.placeholder {
+  pointer-events: none;
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #e0e0e0;
+  }
+
+  .text-line {
+    height: 14px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 6px;
+
+    &.short { width: 90%; }
+    &.tiny { width: 40%; }
+  }
+
+  .tags-row {
+    display: flex;
+    gap: 4px;
+    margin: 2px;
+  }
+
+  .chip-placeholder {
+    width: 90px;
+    height: 21px;
+    background: #e0e0e0;
+    border-radius: 10px;
+  }
+
+  .price-placeholder {
+    width: 50px;
+    height: 19px;
+    background: #e0e0e0;
+    border-radius: 4px;
+  }
+}
