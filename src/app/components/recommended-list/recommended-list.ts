@@ -6,7 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { DecimalPipe } from '@angular/common';
 import type { PropertyCard } from '../../models/types/propertyCard';
-import { EXAMPLE_PROPERTIES } from '../../data/example-properties';
 import { SearchService } from '../../services/search-service';
 
 @Component({
