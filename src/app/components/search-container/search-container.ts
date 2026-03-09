@@ -2,6 +2,8 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { MatAutocompleteModule, type MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +18,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COUNTRIES } from '../../data/countries';
 import type { TagOption } from '../../models/filters/tagOption';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
+import { LocationService } from '../../services/location-service';
 
 @Component({
   selector: 'app-search-container',
@@ -77,6 +80,8 @@ export class SearchContainer {
   });
 
   private readonly announcer = inject(LiveAnnouncer);
+  private readonly locationService = inject(LocationService);
+  private readonly router = inject(Router);
 
   removeTag(tag: TagOption): void {
     this.selectedTags.update(tags => {
@@ -94,24 +99,15 @@ export class SearchContainer {
     event.option.deselect();
   }
 
-  // TODO: replace with API call
-  private readonly allCities: string[] = [
-    'New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix',
-    'London', 'Paris', 'Berlin', 'Madrid', 'Rome',
-    'Tokyo', 'Sydney', 'Toronto', 'Dubai', 'Singapore',
-  ];
-
-  private readonly cityQuery = toSignal(
-    this.filterForm.controls.city.valueChanges,
-    { initialValue: '' }
+  readonly filteredCities = toSignal(
+    this.filterForm.controls.city.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      filter(query => query !== null && query.trim().length >= 3 && query.length <= 30),
+      switchMap(query => this.locationService.autocomplete(query!)),
+    ),
+    { initialValue: [] as string[] }
   );
-
-  readonly filteredCities = computed(() => {
-    const query = (this.cityQuery() ?? '').toLowerCase().trim();
-    return query.length >= 1
-      ? this.allCities.filter(c => c.toLowerCase().includes(query))
-      : [];
-  });
 
   readonly countries = COUNTRIES.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -143,9 +139,13 @@ export class SearchContainer {
   }
 
   onSearch(): void {
-    const dto = this.buildDto(this.filterForm.getRawValue());
-    console.log(dto);
-    // TODO: dispatch to service / store
+    const raw = this.filterForm.getRawValue();
+
+    if (!raw.period.from || !raw.period.to) return;
+
+    const dto = this.buildDto(raw);
+    const filterParam = encodeURIComponent(JSON.stringify(dto));
+    this.router.navigate(['/search'], { queryParams: { filter: filterParam } });
   }
 
   private buildDto(value: ReturnType<typeof this.filterForm.getRawValue>): HousingFilterOptions {
