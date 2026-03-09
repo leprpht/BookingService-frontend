@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { MatAutocompleteModule, type MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
@@ -80,6 +81,7 @@ export class SearchContainer {
 
   private readonly announcer = inject(LiveAnnouncer);
   private readonly locationService = inject(LocationService);
+  private readonly router = inject(Router);
 
   removeTag(tag: TagOption): void {
     this.selectedTags.update(tags => {
@@ -137,9 +139,13 @@ export class SearchContainer {
   }
 
   onSearch(): void {
-    const dto = this.buildDto(this.filterForm.getRawValue());
-    console.log(dto);
-    // TODO: dispatch to service / store
+    const raw = this.filterForm.getRawValue();
+
+    if (!raw.period.from || !raw.period.to) return;
+
+    const dto = this.buildDto(raw);
+    const filterParam = encodeURIComponent(JSON.stringify(dto));
+    this.router.navigate(['/search'], { queryParams: { filter: filterParam } });
   }
 
   private buildDto(value: ReturnType<typeof this.filterForm.getRawValue>): HousingFilterOptions {
