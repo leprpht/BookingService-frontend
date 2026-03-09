@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { DecimalPipe } from '@angular/common';
 import type { PropertyCard } from '../../models/types/propertyCard';
-import { SearchService } from '../../services/search-service';
+import { GraphQlService } from '../../services/graphql-service';
 
 @Component({
   selector: 'app-recommended-list',
@@ -23,7 +23,7 @@ import { SearchService } from '../../services/search-service';
 })
 export class RecommendedList {
   readonly city = input.required<string>();
-  private readonly searchService = inject(SearchService);
+  private readonly graphQlService = inject(GraphQlService);
   
   properties = signal<PropertyCard[]>([]);
   loading = signal(true);
@@ -32,7 +32,7 @@ export class RecommendedList {
     effect(() => {
       this.loading.set(true);
 
-      this.searchService
+      this.graphQlService
         .getTopPropertiesByCity(this.city())
         .subscribe({
           next: props => {

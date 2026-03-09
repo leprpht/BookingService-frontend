@@ -37,7 +37,7 @@ interface PropertiesData {
 @Injectable({
   providedIn: 'root',
 })
-export class SearchService {
+export class GraphQlService {
   constructor(private readonly http: HttpClient) {}
 
   getTopPropertiesByCity(city: string, count = 6): Observable<PropertyCard[]> {
@@ -49,7 +49,8 @@ export class SearchService {
         map(res => {
           console.log('raw response:', res);
           return res.data.topPropertiesByCity;
-        })
+        }
       )
+    );
   }
 }

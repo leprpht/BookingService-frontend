@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SearchService } from './search-service';
+import { GraphQlService } from './graphql-service';
 
 describe('SearchService', () => {
-  let service: SearchService;
+  let service: GraphQlService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SearchService);
+    service = TestBed.inject(GraphQlService);
   });
 
   it('should be created', () => {
