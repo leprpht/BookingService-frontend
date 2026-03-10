@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { SearchContainer } from '../search-container/search-container';
+import { Router } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-header',
   imports: [
     MatToolbarModule,
@@ -14,5 +16,9 @@ import { SearchContainer } from '../search-container/search-container';
   styleUrl: './header.scss',
 })
 export class Header {
+  private readonly router = inject(Router);
 
+  goHome() {
+    this.router.navigate(['/']);
+  }
 }
