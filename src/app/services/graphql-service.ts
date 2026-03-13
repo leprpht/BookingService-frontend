@@ -1,37 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
-import type {PropertyCard} from '../models/types/propertyCard';
+import {GraphQLQueries} from './graphql-queries';
+import type {PropertyCard, PropertiesData} from '../models/types/propertyCard';
+import type {PropertyDetails, PropertyDetailsData} from '../models/types/propertyDetails';
 
 const GRAPHQL_URL = 'http://localhost:5275/graphql';
-
-const TOP_PROPERTIES_QUERY = `
-  query topPropertiesByCity($city: String!, $count: Int) {
-    topPropertiesByCity(city: $city, count: $count) {
-      id
-      name
-      address
-      city
-      state
-      country
-      price
-      pictureUrl
-      rating
-      rankingScore
-      reviewCount
-      availableUnits
-      tags
-    }
-  }
-`;
 
 interface GraphQlResponse<Type> {
   data: Type;
   errors?: { message: string }[];
-}
-
-interface PropertiesData {
-  topPropertiesByCity: PropertyCard[];
 }
 
 @Injectable({
@@ -43,13 +21,27 @@ export class GraphQlService {
 
   getTopPropertiesByCity(city: string, count = 6): Observable<PropertyCard[]> {
     return this.http.post<GraphQlResponse<PropertiesData>>(GRAPHQL_URL, {
-      query: TOP_PROPERTIES_QUERY,
+      query: GraphQLQueries.prototype.topPropertiesQuery,
       variables: {city, count},
     })
       .pipe(
         map(res => {
             console.log('raw response:', res);
             return res.data.topPropertiesByCity;
+          }
+        )
+      );
+  }
+
+  getPropertyDetails(propertyId: string, period: { from: string; to: string }): Observable<PropertyDetails> {
+    return this.http.post<GraphQlResponse<PropertyDetailsData>>(GRAPHQL_URL, {
+      query: GraphQLQueries.prototype.getPropertyDetails,
+      variables: {propertyId, period},
+    })
+      .pipe(
+        map(res => {
+            console.log('raw response:', res);
+            return res.data.getPropertyDetails;
           }
         )
       );

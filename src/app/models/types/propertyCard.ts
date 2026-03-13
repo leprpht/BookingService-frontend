@@ -13,3 +13,7 @@ export interface PropertyCard {
   availableUnits: number;
   tags: string[];
 }
+
+export interface PropertiesData {
+  topPropertiesByCity: PropertyCard[];
+}
