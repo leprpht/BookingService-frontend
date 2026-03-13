@@ -1,0 +1,45 @@
+.info-section {
+  padding: 20px 0;
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      color: var(--mat-sys-primary);
+    }
+
+    .period-label {
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--mat-sys-on-surface-variant);
+    }
+  }
+}
+
+.no-units {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--mat-sys-surface-variant);
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 14px;
+
+  mat-icon { opacity: 0.5; }
+}
+
+.units-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

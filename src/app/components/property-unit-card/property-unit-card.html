@@ -1,0 +1,58 @@
+<mat-card class="unit-card" appearance="outlined" [class.unavailable]="unit().availableRooms === 0">
+  <mat-card-content class="unit-card-content">
+
+    <div class="unit-main">
+      <div class="unit-header">
+        <h4 class="unit-name">{{ unit().name }}</h4>
+        @if (unit().availableRooms === 0) {
+          <mat-chip class="sold-out-chip" disableRipple>Sold out</mat-chip>
+        } @else if (unit().availableRooms <= 2) {
+          <mat-chip class="urgent-chip" disableRipple>
+            Only {{ unit().availableRooms }} left!
+          </mat-chip>
+        }
+      </div>
+
+      <div class="unit-specs">
+        <span class="spec">
+          <mat-icon>people</mat-icon>
+          {{ unit().capacity }} guest{{ unit().capacity !== 1 ? 's' : '' }}
+        </span>
+        <span class="spec">
+          <mat-icon>straighten</mat-icon>
+          {{ unit().size }} m²
+        </span>
+        <span
+          class="spec"
+          [class.available]="unit().availableRooms > 0"
+          [class.full]="unit().availableRooms === 0"
+        >
+          <mat-icon>{{ unit().availableRooms > 0 ? 'check_circle' : 'cancel' }}</mat-icon>
+          {{ unit().availableRooms }} room{{ unit().availableRooms !== 1 ? 's' : '' }} available
+        </span>
+      </div>
+    </div>
+
+    <div class="unit-right">
+      <div class="unit-price-block">
+        <span class="unit-price">${{ unit().price | number:'1.0-0' }}</span>
+        <span class="unit-price-label">
+          @if (nightsCount() > 1) {
+            total · {{ nightsCount() }} nights
+          } @else {
+            / night
+          }
+        </span>
+      </div>
+      <button
+        mat-flat-button
+        class="book-btn"
+        [disabled]="unit().availableRooms === 0"
+        (click)="book.emit(unit())"
+      >
+        {{ unit().availableRooms > 0 ? 'Reserve' : 'Unavailable' }}
+      </button>
+    </div>
+
+  </mat-card-content>
+</mat-card>
