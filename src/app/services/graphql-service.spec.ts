@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { GraphQlService } from './graphql-service';
+import {GraphQlService} from './graphql-service';
 
 describe('SearchService', () => {
   let service: GraphQlService;

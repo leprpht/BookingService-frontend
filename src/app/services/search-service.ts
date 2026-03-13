@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import type { PropertyCard } from '../models/types/propertyCard';
-import type { HousingFilterOptions } from '../models/filters/housingFilterOptions';
-import type { PageRequest } from '../models/requests/pageRequest';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import type {PropertyCard} from '../models/types/propertyCard';
+import type {HousingFilterOptions} from '../models/filters/housingFilterOptions';
+import type {PageRequest} from '../models/requests/pageRequest';
 
 const GRAPHQL_URL = 'http://localhost:5275/graphql';
 
@@ -36,17 +36,18 @@ interface SearchData {
   searchProperties: PropertyCard[];
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class SearchService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+  }
 
   searchProperties(filter: HousingFilterOptions, page: PageRequest): Observable<PropertyCard[]> {
     const gqlFilter = this.mapFilterToGql(filter);
 
     return this.http.post<GraphQlResponse<SearchData>>(GRAPHQL_URL, {
-        query: SEARCH_PROPERTIES_QUERY,
-        variables: { filter: gqlFilter, page },
-      })
+      query: SEARCH_PROPERTIES_QUERY,
+      variables: {filter: gqlFilter, page},
+    })
       .pipe(
         map(res => {
           if (res.errors?.length) {

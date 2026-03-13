@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SearchResults } from './search-results';
+import {SearchResults} from './search-results';
 
 describe('SearchResults', () => {
   let component: SearchResults;
@@ -10,7 +10,7 @@ describe('SearchResults', () => {
     await TestBed.configureTestingModule({
       imports: [SearchResults]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SearchResults);
     component = fixture.componentInstance;
