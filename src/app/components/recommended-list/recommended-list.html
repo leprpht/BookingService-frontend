@@ -83,7 +83,7 @@
               <span class="price-amount">${{ property.price | number:'1.0-0' }}</span>
               <span class="price-unit">/ night</span>
             </div>
-            <button mat-flat-button class="view-button">View deal</button>
+            <button mat-flat-button class="view-button" (click)="viewDetails(property.id)">View deal</button>
           </mat-card-actions>
   
         </mat-card>

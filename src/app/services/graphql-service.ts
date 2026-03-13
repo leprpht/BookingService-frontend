@@ -21,7 +21,7 @@ export class GraphQlService {
 
   getTopPropertiesByCity(city: string, count = 6): Observable<PropertyCard[]> {
     return this.http.post<GraphQlResponse<PropertiesData>>(GRAPHQL_URL, {
-      query: GraphQLQueries.prototype.topPropertiesQuery,
+      query: GraphQLQueries.topPropertiesQuery,
       variables: {city, count},
     })
       .pipe(
@@ -35,7 +35,7 @@ export class GraphQlService {
 
   getPropertyDetails(propertyId: string, period: { from: string; to: string }): Observable<PropertyDetails> {
     return this.http.post<GraphQlResponse<PropertyDetailsData>>(GRAPHQL_URL, {
-      query: GraphQLQueries.prototype.getPropertyDetails,
+      query: GraphQLQueries.getPropertyDetails,
       variables: {propertyId, period},
     })
       .pipe(
