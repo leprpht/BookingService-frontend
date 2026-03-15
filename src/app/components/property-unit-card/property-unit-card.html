@@ -1,4 +1,4 @@
-<mat-card class="unit-card" appearance="outlined" [class.unavailable]="unit().availableRooms === 0">
+<mat-card class="unit-card" appearance="outlined" [class.unavailable]="unit().availableRooms === 0" (click)="selectUnit()">
   <mat-card-content class="unit-card-content">
 
     <div class="unit-main">
@@ -44,14 +44,6 @@
           }
         </span>
       </div>
-      <button
-        mat-flat-button
-        class="book-btn"
-        [disabled]="unit().availableRooms === 0"
-        (click)="book.emit(unit())"
-      >
-        {{ unit().availableRooms > 0 ? 'Reserve' : 'Unavailable' }}
-      </button>
     </div>
 
   </mat-card-content>

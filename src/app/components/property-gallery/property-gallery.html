@@ -1,0 +1,36 @@
+@if (pictures().length > 0) {
+  <div class="gallery-root">
+
+    <div
+      class="mosaic"
+      [class.single]="visiblePictures().length === 1"
+      [class.pair]="visiblePictures().length === 2"
+      [class.trio]="visiblePictures().length === 3"
+      [class.quad]="visiblePictures().length === 4"
+      [class.full]="visiblePictures().length >= 5"
+    >
+      @for (pic of visiblePictures(); track pic; let i = $index) {
+        <div
+          class="mosaic-cell"
+          [class.main]="i === 0"
+          [attr.aria-label]="'View photo ' + (i + 1)"
+          role="button"
+          tabindex="0"
+        >
+          <img
+            [src]="pic"
+            [alt]="'Property photo ' + (i + 1)"
+            class="mosaic-img"
+            loading="lazy"
+          />
+        </div>
+      }
+    </div>
+
+  </div>
+} @else {
+  <div class="no-photos">
+    <mat-icon>image_not_supported</mat-icon>
+    <span>No photos available</span>
+  </div>
+}

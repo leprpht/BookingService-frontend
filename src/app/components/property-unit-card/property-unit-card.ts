@@ -17,4 +17,10 @@ export class PropertyUnitCard {
   readonly nightsCount = input.required<number>();
 
   readonly book = output<UnitListItem>();
+
+  selectUnit() {
+    if (this.unit().availableRooms > 0) {
+      this.book.emit(this.unit());
+    }
+  }
 }

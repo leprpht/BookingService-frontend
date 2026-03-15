@@ -16,8 +16,8 @@ export class PropertyHeader {
   readonly location = computed(() => {
     const p = this.property();
     return p.state
-      ? `${p.city}, ${p.state}, ${p.country}`
-      : `${p.city}, ${p.country}`;
+      ? `${p.address}, ${p.city}, ${p.state}, ${p.country}`
+      : `${p.address}, ${p.city}, ${p.country}`;
   });
 
   readonly rating = computed(() => this.property().averageRating);

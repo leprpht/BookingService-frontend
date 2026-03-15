@@ -8,9 +8,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {GraphQlService} from '../../services/graphql-service';
 import {PropertyHeader} from '../property-header/property-header';
 import {PropertyUnitsList} from '../property-units-list/property-units-list';
-import type {PropertyDetails} from '../../models/types/propertyDetails';
 import {UnitListItem} from '../../models/types/unitListItem';
 import {PeriodRequest} from '../../models/requests/periodRequest';
+import {PropertyGallery} from '../property-gallery/property-gallery';
+import type {PropertyDetails} from '../../models/types/propertyDetails';
 
 @Component({
   selector: 'app-property-details',
@@ -20,7 +21,8 @@ import {PeriodRequest} from '../../models/requests/periodRequest';
     MatProgressSpinnerModule,
     MatTooltipModule,
     PropertyHeader,
-    PropertyUnitsList
+    PropertyUnitsList,
+    PropertyGallery
   ],
   templateUrl: './property-details-page.html',
   styleUrl: './property-details-page.scss',
