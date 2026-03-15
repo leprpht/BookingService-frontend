@@ -9,7 +9,8 @@ import {GraphQlService} from '../../services/graphql-service';
 import {PropertyHeader} from '../property-header/property-header';
 import {PropertyUnitsList} from '../property-units-list/property-units-list';
 import type {PropertyDetails} from '../../models/types/propertyDetails';
-import { UnitListItem } from '../../models/types/unitListItem';
+import {UnitListItem} from '../../models/types/unitListItem';
+import {PeriodRequest} from '../../models/requests/periodRequest';
 
 @Component({
   selector: 'app-property-details',
@@ -103,7 +104,7 @@ export class PropertyDetailsPage implements OnDestroy {
     console.log('Book unit:', unit.id);
   }
 
-  private fetchProperty(propertyId: string, period: {from: string; to: string}): void {
+  private fetchProperty(propertyId: string, period: PeriodRequest): void {
     this.loading.set(true);
     this.error.set(null);
 

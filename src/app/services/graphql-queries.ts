@@ -20,8 +20,8 @@ export class GraphQLQueries {
   `;
 
   static getPropertyDetails: string = `
-    query GetPropertyDetails($propertyId: UUID!, $period: PeriodRequest!) {
-      getPropertyDetails(propertyId: $propertyId, period: $period) {
+    query GetPropertyDetails($propertyId: UUID!, $period: PeriodRequestInput!) {
+      propertyDetails(propertyId: $propertyId, period: $period) {
         id
         name
         address
