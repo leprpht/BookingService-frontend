@@ -11,6 +11,7 @@ import {PropertyUnitsList} from '../property-units-list/property-units-list';
 import {UnitListItem} from '../../models/types/unitListItem';
 import {PeriodRequest} from '../../models/requests/periodRequest';
 import {PropertyGallery} from '../property-gallery/property-gallery';
+import {PropertyDescription} from '../property-description/property-description';
 import type {PropertyDetails} from '../../models/types/propertyDetails';
 
 @Component({
@@ -22,7 +23,8 @@ import type {PropertyDetails} from '../../models/types/propertyDetails';
     MatTooltipModule,
     PropertyHeader,
     PropertyUnitsList,
-    PropertyGallery
+    PropertyGallery,
+    PropertyDescription
   ],
   templateUrl: './property-details-page.html',
   styleUrl: './property-details-page.scss',

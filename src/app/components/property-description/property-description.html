@@ -1,0 +1,32 @@
+<section class="description-section">
+
+  @if (property().description) {
+    <div class="description-body">
+      <p class="description-text">{{ displayedText() }}</p>
+
+      @if (needsTruncation()) {
+        <button mat-button class="toggle-btn" (click)="toggleExpanded()">
+          {{ expanded() ? 'Show less' : 'Show more' }}
+          <mat-icon>{{ expanded() ? 'expand_less' : 'expand_more' }}</mat-icon>
+        </button>
+      }
+    </div>
+  } @else {
+    <p class="no-description">No description provided for this property.</p>
+  }
+
+  <div class="rating-row">
+    <button
+      mat-button
+      class="reviews-link"
+    >
+      <mat-icon>rate_review</mat-icon>
+      @if (property().reviewCount > 0) {
+        {{ property().reviewCount }} review{{ property().reviewCount !== 1 ? 's' : '' }}
+      } @else {
+        No reviews yet
+      }
+    </button>
+  </div>
+
+</section>

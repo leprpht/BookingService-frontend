@@ -39,6 +39,9 @@
         <app-property-gallery
           [pictures]="property()!.pictures"
         />
+        <app-property-description
+          [property]="property()!"
+        />
         <app-property-units-list
           [units]="property()!.units"
           [nightsCount]="nightsCount()"
