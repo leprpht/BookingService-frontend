@@ -33,7 +33,7 @@ export class PropertyDetailsPage implements OnDestroy {
   readonly property = signal<PropertyDetails | null>(null);
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
-  readonly period = signal<{from: string; to: string} | null>(null);
+  readonly period = signal<PeriodRequest | null>(null);
 
   readonly nightsCount = computed(() => {
     const p = this.period();
