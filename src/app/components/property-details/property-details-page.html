@@ -25,9 +25,13 @@
         <mat-icon>arrow_back</mat-icon>
       </button>
       <span class="breadcrumb-path">
-        {{ locationLabel() }}
+        <p (click)="searchByLocation()" class="breadcrumb-element">
+          {{ locationLabel() }}
+        </p>
         <mat-icon class="sep-icon">chevron_right</mat-icon>
-        {{ property()!.name }}
+        <p (click)="searchByProperty()" class="breadcrumb-element">
+          {{ property()!.name }}
+        </p>
       </span>
     </div>
 

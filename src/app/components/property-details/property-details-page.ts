@@ -13,6 +13,7 @@ import {PeriodRequest} from '../../models/requests/periodRequest';
 import {PropertyGallery} from '../property-gallery/property-gallery';
 import {PropertyDescription} from '../property-description/property-description';
 import type {PropertyDetails} from '../../models/types/propertyDetails';
+import type {HousingFilterOptions} from '../../models/filters/housingFilterOptions';
 
 @Component({
   selector: 'app-property-details',
@@ -106,6 +107,44 @@ export class PropertyDetailsPage implements OnDestroy {
 
   bookUnit(unit: UnitListItem): void {
     console.log('Book unit:', unit.id);
+  }
+
+  searchByLocation(): void {
+    const prop = this.property();
+    if (!prop) return;
+    const raw: HousingFilterOptions = {
+      period: this.period()!,
+      city: prop.city,
+      country: prop.country,
+      minPrice: null,
+      maxPrice: null,
+      searchQuery: null,
+      tags: null,
+      minRating: null,
+      capacities: null,
+    };
+    const filter = encodeURIComponent(JSON.stringify(raw));
+
+    this.router.navigate(['/search'], { queryParams: { filter } });
+  }
+  
+  searchByProperty(): void {
+    const prop = this.property();
+    if (!prop) return;
+    const raw: HousingFilterOptions = {
+      period: this.period()!,
+      city: null,
+      country: null,
+      minPrice: null,
+      maxPrice: null,
+      searchQuery: prop.name,
+      tags: null,
+      minRating: null,
+      capacities: null,
+    };
+    const filter = encodeURIComponent(JSON.stringify(raw));
+
+    this.router.navigate(['/search'], { queryParams: { filter } });
   }
 
   private fetchProperty(propertyId: string, period: PeriodRequest): void {

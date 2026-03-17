@@ -72,6 +72,13 @@
       height: 16px;
       margin: 0 2px;
     }
+
+    .breadcrumb-element {
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
 }
 

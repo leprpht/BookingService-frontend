@@ -40,7 +40,7 @@
       }
     } @else {
       @for (property of properties(); track property.id) {
-        <mat-card class="property-card" appearance="outlined">
+        <mat-card class="property-card" appearance="outlined" (click)="viewDetails(property.id)">
   
           <div class="card-image-wrapper">
             <img
