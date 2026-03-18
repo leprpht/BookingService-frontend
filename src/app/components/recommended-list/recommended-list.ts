@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { GraphQlService } from '../../services/graphql-service';
 import { PeriodRequest } from '../../models/requests/periodRequest';
 import { withLoadingState } from '../../operators/with-loading-state';
+import { FALLBACK_IMAGE_URL } from '../../data/fallback-image';
 import type { PropertyCard } from '../../models/types/propertyCard';
 
 @Component({
@@ -42,7 +43,11 @@ export class RecommendedList {
       this.graphQlService
         .getTopPropertiesByCity(this.city())
         .pipe(withLoadingState({ loading: this.loading }))
-        .subscribe((props) => this.properties.set(props));
+        .subscribe((props) =>
+          this.properties.set(
+            props.map((p) => ({ ...p, pictureUrl: p.pictureUrl ?? FALLBACK_IMAGE_URL })),
+          ),
+        );
     });
   }
 
