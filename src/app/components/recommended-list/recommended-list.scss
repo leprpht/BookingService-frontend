@@ -1,3 +1,5 @@
+@use '../../../styles' as s;
+
 .recommended-list {
   padding: 24px 0;
   margin: 0 20px;
@@ -11,9 +13,7 @@
       margin: 0 0 4px;
       color: var(--mat-sys-on-surface);
 
-      .city-name {
-        color: var(--mat-sys-primary);
-      }
+      .city-name { color: var(--mat-sys-primary); }
     }
 
     .list-subtitle {
@@ -28,12 +28,8 @@
     grid-template-columns: repeat(6, 1fr);
     gap: 18px;
 
-    @media (max-width: 1200px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @media (max-width: 640px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 640px)  { grid-template-columns: repeat(2, 1fr); }
   }
 }
 
@@ -41,17 +37,13 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition:
-    box-shadow 200ms ease,
-    transform 200ms ease;
+  transition: box-shadow 200ms ease, transform 200ms ease;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 
-    .card-image {
-      transform: scale(1.04);
-    }
+    .card-image { transform: scale(1.04); }
   }
 
   .card-image-wrapper {
@@ -72,7 +64,7 @@
       position: absolute;
       top: 6px;
       right: 6px;
-      background: rgba(0, 0, 0, 0.65);
+      background: s.$color-badge-overlay;
       color: #fff;
       border-radius: 20px;
       padding: 2px 7px 2px 4px;
@@ -87,7 +79,7 @@
         font-size: 12px;
         width: 12px;
         height: 12px;
-        color: #fbbf24;
+        color: s.$color-star;
       }
     }
 
@@ -192,25 +184,22 @@
 
 .placeholder {
   pointer-events: none;
+  animation: pulse 1.5s ease-in-out infinite;
 
   .image-placeholder {
     width: 100%;
     height: 100%;
-    background: #e0e0e0;
+    background: s.$color-skeleton;
   }
 
   .text-line {
     height: 14px;
-    background: #e0e0e0;
+    background: s.$color-skeleton;
     border-radius: 4px;
     margin-bottom: 6px;
 
-    &.short {
-      width: 90%;
-    }
-    &.tiny {
-      width: 40%;
-    }
+    &.short { width: 90%; }
+    &.tiny  { width: 40%; }
   }
 
   .tags-row {
@@ -222,14 +211,14 @@
   .chip-placeholder {
     width: 90px;
     height: 21px;
-    background: #e0e0e0;
+    background: s.$color-skeleton;
     border-radius: 10px;
   }
 
   .price-placeholder {
     width: 50px;
     height: 19px;
-    background: #e0e0e0;
+    background: s.$color-skeleton;
     border-radius: 4px;
   }
 }

@@ -1,9 +1,11 @@
+@use '../../../styles' as s;
+
 .property-name {
   display: flex;
   gap: 18px;
   align-items: baseline;
 
   .property-rating {
-    color: #005cbb;
+    color: s.$color-brand-dark;
   }
 }

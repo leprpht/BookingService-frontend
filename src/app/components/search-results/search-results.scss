@@ -1,3 +1,5 @@
+@use '../../../styles' as s;
+
 .search-page {
   padding: 24px 24px 48px;
   max-width: 1400px;
@@ -30,9 +32,7 @@
       font-weight: 600;
       color: var(--mat-sys-on-surface);
 
-      .query-highlight {
-        color: var(--mat-sys-primary);
-      }
+      .query-highlight { color: var(--mat-sys-primary); }
     }
 
     .page-subtitle {
@@ -48,19 +48,13 @@
         color: var(--mat-sys-on-surface);
       }
 
-      .separator {
-        opacity: 0.4;
-      }
+      .separator { opacity: 0.4; }
 
-      .loading-text {
-        animation: pulse 1.4s ease-in-out infinite;
-      }
+      .loading-text { animation: pulse 1.4s ease-in-out infinite; }
     }
   }
 
-  .sort-field {
-    min-width: 180px;
-  }
+  .sort-field { min-width: 180px; }
 }
 
 .filter-chips {
@@ -76,24 +70,16 @@
   }
 }
 
-mat-divider {
-  margin-bottom: 24px;
-}
+mat-divider { margin-bottom: 24px; }
 
 .results-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 860px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 540px) {
-    grid-template-columns: 1fr;
-  }
+  @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 860px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 540px)  { grid-template-columns: 1fr; }
 }
 
 .property-card {
@@ -101,17 +87,13 @@ mat-divider {
   flex-direction: column;
   overflow: hidden;
   cursor: pointer;
-  transition:
-    box-shadow 220ms ease,
-    transform 220ms ease;
+  transition: box-shadow 220ms ease, transform 220ms ease;
 
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 
-    .card-img {
-      transform: scale(1.05);
-    }
+    .card-img { transform: scale(1.05); }
   }
 
   .card-image-wrap {
@@ -132,7 +114,7 @@ mat-divider {
       position: absolute;
       top: 8px;
       right: 8px;
-      background: rgba(0, 0, 0, 0.6);
+      background: s.$color-badge-overlay;
       color: #fff;
       border-radius: 20px;
       padding: 3px 8px 3px 5px;
@@ -147,7 +129,7 @@ mat-divider {
         font-size: 13px;
         width: 13px;
         height: 13px;
-        color: #fbbf24;
+        color: s.$color-star;
       }
     }
 
@@ -270,7 +252,7 @@ mat-divider {
   .skeleton-image {
     width: 100%;
     aspect-ratio: 4 / 3;
-    background: #e8e8e8;
+    background: s.$color-skeleton-dark;
   }
 
   mat-card-header {
@@ -282,18 +264,12 @@ mat-divider {
 
   .sk-line {
     height: 12px;
-    background: #e8e8e8;
+    background: s.$color-skeleton-dark;
     border-radius: 4px;
 
-    &.wide {
-      width: 85%;
-    }
-    &.medium {
-      width: 55%;
-    }
-    &.narrow {
-      width: 40%;
-    }
+    &.wide   { width: 85%; }
+    &.medium { width: 55%; }
+    &.narrow { width: 40%; }
   }
 
   .sk-chips {
@@ -304,7 +280,7 @@ mat-divider {
     .sk-chip {
       width: 60px;
       height: 22px;
-      background: #e8e8e8;
+      background: s.$color-skeleton-dark;
       border-radius: 12px;
     }
   }
@@ -318,14 +294,14 @@ mat-divider {
     .sk-price {
       width: 56px;
       height: 20px;
-      background: #e8e8e8;
+      background: s.$color-skeleton-dark;
       border-radius: 4px;
     }
 
     .sk-btn {
       width: 80px;
       height: 32px;
-      background: #e8e8e8;
+      background: s.$color-skeleton-dark;
       border-radius: 4px;
     }
   }
@@ -343,54 +319,6 @@ mat-divider {
     font-size: 0.875rem;
     gap: 6px;
 
-    mat-icon {
-      font-size: 18px;
-    }
-  }
-}
-
-// ── Empty / Error state ───────────────────────────────────
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 24px;
-  text-align: center;
-  color: var(--mat-sys-on-surface-variant);
-
-  .empty-icon {
-    font-size: 64px;
-    width: 64px;
-    height: 64px;
-    opacity: 0.35;
-    margin-bottom: 20px;
-  }
-
-  h2 {
-    margin: 0 0 8px;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--mat-sys-on-surface);
-  }
-
-  p {
-    margin: 0 0 24px;
-    font-size: 0.9rem;
-    max-width: 340px;
-  }
-
-  button {
-    min-width: 160px;
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
+    mat-icon { font-size: 18px; }
   }
 }

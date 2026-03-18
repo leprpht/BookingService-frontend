@@ -1,12 +1,14 @@
+@use '../../../styles' as s;
+
 mat-toolbar {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  background-color: #fbfafa;
+  background-color: s.$color-header-bg;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   padding: 0.5rem 1rem;
   height: auto;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid s.$color-header-border;
 
   div {
     padding: 5px;
@@ -18,7 +20,7 @@ mat-toolbar {
       margin-top: 10px;
       font-size: 1.5rem;
       font-weight: 500;
-      color: #4284cb;
+      color: s.$color-brand;
       cursor: pointer;
     }
 
