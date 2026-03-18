@@ -81,12 +81,16 @@
 
     &.available {
       color: var(--mat-sys-primary);
-      mat-icon { color: var(--mat-sys-primary); }
+      mat-icon {
+        color: var(--mat-sys-primary);
+      }
     }
 
     &.full {
       color: var(--mat-sys-error);
-      mat-icon { color: var(--mat-sys-error); }
+      mat-icon {
+        color: var(--mat-sys-error);
+      }
     }
   }
 }
