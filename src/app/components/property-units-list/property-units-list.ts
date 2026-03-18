@@ -5,8 +5,12 @@ import {PropertyUnitCard} from '../property-unit-card/property-unit-card';
 import type {UnitListItem} from '../../models/types/unitListItem';
 
 @Component({
-  selector: 'app-property-units-list',
-  imports: [MatDividerModule, MatIconModule, PropertyUnitCard],
+  selector: 'booking-service-property-units-list',
+  imports: [
+    MatDividerModule,
+    MatIconModule,
+    PropertyUnitCard
+  ],
   templateUrl: './property-units-list.html',
   styleUrl: './property-units-list.scss',
 })

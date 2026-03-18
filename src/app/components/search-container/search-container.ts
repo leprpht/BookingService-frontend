@@ -21,7 +21,7 @@ import type {HousingFilterOptions} from '../../models/filters/housingFilterOptio
 import {LocationService} from '../../services/location-service';
 
 @Component({
-  selector: 'app-search-container',
+  selector: 'booking-service-search-container',
   imports: [
     FormsModule,
     ReactiveFormsModule,

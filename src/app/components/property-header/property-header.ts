@@ -5,8 +5,12 @@ import {MatIconModule} from '@angular/material/icon';
 import type {PropertyDetails} from '../../models/types/propertyDetails';
 
 @Component({
-  selector: 'app-property-header',
-  imports: [DecimalPipe, MatDividerModule, MatIconModule],
+  selector: 'booking-service-property-header',
+  imports: [
+    DecimalPipe,
+    MatDividerModule,
+    MatIconModule
+  ],
   templateUrl: './property-header.html',
   styleUrl: './property-header.scss',
 })

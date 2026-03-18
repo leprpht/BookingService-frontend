@@ -16,7 +16,7 @@ import type {PropertyDetails} from '../../models/types/propertyDetails';
 import type {HousingFilterOptions} from '../../models/filters/housingFilterOptions';
 
 @Component({
-  selector: 'app-property-details',
+  selector: 'booking-service-property-details',
   imports: [
     MatButtonModule,
     MatIconModule,

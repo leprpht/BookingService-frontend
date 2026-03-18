@@ -19,7 +19,7 @@ export type SortOption = 'best-match' | 'price-asc' | 'price-desc' | 'rating-des
 const PAGE_SIZE = 12;
 
 @Component({
-  selector: 'app-search-results',
+  selector: 'booking-service-search-results',
   imports: [
     DecimalPipe,
     MatCardModule,

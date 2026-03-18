@@ -6,7 +6,7 @@ import {Router} from '@angular/router';
 
 @Component({
   standalone: true,
-  selector: 'app-header',
+  selector: 'booking-service-header',
   imports: [
     MatToolbarModule,
     MatButtonModule,

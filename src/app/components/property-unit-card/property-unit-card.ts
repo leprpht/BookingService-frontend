@@ -7,8 +7,14 @@ import {MatIconModule} from '@angular/material/icon';
 import type { UnitListItem } from '../../models/types/unitListItem';
 
 @Component({
-  selector: 'app-property-unit-card',
-  imports: [DecimalPipe, MatButtonModule, MatCardModule, MatChipsModule, MatIconModule],
+  selector: 'booking-service-property-unit-card',
+  imports: [
+    DecimalPipe,
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatIconModule
+  ],
   templateUrl: './property-unit-card.html',
   styleUrl: './property-unit-card.scss',
 })
