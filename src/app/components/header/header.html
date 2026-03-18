@@ -1,6 +1,8 @@
 <mat-toolbar>
   <div>
-    <span (click)="goHome()">Booking Service</span>
+    <span role="button" tabindex="0" (click)="goHome()" (keyup.enter)="goHome()"
+      >Booking Service</span
+    >
     <section>
       <a matButton="elevated">Register</a>
       <a matButton="elevated">Log in</a>

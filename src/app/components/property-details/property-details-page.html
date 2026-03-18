@@ -24,11 +24,23 @@
         <mat-icon>arrow_back</mat-icon>
       </button>
       <span class="breadcrumb-path">
-        <p (click)="searchByLocation()" class="breadcrumb-element">
+        <p
+          role="button"
+          tabindex="0"
+          (click)="searchByLocation()"
+          (keyup.enter)="searchByLocation()"
+          class="breadcrumb-element"
+        >
           {{ locationLabel() }}
         </p>
         <mat-icon class="sep-icon">chevron_right</mat-icon>
-        <p (click)="searchByProperty()" class="breadcrumb-element">
+        <p
+          role="button"
+          tabindex="0"
+          (click)="searchByProperty()"
+          (keyup.enter)="searchByProperty()"
+          class="breadcrumb-element"
+        >
           {{ property()!.name }}
         </p>
       </span>

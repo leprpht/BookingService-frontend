@@ -46,7 +46,7 @@
       <!-- Tags -->
       <div class="tag-chip-list-container">
         <div class="label-container">
-          <label class="name-label"><strong>Tags</strong></label>
+          <span class="name-label"><strong>Tags</strong></span>
         </div>
         <mat-form-field class="tag-chip-list">
           <mat-label>Select tags</mat-label>
@@ -82,7 +82,7 @@
       <!-- City -->
       <div class="city-select-container">
         <div class="label-container">
-          <label class="name-label"><strong>City</strong></label>
+          <span class="name-label"><strong>City</strong></span>
         </div>
         <mat-form-field>
           <mat-label>City</mat-label>
@@ -103,7 +103,7 @@
       <!-- Country -->
       <div class="country-select-container">
         <div class="label-container">
-          <label class="name-label"><strong>Country</strong></label>
+          <span class="name-label"><strong>Country</strong></span>
         </div>
         <mat-form-field>
           <mat-label>Country</mat-label>
@@ -121,8 +121,8 @@
       <!-- Price range -->
       <div class="price-range-inputs">
         <div class="label-container">
-          <label class="name-label"><strong>Budget (per night):</strong></label>
-          <label class="value-label">{{ ` ${priceString}` }}</label>
+          <span class="name-label"><strong>Budget (per night):</strong></span>
+          <span class="value-label">{{ ` ${priceString}` }}</span>
         </div>
         <mat-slider min="10" max="210" step="5">
           <input matSliderStartThumb formControlName="minPrice" />
@@ -133,7 +133,7 @@
       <!-- Min rating -->
       <div class="min-rating-container">
         <div class="label-container">
-          <label class="name-label"><strong>Minimum rating</strong></label>
+          <span class="name-label"><strong>Minimum rating</strong></span>
         </div>
         <mat-button-toggle-group class="rating-toggle-group">
           @for (rating of ratingOptions; track rating) {
@@ -155,7 +155,7 @@
       <!-- Capacities -->
       <div class="capacities-container">
         <div class="label-container">
-          <label class="name-label"><strong>Guests</strong></label>
+          <span class="name-label"><strong>Guests</strong></span>
         </div>
         <mat-button-toggle-group multiple class="capacity-toggle-group">
           @for (cap of capacityOptions; track cap) {
