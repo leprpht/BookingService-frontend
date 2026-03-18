@@ -5,8 +5,9 @@ import { GraphQLQueries } from './graphql-queries';
 import type { PropertyCard, PropertiesData } from '../models/types/propertyCard';
 import type { PropertyDetails } from '../models/types/propertyDetails';
 import { PeriodRequest } from '../models/requests/periodRequest';
+import { environment } from '../../environments/environment';
 
-const GRAPHQL_URL = 'http://localhost:5275/graphql';
+const GRAPHQL_URL = `${environment.apiUrl}/graphql`;
 
 interface GraphQlResponse<Type> {
   data: Type;
