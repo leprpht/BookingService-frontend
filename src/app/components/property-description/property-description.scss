@@ -1,0 +1,60 @@
+:host {
+  display: block;
+}
+
+.description-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 0;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.reviews-link {
+  color: var(--mat-sys-primary);
+  font-size: 0.875rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+.description-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.description-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--mat-sys-on-surface);
+  white-space: pre-line;
+}
+
+.no-description {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--mat-sys-on-surface-variant);
+  font-style: italic;
+}

@@ -5,8 +5,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
 import {DecimalPipe} from '@angular/common';
-import type {PropertyCard} from '../../models/types/propertyCard';
+import {Router} from '@angular/router';
 import {GraphQlService} from '../../services/graphql-service';
+import {PeriodRequest} from '../../models/requests/periodRequest';
+import type {PropertyCard} from '../../models/types/propertyCard';
 
 @Component({
   selector: 'app-recommended-list',
@@ -16,7 +18,7 @@ import {GraphQlService} from '../../services/graphql-service';
     MatIconModule,
     MatButtonModule,
     MatBadgeModule,
-    DecimalPipe,
+    DecimalPipe
   ],
   templateUrl: './recommended-list.html',
   styleUrl: './recommended-list.scss',
@@ -26,6 +28,11 @@ export class RecommendedList {
   properties = signal<PropertyCard[]>([]);
   loading = signal(true);
   private readonly graphQlService = inject(GraphQlService);
+  private readonly router = inject(Router);
+  private readonly defaultPeriod: PeriodRequest = {
+    from: new Date().toISOString().split('T')[0],
+    to: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+  };
 
   constructor() {
     effect(() => {
@@ -43,5 +50,9 @@ export class RecommendedList {
           },
         });
     });
+  }
+
+  viewDetails(id: string) {
+    this.router.navigate(['/property', id], {queryParams: {from: this.defaultPeriod.from, to: this.defaultPeriod.to}});
   }
 }

@@ -17,6 +17,7 @@ import {Router} from '@angular/router';
 })
 export class Header {
   private readonly router = inject(Router);
+  readonly currentRoute = this.router.url;
 
   goHome() {
     this.router.navigate(['/']);

@@ -1,0 +1,130 @@
+.unit-card {
+  border-radius: 12px !important;
+  transition: box-shadow 0.2s ease;
+
+  &:not(.unavailable):hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    cursor: pointer;
+  }
+
+  &.unavailable {
+    opacity: 0.6;
+  }
+
+  .unit-card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px !important;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.unit-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.unit-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+
+  .unit-name {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
+  }
+
+  .sold-out-chip {
+    --mdc-chip-label-text-color: var(--mat-sys-on-error-container);
+    --mdc-chip-container-color: var(--mat-sys-error-container);
+    font-size: 11px !important;
+    height: 22px !important;
+  }
+
+  .urgent-chip {
+    --mdc-chip-label-text-color: #92400e;
+    --mdc-chip-container-color: #fef3c7;
+    font-size: 11px !important;
+    height: 22px !important;
+  }
+}
+
+.unit-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  .spec {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--mat-sys-on-surface-variant);
+
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+
+    &.available {
+      color: var(--mat-sys-primary);
+      mat-icon { color: var(--mat-sys-primary); }
+    }
+
+    &.full {
+      color: var(--mat-sys-error);
+      mat-icon { color: var(--mat-sys-error); }
+    }
+  }
+}
+
+.unit-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+
+  @media (max-width: 640px) {
+    align-items: flex-start;
+  }
+}
+
+.unit-price-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+
+  @media (max-width: 640px) {
+    align-items: flex-start;
+  }
+
+  .unit-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--mat-sys-on-surface);
+    line-height: 1;
+  }
+
+  .unit-price-label {
+    font-size: 11px;
+    color: var(--mat-sys-on-surface-variant);
+    letter-spacing: 0.02em;
+  }
+}
+
+.book-btn {
+  min-width: 100px;
+}

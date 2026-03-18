@@ -1,0 +1,31 @@
+<mat-divider />
+
+<div class="info-section">
+  <h3 class="section-label">
+    <mat-icon>hotel</mat-icon>
+    Available rooms
+    @if (period()) {
+      <span class="period-label">
+        · {{ dateRangeLabel() }}
+        ({{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }})
+      </span>
+    }
+  </h3>
+
+  @if (units().length === 0) {
+    <div class="no-units">
+      <mat-icon>search_off</mat-icon>
+      <p>No room types available for the selected period.</p>
+    </div>
+  }
+
+  <div class="units-list">
+    @for (unit of units(); track unit.id) {
+      <app-property-unit-card
+        [unit]="unit"
+        [nightsCount]="nightsCount()"
+        (book)="bookUnit.emit($event)"
+      />
+    }
+  </div>
+</div>

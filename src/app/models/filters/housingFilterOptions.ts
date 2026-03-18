@@ -2,7 +2,7 @@ import {PeriodRequest} from '../requests/periodRequest';
 
 export interface HousingFilterOptions {
   period: PeriodRequest;
-  searchQuery: string;
+  searchQuery: string | null;
   city: string | null;
   country: string | null;
   minPrice: number | null;

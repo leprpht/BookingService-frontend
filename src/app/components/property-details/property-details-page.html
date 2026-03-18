@@ -1,0 +1,60 @@
+<!-- Loading state -->
+@if (loading()) {
+  <div class="page-loading">
+    <mat-spinner diameter="48" />
+    <p>Loading property details…</p>
+  </div>
+}
+
+<!-- Error state -->
+@if (!loading() && error()) {
+  <div class="empty-state">
+    <mat-icon class="empty-icon">error_outline</mat-icon>
+    <h2>Something went wrong</h2>
+    <p>{{ error() }}</p>
+    <button mat-flat-button (click)="goBack()">Go back home</button>
+  </div>
+}
+
+<!-- Content -->
+@if (!loading() && !error() && property()) {
+  <div class="details-page">
+
+    <div class="breadcrumb-bar">
+      <button mat-icon-button class="back-btn" (click)="goBack()" matTooltip="Back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span class="breadcrumb-path">
+        <p (click)="searchByLocation()" class="breadcrumb-element">
+          {{ locationLabel() }}
+        </p>
+        <mat-icon class="sep-icon">chevron_right</mat-icon>
+        <p (click)="searchByProperty()" class="breadcrumb-element">
+          {{ property()!.name }}
+        </p>
+      </span>
+    </div>
+
+    <div class="content-layout">
+      <div class="left-col">
+        <app-property-header
+          [property]="property()!"
+        />
+        <app-property-gallery
+          [pictures]="property()!.pictures"
+        />
+        <app-property-description
+          [property]="property()!"
+        />
+        <app-property-units-list
+          [units]="property()!.units"
+          [nightsCount]="nightsCount()"
+          [dateRangeLabel]="dateRangeLabel()"
+          [period]="period()"
+          (bookUnit)="bookUnit($event)"
+        />
+      </div>
+    </div>
+
+  </div>
+}

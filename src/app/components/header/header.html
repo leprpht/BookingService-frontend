@@ -6,6 +6,8 @@
       <a matButton="elevated">Log in</a>
     </section>
   </div>
-  <app-search-container />
+  @if (currentRoute === '/' || currentRoute.startsWith('/search')) {
+    <app-search-container />
+  }
 </mat-toolbar>
   
