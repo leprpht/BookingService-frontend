@@ -21,7 +21,7 @@
 
   <div class="units-list">
     @for (unit of units(); track unit.id) {
-      <app-property-unit-card
+      <booking-service-property-unit-card
         [unit]="unit"
         [nightsCount]="nightsCount()"
         (book)="bookUnit.emit($event)"

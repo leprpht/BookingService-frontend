@@ -4,9 +4,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 @Component({
-  selector: 'app-property-gallery',
+  selector: 'booking-service-property-gallery',
   standalone: true,
-  imports: [MatGridListModule, MatButtonModule, MatIconModule],
+  imports: [
+    MatGridListModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './property-gallery.html',
   styleUrl: './property-gallery.scss',
 })

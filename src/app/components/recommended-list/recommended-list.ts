@@ -11,7 +11,7 @@ import {PeriodRequest} from '../../models/requests/periodRequest';
 import type {PropertyCard} from '../../models/types/propertyCard';
 
 @Component({
-  selector: 'app-recommended-list',
+  selector: 'booking-service-recommended-list',
   imports: [
     MatCardModule,
     MatChipsModule,

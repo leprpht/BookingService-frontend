@@ -37,16 +37,16 @@
 
     <div class="content-layout">
       <div class="left-col">
-        <app-property-header
+        <booking-service-property-header
           [property]="property()!"
         />
-        <app-property-gallery
+        <booking-service-property-gallery
           [pictures]="property()!.pictures"
         />
-        <app-property-description
+        <booking-service-property-description
           [property]="property()!"
         />
-        <app-property-units-list
+        <booking-service-property-units-list
           [units]="property()!.units"
           [nightsCount]="nightsCount()"
           [dateRangeLabel]="dateRangeLabel()"

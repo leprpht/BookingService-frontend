@@ -7,7 +7,7 @@ import type {PropertyDetails} from '../../models/types/propertyDetails';
 const TRUNCATE_LENGTH = 320;
 
 @Component({
-  selector: 'app-property-description',
+  selector: 'booking-service-property-description',
   standalone: true,
   imports: [MatButtonModule, MatIconModule, MatDividerModule],
   templateUrl: './property-description.html',
