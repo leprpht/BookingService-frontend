@@ -8,9 +8,8 @@ describe('PropertyUnitCard', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PropertyUnitCard]
-    })
-    .compileComponents();
+      imports: [PropertyUnitCard],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PropertyUnitCard);
     component = fixture.componentInstance;

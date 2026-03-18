@@ -1,5 +1,4 @@
 <div class="search-page">
-
   <!-- Page header -->
   <div class="page-header">
     <div class="header-left">
@@ -10,7 +9,8 @@
       <div class="header-text">
         <h1 class="page-title">
           @if (activeFilter()?.searchQuery) {
-            Results for "<span class="query-highlight">{{ activeFilter()!.searchQuery }}</span>"
+            Results for "<span class="query-highlight">{{ activeFilter()!.searchQuery }}</span
+            >"
           } @else if (activeFilter()?.city) {
             Stays in <span class="query-highlight">{{ activeFilter()!.city }}</span>
           } @else {
@@ -20,7 +20,9 @@
 
         <p class="page-subtitle">
           @if (!loading()) {
-            <span class="result-count">{{ allResults().length }}{{ hasMore() ? '+' : '' }} properties</span>
+            <span class="result-count"
+              >{{ allResults().length }}{{ hasMore() ? '+' : '' }} properties</span
+            >
             @if (nightsCount() > 0) {
               <span class="separator">·</span>
               <span>{{ dateRangeLabel() }}</span>
@@ -28,7 +30,7 @@
               <span>{{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }}</span>
             }
           } @else {
-            <span class="loading-text">Searching…</span>
+            <span class="loading-text">Searching...</span>
           }
         </p>
       </div>
@@ -102,7 +104,6 @@
     <div class="results-grid">
       @for (property of sortedResults(); track property.id) {
         <mat-card class="property-card" appearance="outlined">
-
           <!-- Image -->
           <div class="card-image-wrap">
             <img
@@ -115,14 +116,12 @@
             <!-- Rating badge -->
             <div class="rating-badge">
               <mat-icon>star</mat-icon>
-              {{ property.rating | number:'1.1-1' }}
+              {{ property.rating | number: '1.1-1' }}
             </div>
 
             <!-- Urgency badge -->
             @if (property.availableUnits <= 2 && property.availableUnits > 0) {
-              <div class="urgency-badge">
-                Only {{ property.availableUnits }} left!
-              </div>
+              <div class="urgency-badge">Only {{ property.availableUnits }} left!</div>
             }
           </div>
 
@@ -154,7 +153,8 @@
               </span>
               <span class="meta-item">
                 <mat-icon>hotel</mat-icon>
-                {{ property.availableUnits }} unit{{ property.availableUnits !== 1 ? 's' : '' }} available
+                {{ property.availableUnits }} unit{{ property.availableUnits !== 1 ? 's' : '' }}
+                available
               </span>
             </div>
           </mat-card-content>
@@ -162,12 +162,13 @@
           <!-- Actions -->
           <mat-card-actions class="card-actions">
             <div class="price-block">
-              <span class="price">${{ property.price | number:'1.0-0' }}</span>
-              <span class="price-label">total · {{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }}</span>
+              <span class="price">${{ property.price | number: '1.0-0' }}</span>
+              <span class="price-label"
+                >total · {{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }}</span
+              >
             </div>
             <button mat-flat-button class="view-btn">View deal</button>
           </mat-card-actions>
-
         </mat-card>
       }
     </div>
@@ -195,5 +196,4 @@
       <button mat-flat-button (click)="goHome()">Back to home</button>
     </div>
   }
-
 </div>

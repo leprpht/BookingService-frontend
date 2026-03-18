@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {RecommendedList} from '../recommended-list/recommended-list';
+import { Component } from '@angular/core';
+import { RecommendedList } from '../recommended-list/recommended-list';
 
 const FEATURED_CITIES = ['Paris', 'Barcelona', 'Tokyo', 'London', 'Rome', 'New York'];
 

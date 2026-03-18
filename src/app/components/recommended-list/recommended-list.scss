@@ -11,7 +11,9 @@
       margin: 0 0 4px;
       color: var(--mat-sys-on-surface);
 
-      .city-name { color: var(--mat-sys-primary); }
+      .city-name {
+        color: var(--mat-sys-primary);
+      }
     }
 
     .list-subtitle {
@@ -26,8 +28,12 @@
     grid-template-columns: repeat(6, 1fr);
     gap: 18px;
 
-    @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 640px)  { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 
@@ -35,13 +41,17 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: box-shadow 200ms ease, transform 200ms ease;
+  transition:
+    box-shadow 200ms ease,
+    transform 200ms ease;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 
-    .card-image { transform: scale(1.04); }
+    .card-image {
+      transform: scale(1.04);
+    }
   }
 
   .card-image-wrapper {
@@ -195,8 +205,12 @@
     border-radius: 4px;
     margin-bottom: 6px;
 
-    &.short { width: 90%; }
-    &.tiny { width: 40%; }
+    &.short {
+      width: 90%;
+    }
+    &.tiny {
+      width: 40%;
+    }
   }
 
   .tags-row {

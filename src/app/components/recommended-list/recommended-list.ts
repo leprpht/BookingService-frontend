@@ -1,15 +1,15 @@
-import {Component, effect, inject, input, signal} from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatBadgeModule} from '@angular/material/badge';
-import {DecimalPipe} from '@angular/common';
-import {Router} from '@angular/router';
-import {GraphQlService} from '../../services/graphql-service';
-import {PeriodRequest} from '../../models/requests/periodRequest';
-import {withLoadingState} from '../../operators/with-loading-state';
-import type {PropertyCard} from '../../models/types/propertyCard';
+import { Component, effect, inject, input, signal } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
+import { DecimalPipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { GraphQlService } from '../../services/graphql-service';
+import { PeriodRequest } from '../../models/requests/periodRequest';
+import { withLoadingState } from '../../operators/with-loading-state';
+import type { PropertyCard } from '../../models/types/propertyCard';
 
 @Component({
   selector: 'booking-service-recommended-list',
@@ -19,7 +19,7 @@ import type {PropertyCard} from '../../models/types/propertyCard';
     MatIconModule,
     MatButtonModule,
     MatBadgeModule,
-    DecimalPipe
+    DecimalPipe,
   ],
   templateUrl: './recommended-list.html',
   styleUrl: './recommended-list.scss',
@@ -39,15 +39,16 @@ export class RecommendedList {
 
   constructor() {
     effect(() => {
-      this.graphQlService.getTopPropertiesByCity(this.city()).pipe(
-        withLoadingState({loading: this.loading}),
-      ).subscribe(props => this.properties.set(props));
+      this.graphQlService
+        .getTopPropertiesByCity(this.city())
+        .pipe(withLoadingState({ loading: this.loading }))
+        .subscribe((props) => this.properties.set(props));
     });
   }
 
   viewDetails(id: string): void {
     this.router.navigate(['/property', id], {
-      queryParams: {from: this.defaultPeriod.from, to: this.defaultPeriod.to},
+      queryParams: { from: this.defaultPeriod.from, to: this.defaultPeriod.to },
     });
   }
 }

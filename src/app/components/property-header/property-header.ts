@@ -1,16 +1,12 @@
-import {Component, computed, input} from '@angular/core';
-import {DecimalPipe} from '@angular/common';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatIconModule} from '@angular/material/icon';
-import type {PropertyDetails} from '../../models/types/propertyDetails';
+import { Component, computed, input } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import type { PropertyDetails } from '../../models/types/propertyDetails';
 
 @Component({
   selector: 'booking-service-property-header',
-  imports: [
-    DecimalPipe,
-    MatDividerModule,
-    MatIconModule
-  ],
+  imports: [DecimalPipe, MatDividerModule, MatIconModule],
   templateUrl: './property-header.html',
   styleUrl: './property-header.scss',
 })

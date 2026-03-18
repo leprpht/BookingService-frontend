@@ -1,6 +1,6 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {RecommendedList} from './recommended-list';
+import { RecommendedList } from './recommended-list';
 
 describe('RecommendedList', () => {
   let component: RecommendedList;
@@ -8,9 +8,8 @@ describe('RecommendedList', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RecommendedList]
-    })
-      .compileComponents();
+      imports: [RecommendedList],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RecommendedList);
     component = fixture.componentInstance;

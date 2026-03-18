@@ -1,5 +1,4 @@
 <section class="description-section">
-
   @if (property().description) {
     <div class="description-body">
       <p class="description-text">{{ displayedText() }}</p>
@@ -16,10 +15,7 @@
   }
 
   <div class="rating-row">
-    <button
-      mat-button
-      class="reviews-link"
-    >
+    <button mat-button class="reviews-link">
       <mat-icon>rate_review</mat-icon>
       @if (property().reviewCount > 0) {
         {{ property().reviewCount }} review{{ property().reviewCount !== 1 ? 's' : '' }}
@@ -28,5 +24,4 @@
       }
     </button>
   </div>
-
 </section>

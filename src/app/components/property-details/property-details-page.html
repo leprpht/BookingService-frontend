@@ -19,7 +19,6 @@
 <!-- Content -->
 @if (!loading() && !error() && property()) {
   <div class="details-page">
-
     <div class="breadcrumb-bar">
       <button mat-icon-button class="back-btn" (click)="goBack()" matTooltip="Back">
         <mat-icon>arrow_back</mat-icon>
@@ -37,15 +36,9 @@
 
     <div class="content-layout">
       <div class="left-col">
-        <booking-service-property-header
-          [property]="property()!"
-        />
-        <booking-service-property-gallery
-          [pictures]="property()!.pictures"
-        />
-        <booking-service-property-description
-          [property]="property()!"
-        />
+        <booking-service-property-header [property]="property()!" />
+        <booking-service-property-gallery [pictures]="property()!.pictures" />
+        <booking-service-property-description [property]="property()!" />
         <booking-service-property-units-list
           [units]="property()!.units"
           [nightsCount]="nightsCount()"
@@ -55,6 +48,5 @@
         />
       </div>
     </div>
-
   </div>
 }

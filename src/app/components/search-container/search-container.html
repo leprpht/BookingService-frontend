@@ -1,12 +1,15 @@
 <form [formGroup]="filterForm" (ngSubmit)="onSearch()">
-
   <div class="search-bar-container">
-
     <mat-form-field class="search-bar-field">
       <mat-label>Search destinations</mat-label>
-      <input matInput type="text" formControlName="searchQuery">
+      <input matInput type="text" formControlName="searchQuery" />
       @if (filterForm.get('searchQuery')?.value) {
-        <button matSuffix matIconButton aria-label="Clear" (click)="filterForm.get('searchQuery')?.setValue('')">
+        <button
+          matSuffix
+          matIconButton
+          aria-label="Clear"
+          (click)="filterForm.get('searchQuery')?.setValue('')"
+        >
           <mat-icon>close</mat-icon>
         </button>
       }
@@ -15,8 +18,8 @@
     <mat-form-field>
       <mat-label>Enter a date range</mat-label>
       <mat-date-range-input [rangePicker]="picker" formGroupName="period" [min]="minDate">
-        <input matStartDate formControlName="from" placeholder="Start date">
-        <input matEndDate formControlName="to" placeholder="End date">
+        <input matStartDate formControlName="from" placeholder="Start date" />
+        <input matEndDate formControlName="to" placeholder="End date" />
       </mat-date-range-input>
       <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -32,12 +35,10 @@
       Search
       <mat-icon>search</mat-icon>
     </button>
-
   </div>
 
   <mat-accordion class="additional-filters-accordion">
     <mat-expansion-panel>
-
       <mat-expansion-panel-header>
         <mat-panel-title>Additional filters</mat-panel-title>
       </mat-expansion-panel-header>
@@ -67,7 +68,10 @@
             [matAutocomplete]="tagAuto"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           />
-          <mat-autocomplete #tagAuto="matAutocomplete" (optionSelected)="selectTag($event); tagInput.value = ''">
+          <mat-autocomplete
+            #tagAuto="matAutocomplete"
+            (optionSelected)="selectTag($event); tagInput.value = ''"
+          >
             @for (tag of filteredTags(); track tag.id) {
               <mat-option [value]="tag">{{ tag.name }}</mat-option>
             }
@@ -121,8 +125,8 @@
           <label class="value-label">{{ ` ${priceString}` }}</label>
         </div>
         <mat-slider min="10" max="210" step="5">
-          <input matSliderStartThumb formControlName="minPrice">
-          <input matSliderEndThumb formControlName="maxPrice">
+          <input matSliderStartThumb formControlName="minPrice" />
+          <input matSliderEndThumb formControlName="maxPrice" />
         </mat-slider>
       </div>
 
@@ -165,8 +169,6 @@
           }
         </mat-button-toggle-group>
       </div>
-
     </mat-expansion-panel>
   </mat-accordion>
-
 </form>

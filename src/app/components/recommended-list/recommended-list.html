@@ -1,47 +1,45 @@
 <section class="recommended-list">
-
   <div class="list-header">
-    <h2 class="list-title">Popular in <span class="city-name">{{ city() }}</span></h2>
+    <h2 class="list-title">
+      Popular in <span class="city-name">{{ city() }}</span>
+    </h2>
     <p class="list-subtitle">Top-rated stays hand-picked for you</p>
   </div>
 
   <div class="cards-grid">
     @if (loading()) {
-      @for (i of [1,2,3,4,5,6]; track i) {
+      @for (i of [1, 2, 3, 4, 5, 6]; track i) {
         <mat-card class="property-card placeholder" appearance="outlined">
-  
           <div class="card-image-wrapper">
             <div class="image-placeholder"></div>
           </div>
-  
+
           <mat-card-header>
             <div class="text-line short"></div>
           </mat-card-header>
           <mat-card-header>
             <div class="text-line tiny"></div>
           </mat-card-header>
-  
+
           <mat-card-content>
             <div class="tags-row">
               <div class="chip-placeholder"></div>
               <div class="chip-placeholder"></div>
               <div class="chip-placeholder"></div>
             </div>
-  
+
             <div class="text-line tiny"></div>
           </mat-card-content>
-  
+
           <mat-card-actions>
             <div class="price-placeholder"></div>
             <button mat-flat-button class="view-button" disabled>View deal</button>
           </mat-card-actions>
-  
         </mat-card>
       }
     } @else {
       @for (property of properties(); track property.id) {
         <mat-card class="property-card" appearance="outlined" (click)="viewDetails(property.id)">
-  
           <div class="card-image-wrapper">
             <img
               mat-card-image
@@ -51,13 +49,13 @@
             />
             <div class="card-badge">
               <mat-icon class="badge-icon">star</mat-icon>
-              {{ property.rating | number:'1.1-1' }}
+              {{ property.rating | number: '1.1-1' }}
             </div>
             @if (property.availableUnits <= 2) {
               <div class="card-urgency">Only {{ property.availableUnits }} left!</div>
             }
           </div>
-  
+
           <mat-card-header>
             <mat-card-title class="card-title">{{ property.name }}</mat-card-title>
             <mat-card-subtitle class="card-subtitle">
@@ -65,7 +63,7 @@
               {{ property.city }}, {{ property.country }}
             </mat-card-subtitle>
           </mat-card-header>
-  
+
           <mat-card-content class="card-content">
             <div class="tags-row">
               @for (tag of property.tags.slice(0, 3); track tag) {
@@ -77,18 +75,18 @@
               {{ property.reviewCount }} reviews
             </div>
           </mat-card-content>
-  
+
           <mat-card-actions class="card-actions">
             <div class="price-block">
-              <span class="price-amount">${{ property.price | number:'1.0-0' }}</span>
+              <span class="price-amount">${{ property.price | number: '1.0-0' }}</span>
               <span class="price-unit">/ night</span>
             </div>
-            <button mat-flat-button class="view-button" (click)="viewDetails(property.id)">View deal</button>
+            <button mat-flat-button class="view-button" (click)="viewDetails(property.id)">
+              View deal
+            </button>
           </mat-card-actions>
-  
         </mat-card>
       }
     }
   </div>
-
 </section>

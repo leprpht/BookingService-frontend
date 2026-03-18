@@ -85,9 +85,15 @@ mat-divider {
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 
-  @media (max-width: 1200px) { grid-template-columns: repeat(3, 1fr); }
-  @media (max-width: 860px)  { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 540px)  { grid-template-columns: 1fr; }
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .property-card {
@@ -279,9 +285,15 @@ mat-divider {
     background: #e8e8e8;
     border-radius: 4px;
 
-    &.wide   { width: 85%; }
-    &.medium { width: 55%; }
-    &.narrow { width: 40%; }
+    &.wide {
+      width: 85%;
+    }
+    &.medium {
+      width: 55%;
+    }
+    &.narrow {
+      width: 40%;
+    }
   }
 
   .sk-chips {
@@ -331,7 +343,9 @@ mat-divider {
     font-size: 0.875rem;
     gap: 6px;
 
-    mat-icon { font-size: 18px; }
+    mat-icon {
+      font-size: 18px;
+    }
   }
 }
 
@@ -372,6 +386,11 @@ mat-divider {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

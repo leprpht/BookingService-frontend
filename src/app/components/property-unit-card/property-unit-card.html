@@ -1,6 +1,10 @@
-<mat-card class="unit-card" appearance="outlined" [class.unavailable]="unit().availableRooms === 0" (click)="selectUnit()">
+<mat-card
+  class="unit-card"
+  appearance="outlined"
+  [class.unavailable]="unit().availableRooms === 0"
+  (click)="selectUnit()"
+>
   <mat-card-content class="unit-card-content">
-
     <div class="unit-main">
       <div class="unit-header">
         <h4 class="unit-name">{{ unit().name }}</h4>
@@ -35,7 +39,7 @@
 
     <div class="unit-right">
       <div class="unit-price-block">
-        <span class="unit-price">${{ unit().price | number:'1.0-0' }}</span>
+        <span class="unit-price">${{ unit().price | number: '1.0-0' }}</span>
         <span class="unit-price-label">
           @if (nightsCount() > 1) {
             total · {{ nightsCount() }} nights
@@ -45,6 +49,5 @@
         </span>
       </div>
     </div>
-
   </mat-card-content>
 </mat-card>

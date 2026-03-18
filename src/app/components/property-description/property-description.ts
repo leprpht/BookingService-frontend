@@ -1,8 +1,8 @@
-import {Component, computed, inject, input, signal} from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDividerModule} from '@angular/material/divider';
-import type {PropertyDetails} from '../../models/types/propertyDetails';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import type { PropertyDetails } from '../../models/types/propertyDetails';
 
 const TRUNCATE_LENGTH = 320;
 
@@ -18,8 +18,8 @@ export class PropertyDescription {
 
   readonly expanded = signal(false);
 
-  readonly needsTruncation = computed(() =>
-    (this.property().description ?? '').length > TRUNCATE_LENGTH,
+  readonly needsTruncation = computed(
+    () => (this.property().description ?? '').length > TRUNCATE_LENGTH,
   );
 
   readonly displayedText = computed(() => {
@@ -29,6 +29,6 @@ export class PropertyDescription {
   });
 
   toggleExpanded(): void {
-    this.expanded.update(v => !v);
+    this.expanded.update((v) => !v);
   }
 }

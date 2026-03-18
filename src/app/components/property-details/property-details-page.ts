@@ -1,20 +1,20 @@
-import {Component, computed, inject, OnDestroy, signal} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {combineLatest, Subscription} from 'rxjs';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {GraphQlService} from '../../services/graphql-service';
-import {PropertyHeader} from '../property-header/property-header';
-import {PropertyUnitsList} from '../property-units-list/property-units-list';
-import {UnitListItem} from '../../models/types/unitListItem';
-import {PeriodRequest} from '../../models/requests/periodRequest';
-import {PropertyGallery} from '../property-gallery/property-gallery';
-import {PropertyDescription} from '../property-description/property-description';
-import type {PropertyDetails} from '../../models/types/propertyDetails';
-import type {HousingFilterOptions} from '../../models/filters/housingFilterOptions';
-import {withLoadingState} from '../../operators/with-loading-state';
+import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest, Subscription } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { GraphQlService } from '../../services/graphql-service';
+import { PropertyHeader } from '../property-header/property-header';
+import { PropertyUnitsList } from '../property-units-list/property-units-list';
+import { UnitListItem } from '../../models/types/unitListItem';
+import { PeriodRequest } from '../../models/requests/periodRequest';
+import { PropertyGallery } from '../property-gallery/property-gallery';
+import { PropertyDescription } from '../property-description/property-description';
+import type { PropertyDetails } from '../../models/types/propertyDetails';
+import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
+import { withLoadingState } from '../../operators/with-loading-state';
 
 @Component({
   selector: 'booking-service-property-details',
@@ -26,7 +26,7 @@ import {withLoadingState} from '../../operators/with-loading-state';
     PropertyHeader,
     PropertyUnitsList,
     PropertyGallery,
-    PropertyDescription
+    PropertyDescription,
   ],
   templateUrl: './property-details-page.html',
   styleUrl: './property-details-page.scss',
@@ -48,7 +48,8 @@ export class PropertyDetailsPage implements OnDestroy {
   readonly dateRangeLabel = computed(() => {
     const p = this.period();
     if (!p) return '';
-    const fmt = (d: Date) => d.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
+    const fmt = (d: Date) =>
+      d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     return `${fmt(new Date(p.from))} - ${fmt(new Date(p.to))}`;
   });
 
@@ -58,8 +59,8 @@ export class PropertyDetailsPage implements OnDestroy {
     return [prop.city, prop.state, prop.country].filter(Boolean).join(', ');
   });
 
-  readonly availableUnits = computed(() =>
-    this.property()?.units.filter(u => u.availableRooms > 0) ?? [],
+  readonly availableUnits = computed(
+    () => this.property()?.units.filter((u) => u.availableRooms > 0) ?? [],
   );
 
   private readonly route = inject(ActivatedRoute);
@@ -69,31 +70,30 @@ export class PropertyDetailsPage implements OnDestroy {
 
   constructor() {
     this.sub.add(
-      combineLatest([
-        this.route.paramMap,
-        this.route.queryParamMap
-      ]).subscribe(([params, query]) => {
-        const propertyId = params.get('id');
-        const from = query.get('from');
-        const to = query.get('to');
+      combineLatest([this.route.paramMap, this.route.queryParamMap]).subscribe(
+        ([params, query]) => {
+          const propertyId = params.get('id');
+          const from = query.get('from');
+          const to = query.get('to');
 
-        if (!propertyId) return;
+          if (!propertyId) return;
 
-        if (from && to) {
-          this.period.set({ from, to });
-        } else {
-          const today = new Date();
-          const tomorrow = new Date(today);
-          tomorrow.setDate(today.getDate() + 1);
+          if (from && to) {
+            this.period.set({ from, to });
+          } else {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
 
-          this.period.set({
-            from: today.toISOString().split('T')[0],
-            to: tomorrow.toISOString().split('T')[0],
-          });
-        }
+            this.period.set({
+              from: today.toISOString().split('T')[0],
+              to: tomorrow.toISOString().split('T')[0],
+            });
+          }
 
-        this.fetchProperty(propertyId, this.period()!);
-      })
+          this.fetchProperty(propertyId, this.period()!);
+        },
+      ),
     );
   }
 
@@ -123,7 +123,9 @@ export class PropertyDetailsPage implements OnDestroy {
       minRating: null,
       capacities: null,
     };
-    this.router.navigate(['/search'], {queryParams: {filter: encodeURIComponent(JSON.stringify(raw))}});
+    this.router.navigate(['/search'], {
+      queryParams: { filter: encodeURIComponent(JSON.stringify(raw)) },
+    });
   }
 
   searchByProperty(): void {
@@ -140,18 +142,23 @@ export class PropertyDetailsPage implements OnDestroy {
       minRating: null,
       capacities: null,
     };
-    this.router.navigate(['/search'], {queryParams: {filter: encodeURIComponent(JSON.stringify(raw))}});
+    this.router.navigate(['/search'], {
+      queryParams: { filter: encodeURIComponent(JSON.stringify(raw)) },
+    });
   }
 
   private fetchProperty(propertyId: string, period: PeriodRequest): void {
     this.sub.add(
-      this.graphQlService.getPropertyDetails(propertyId, period).pipe(
-        withLoadingState({
-          loading: this.loading,
-          error: this.error,
-          errorMessage: 'Failed to load property details. Please try again.',
-        }),
-      ).subscribe(prop => this.property.set(prop)),
+      this.graphQlService
+        .getPropertyDetails(propertyId, period)
+        .pipe(
+          withLoadingState({
+            loading: this.loading,
+            error: this.error,
+            errorMessage: 'Failed to load property details. Please try again.',
+          }),
+        )
+        .subscribe((prop) => this.property.set(prop)),
     );
   }
 }

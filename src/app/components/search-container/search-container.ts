@@ -1,24 +1,27 @@
-import {Component, computed, inject, signal} from '@angular/core';
-import {toSignal} from '@angular/core/rxjs-interop';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
-import {debounceTime, distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
-import {MatAutocompleteModule, type MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {COUNTRIES} from '../../data/countries';
-import type {TagOption} from '../../models/filters/tagOption';
-import type {HousingFilterOptions} from '../../models/filters/housingFilterOptions';
-import {LocationService} from '../../services/location-service';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import {
+  MatAutocompleteModule,
+  type MatAutocompleteSelectedEvent,
+} from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { COUNTRIES } from '../../data/countries';
+import type { TagOption } from '../../models/filters/tagOption';
+import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
+import { LocationService } from '../../services/location-service';
 
 @Component({
   selector: 'booking-service-search-container',
@@ -62,21 +65,21 @@ export class SearchContainer {
 
   // TODO: replace with API call — Guids are real backend IDs
   readonly allTags: TagOption[] = [
-    {id: 'a1b2c3d4-0001-0000-0000-000000000000', name: 'Beachfront'},
-    {id: 'a1b2c3d4-0002-0000-0000-000000000000', name: 'Pet-friendly'},
-    {id: 'a1b2c3d4-0003-0000-0000-000000000000', name: 'Pool'},
-    {id: 'a1b2c3d4-0004-0000-0000-000000000000', name: 'Spa'},
-    {id: 'a1b2c3d4-0005-0000-0000-000000000000', name: 'Free parking'},
-    {id: 'a1b2c3d4-0006-0000-0000-000000000000', name: 'Breakfast included'},
-    {id: 'a1b2c3d4-0007-0000-0000-000000000000', name: 'City center'},
-    {id: 'a1b2c3d4-0008-0000-0000-000000000000', name: 'Family-friendly'},
+    { id: 'a1b2c3d4-0001-0000-0000-000000000000', name: 'Beachfront' },
+    { id: 'a1b2c3d4-0002-0000-0000-000000000000', name: 'Pet-friendly' },
+    { id: 'a1b2c3d4-0003-0000-0000-000000000000', name: 'Pool' },
+    { id: 'a1b2c3d4-0004-0000-0000-000000000000', name: 'Spa' },
+    { id: 'a1b2c3d4-0005-0000-0000-000000000000', name: 'Free parking' },
+    { id: 'a1b2c3d4-0006-0000-0000-000000000000', name: 'Breakfast included' },
+    { id: 'a1b2c3d4-0007-0000-0000-000000000000', name: 'City center' },
+    { id: 'a1b2c3d4-0008-0000-0000-000000000000', name: 'Family-friendly' },
   ];
 
   readonly filteredTags = computed(() => {
     const query = (this.tagInputControl.value ?? '').toLowerCase();
-    const selectedIds = new Set(this.selectedTags().map(t => t.id));
-    const available = this.allTags.filter(t => !selectedIds.has(t.id));
-    return query ? available.filter(t => t.name.toLowerCase().includes(query)) : available;
+    const selectedIds = new Set(this.selectedTags().map((t) => t.id));
+    const available = this.allTags.filter((t) => !selectedIds.has(t.id));
+    return query ? available.filter((t) => t.name.toLowerCase().includes(query)) : available;
   });
   readonly countries = COUNTRIES.sort((a, b) => a.name.localeCompare(b.name));
   readonly ratingOptions = [6, 7, 8, 9, 10];
@@ -87,10 +90,10 @@ export class SearchContainer {
     this.filterForm.controls.city.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      filter(query => query !== null && query.trim().length >= 3 && query.length <= 30),
-      switchMap(query => this.locationService.autocomplete(query!)),
+      filter((query) => query !== null && query.trim().length >= 3 && query.length <= 30),
+      switchMap((query) => this.locationService.autocomplete(query!)),
     ),
-    {initialValue: [] as string[]}
+    { initialValue: [] as string[] },
   );
   private readonly router = inject(Router);
 
@@ -101,16 +104,16 @@ export class SearchContainer {
   }
 
   removeTag(tag: TagOption): void {
-    this.selectedTags.update(tags => {
+    this.selectedTags.update((tags) => {
       this.announcer.announce(`Removed ${tag.name}`);
-      return tags.filter(t => t.id !== tag.id);
+      return tags.filter((t) => t.id !== tag.id);
     });
   }
 
   selectTag(event: MatAutocompleteSelectedEvent): void {
     const tag: TagOption = event.option.value;
-    if (!this.selectedTags().find(t => t.id === tag.id)) {
-      this.selectedTags.update(tags => [...tags, tag]);
+    if (!this.selectedTags().find((t) => t.id === tag.id)) {
+      this.selectedTags.update((tags) => [...tags, tag]);
     }
     this.tagInputControl.setValue('');
     event.option.deselect();
@@ -124,7 +127,7 @@ export class SearchContainer {
   toggleCapacity(value: number): void {
     const current = this.filterForm.controls.capacities.value ?? [];
     const updated = current.includes(value)
-      ? current.filter(c => c !== value)
+      ? current.filter((c) => c !== value)
       : [...current, value];
     this.filterForm.controls.capacities.setValue(updated);
   }
@@ -140,7 +143,7 @@ export class SearchContainer {
 
     const dto = this.buildDto(raw);
     const filterParam = encodeURIComponent(JSON.stringify(dto));
-    this.router.navigate(['/search'], {queryParams: {filter: filterParam}});
+    this.router.navigate(['/search'], { queryParams: { filter: filterParam } });
   }
 
   private buildDto(value: ReturnType<typeof this.filterForm.getRawValue>): HousingFilterOptions {
@@ -158,7 +161,7 @@ export class SearchContainer {
       country: value.country || null,
       minPrice,
       maxPrice,
-      tags: this.selectedTags().length ? this.selectedTags().map(t => t.id) : null,
+      tags: this.selectedTags().length ? this.selectedTags().map((t) => t.id) : null,
       minRating: value.minRating ?? null,
       capacities,
     };

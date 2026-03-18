@@ -1,4 +1,4 @@
-import {UnitListItem} from "./unitListItem";
+import { UnitListItem } from './unitListItem';
 
 export interface PropertyDetails {
   id: string;

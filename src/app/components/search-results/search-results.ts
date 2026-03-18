@@ -1,19 +1,19 @@
-import {Component, computed, inject, OnDestroy, signal} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {DecimalPipe} from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {SearchService} from '../../services/search-service';
-import {withAppendLoadingState, withLoadingState} from '../../operators/with-loading-state';
-import type {PropertyCard} from '../../models/types/propertyCard';
-import type {HousingFilterOptions} from '../../models/filters/housingFilterOptions';
+import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { DecimalPipe } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SearchService } from '../../services/search-service';
+import { withAppendLoadingState, withLoadingState } from '../../operators/with-loading-state';
+import type { PropertyCard } from '../../models/types/propertyCard';
+import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 
 export type SortOption = 'best-match' | 'price-asc' | 'price-desc' | 'rating-desc' | 'reviews-desc';
 
@@ -48,11 +48,16 @@ export class SearchResults implements OnDestroy {
   readonly sortedResults = computed(() => {
     const results = [...this.allResults()];
     switch (this.sortBy()) {
-      case 'price-asc':   return results.sort((a, b) => a.price - b.price);
-      case 'price-desc':  return results.sort((a, b) => b.price - a.price);
-      case 'rating-desc': return results.sort((a, b) => b.rating - a.rating);
-      case 'reviews-desc':return results.sort((a, b) => b.reviewCount - a.reviewCount);
-      default:            return results.sort((a, b) => b.rankingScore - a.rankingScore);
+      case 'price-asc':
+        return results.sort((a, b) => a.price - b.price);
+      case 'price-desc':
+        return results.sort((a, b) => b.price - a.price);
+      case 'rating-desc':
+        return results.sort((a, b) => b.rating - a.rating);
+      case 'reviews-desc':
+        return results.sort((a, b) => b.reviewCount - a.reviewCount);
+      default:
+        return results.sort((a, b) => b.rankingScore - a.rankingScore);
     }
   });
 
@@ -60,13 +65,13 @@ export class SearchResults implements OnDestroy {
     const f = this.activeFilter();
     if (!f) return [];
     const chips: string[] = [];
-    if (f.city)                          chips.push(`📍 ${f.city}`);
-    if (f.country)                       chips.push(`🌍 ${f.country}`);
-    if (f.minPrice)                      chips.push(`💰 $${f.minPrice}+ / night`);
-    if (f.maxPrice && f.maxPrice < 200)  chips.push(`💰 max $${f.maxPrice} / night`);
-    if (f.minRating)                     chips.push(`⭐ ${f.minRating}+`);
-    if (f.capacities?.length)            chips.push(`👥 ${f.capacities.join(', ')} guests`);
-    if (f.tags?.length)                  chips.push(`🏷️ ${f.tags.length} tag(s)`);
+    if (f.city) chips.push(`📍 ${f.city}`);
+    if (f.country) chips.push(`🌍 ${f.country}`);
+    if (f.minPrice) chips.push(`💰 $${f.minPrice}+ / night`);
+    if (f.maxPrice && f.maxPrice < 200) chips.push(`💰 max $${f.maxPrice} / night`);
+    if (f.minRating) chips.push(`⭐ ${f.minRating}+`);
+    if (f.capacities?.length) chips.push(`👥 ${f.capacities.join(', ')} guests`);
+    if (f.tags?.length) chips.push(`🏷️ ${f.tags.length} tag(s)`);
     return chips;
   });
 
@@ -78,7 +83,7 @@ export class SearchResults implements OnDestroy {
     return Math.max(1, Math.round((to.getTime() - from.getTime()) / 86_400_000));
   });
 
-  readonly skeletons = Array.from({length: PAGE_SIZE});
+  readonly skeletons = Array.from({ length: PAGE_SIZE });
 
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -87,7 +92,7 @@ export class SearchResults implements OnDestroy {
 
   constructor() {
     this.sub.add(
-      this.route.queryParams.subscribe(params => {
+      this.route.queryParams.subscribe((params) => {
         const raw = params['filter'];
         if (!raw) {
           this.error.set('No search filter provided.');
@@ -135,7 +140,7 @@ export class SearchResults implements OnDestroy {
     if (!f) return '';
     const from = new Date(f.period.from);
     const to = new Date(f.period.to);
-    const fmt = (d: Date) => d.toLocaleDateString('en-US', {month: 'short', day: 'numeric'});
+    const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     return `${fmt(from)} - ${fmt(to)}`;
   }
 
@@ -154,11 +159,11 @@ export class SearchResults implements OnDestroy {
 
     this.sub.add(
       this.searchService
-        .searchProperties(filter, {pageNumber: page, pageSize: PAGE_SIZE})
+        .searchProperties(filter, { pageNumber: page, pageSize: PAGE_SIZE })
         .pipe(operator)
-        .subscribe(results => {
+        .subscribe((results) => {
           if (append) {
-            this.allResults.update(prev => [...prev, ...results]);
+            this.allResults.update((prev) => [...prev, ...results]);
           } else {
             this.allResults.set(results);
           }

@@ -1,27 +1,27 @@
 .search-bar-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 
-    .search-bar-field {
-        width: 600px;
-    }
+  .search-bar-field {
+    width: 600px;
+  }
 
-    .search-button {
-        margin-bottom: 20px;
-    }
+  .search-button {
+    margin-bottom: 20px;
+  }
 }
 
 .price-range-inputs {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .tag-chip-list {
-    width: 100%;
+  width: 100%;
 }
 
 mat-button-toggle-group {
-    margin: 10px 0;
+  margin: 10px 0;
 }

@@ -35,7 +35,9 @@
   color: var(--mat-sys-on-surface-variant);
   font-size: 14px;
 
-  mat-icon { opacity: 0.5; }
+  mat-icon {
+    opacity: 0.5;
+  }
 }
 
 .units-list {

@@ -1,6 +1,6 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
 
 const LOCATION_API_URL = 'http://localhost:5275/api/location';
 
@@ -8,12 +8,11 @@ const LOCATION_API_URL = 'http://localhost:5275/api/location';
   providedIn: 'root',
 })
 export class LocationService {
-  constructor(private readonly http: HttpClient) {
-  }
+  private http: HttpClient = inject(HttpClient);
 
   autocomplete(query: string, maxResults = 5): Observable<string[]> {
     if (!query.trim()) {
-      return new Observable(observer => {
+      return new Observable((observer) => {
         observer.next([]);
         observer.complete();
       });
@@ -27,15 +26,15 @@ export class LocationService {
       query = query.slice(0, 30);
     }
 
-    const params = new HttpParams()
-      .set('query', query)
-      .set('maxResults', maxResults.toString());
+    const params = new HttpParams().set('query', query).set('maxResults', maxResults.toString());
 
-    return this.http.get<{ suggestions: string[] }>(`${LOCATION_API_URL}/autocomplete`, {params})
-      .pipe(map(data => {
+    return this.http
+      .get<{ suggestions: string[] }>(`${LOCATION_API_URL}/autocomplete`, { params })
+      .pipe(
+        map((data) => {
           console.log('raw response:', data);
           return data.suggestions;
-        })
+        }),
       );
   }
 }
