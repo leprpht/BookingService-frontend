@@ -14,6 +14,7 @@ import {PropertyGallery} from '../property-gallery/property-gallery';
 import {PropertyDescription} from '../property-description/property-description';
 import type {PropertyDetails} from '../../models/types/propertyDetails';
 import type {HousingFilterOptions} from '../../models/filters/housingFilterOptions';
+import {withLoadingState} from '../../operators/with-loading-state';
 
 @Component({
   selector: 'booking-service-property-details',
@@ -72,26 +73,25 @@ export class PropertyDetailsPage implements OnDestroy {
         this.route.paramMap,
         this.route.queryParamMap
       ]).subscribe(([params, query]) => {
-  
         const propertyId = params.get('id');
         const from = query.get('from');
         const to = query.get('to');
-  
+
         if (!propertyId) return;
-  
+
         if (from && to) {
           this.period.set({ from, to });
         } else {
           const today = new Date();
           const tomorrow = new Date(today);
           tomorrow.setDate(today.getDate() + 1);
-  
+
           this.period.set({
             from: today.toISOString().split('T')[0],
             to: tomorrow.toISOString().split('T')[0],
           });
         }
-  
+
         this.fetchProperty(propertyId, this.period()!);
       })
     );
@@ -123,11 +123,9 @@ export class PropertyDetailsPage implements OnDestroy {
       minRating: null,
       capacities: null,
     };
-    const filter = encodeURIComponent(JSON.stringify(raw));
-
-    this.router.navigate(['/search'], { queryParams: { filter } });
+    this.router.navigate(['/search'], {queryParams: {filter: encodeURIComponent(JSON.stringify(raw))}});
   }
-  
+
   searchByProperty(): void {
     const prop = this.property();
     if (!prop) return;
@@ -142,24 +140,18 @@ export class PropertyDetailsPage implements OnDestroy {
       minRating: null,
       capacities: null,
     };
-    const filter = encodeURIComponent(JSON.stringify(raw));
-
-    this.router.navigate(['/search'], { queryParams: { filter } });
+    this.router.navigate(['/search'], {queryParams: {filter: encodeURIComponent(JSON.stringify(raw))}});
   }
 
   private fetchProperty(propertyId: string, period: PeriodRequest): void {
-    this.loading.set(true);
-    this.error.set(null);
-
-    this.graphQlService.getPropertyDetails(propertyId, period).subscribe({
-      next: prop => {
-        this.property.set(prop);
-        this.loading.set(false);
-      },
-      error: () => {
-        this.error.set('Failed to load property details. Please try again.');
-        this.loading.set(false);
-      },
-    });
+    this.sub.add(
+      this.graphQlService.getPropertyDetails(propertyId, period).pipe(
+        withLoadingState({
+          loading: this.loading,
+          error: this.error,
+          errorMessage: 'Failed to load property details. Please try again.',
+        }),
+      ).subscribe(prop => this.property.set(prop)),
+    );
   }
 }

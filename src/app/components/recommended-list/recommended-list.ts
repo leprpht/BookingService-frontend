@@ -8,6 +8,7 @@ import {DecimalPipe} from '@angular/common';
 import {Router} from '@angular/router';
 import {GraphQlService} from '../../services/graphql-service';
 import {PeriodRequest} from '../../models/requests/periodRequest';
+import {withLoadingState} from '../../operators/with-loading-state';
 import type {PropertyCard} from '../../models/types/propertyCard';
 
 @Component({
@@ -25,10 +26,12 @@ import type {PropertyCard} from '../../models/types/propertyCard';
 })
 export class RecommendedList {
   readonly city = input.required<string>();
-  properties = signal<PropertyCard[]>([]);
-  loading = signal(true);
+  readonly properties = signal<PropertyCard[]>([]);
+  readonly loading = signal(true);
+
   private readonly graphQlService = inject(GraphQlService);
   private readonly router = inject(Router);
+
   private readonly defaultPeriod: PeriodRequest = {
     from: new Date().toISOString().split('T')[0],
     to: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
@@ -36,23 +39,15 @@ export class RecommendedList {
 
   constructor() {
     effect(() => {
-      this.loading.set(true);
-
-      this.graphQlService
-        .getTopPropertiesByCity(this.city())
-        .subscribe({
-          next: props => {
-            this.properties.set(props);
-            this.loading.set(false);
-          },
-          error: () => {
-            this.loading.set(false);
-          },
-        });
+      this.graphQlService.getTopPropertiesByCity(this.city()).pipe(
+        withLoadingState({loading: this.loading}),
+      ).subscribe(props => this.properties.set(props));
     });
   }
 
-  viewDetails(id: string) {
-    this.router.navigate(['/property', id], {queryParams: {from: this.defaultPeriod.from, to: this.defaultPeriod.to}});
+  viewDetails(id: string): void {
+    this.router.navigate(['/property', id], {
+      queryParams: {from: this.defaultPeriod.from, to: this.defaultPeriod.to},
+    });
   }
 }
