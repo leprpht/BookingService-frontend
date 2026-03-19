@@ -1,41 +1,5 @@
 <form [formGroup]="filterForm" (ngSubmit)="onSearch()">
-  <div class="search-bar-container">
-    <mat-form-field class="search-bar-field">
-      <mat-label>Search destinations</mat-label>
-      <input matInput type="text" formControlName="searchQuery" />
-      @if (filterForm.get('searchQuery')?.value) {
-        <button
-          matSuffix
-          matIconButton
-          aria-label="Clear"
-          (click)="filterForm.get('searchQuery')?.setValue('')"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-      }
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="picker" formGroupName="period" [min]="minDate">
-        <input matStartDate formControlName="from" placeholder="Start date" />
-        <input matEndDate formControlName="to" placeholder="End date" />
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-
-    <button
-      matButton="tonal"
-      class="search-button"
-      type="submit"
-      [disabled]="!filterForm.get('period.from')?.value || !filterForm.get('period.to')?.value"
-    >
-      Search
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
+  <booking-service-search-bar [form]="filterForm" />
 
   <mat-accordion class="additional-filters-accordion">
     <mat-expansion-panel>

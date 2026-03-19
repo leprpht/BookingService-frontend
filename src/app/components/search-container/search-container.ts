@@ -19,6 +19,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { COUNTRIES } from '../../data/countries';
+import { SearchBar } from '../search-bar/search-bar';
 import type { TagOption } from '../../models/filters/tagOption';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 import { LocationService } from '../../services/location-service';
@@ -38,6 +39,7 @@ import { LocationService } from '../../services/location-service';
     MatDatepickerModule,
     MatSliderModule,
     MatButtonToggleModule,
+    SearchBar,
   ],
   templateUrl: './search-container.html',
   styleUrl: './search-container.scss',
