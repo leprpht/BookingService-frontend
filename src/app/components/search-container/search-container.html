@@ -8,26 +8,8 @@
       </mat-expansion-panel-header>
 
       <booking-service-search-container-tags [form]="filterForm" />
-
-      <!-- City -->
-
-      <!-- Country -->
-      <div class="country-select-container">
-        <div class="label-container">
-          <span class="name-label"><strong>Country</strong></span>
-        </div>
-        <mat-form-field>
-          <mat-label>Country</mat-label>
-          <select matNativeControl formControlName="country">
-            <option value="" selected>Select a country</option>
-            <optgroup label="---">
-              @for (country of countries; track country) {
-                <option [value]="country.name">{{ country.emoji }} {{ country.name }}</option>
-              }
-            </optgroup>
-          </select>
-        </mat-form-field>
-      </div>
+      <booking-service-search-container-city [form]="filterForm" />
+      <booking-service-search-container-country [form]="filterForm" />
 
       <!-- Price range -->
       <div class="price-range-inputs">

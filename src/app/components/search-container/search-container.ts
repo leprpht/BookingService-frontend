@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -12,9 +11,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { COUNTRIES } from '../../data/countries';
 import { SearchBar } from '../search-bar/search-bar';
 import { SearchContainerTags } from '../search-container-tags/search-container-tags';
+import { SearchContainerCity } from '../search-container-city/search-container-city';
+import { SearchContainerCountry } from '../search-container-country/search-container-country';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 
 @Component({
@@ -34,13 +34,13 @@ import type { HousingFilterOptions } from '../../models/filters/housingFilterOpt
     MatButtonToggleModule,
     SearchBar,
     SearchContainerTags,
+    SearchContainerCity,
+    SearchContainerCountry,
   ],
   templateUrl: './search-container.html',
   styleUrl: './search-container.scss',
 })
 export class SearchContainer {
-  readonly minDate = new Date();
-
   readonly filterForm = new FormGroup({
     searchQuery: new FormControl<string>(''),
     period: new FormGroup({
@@ -56,9 +56,6 @@ export class SearchContainer {
     capacities: new FormControl<number[]>([]),
   });
 
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-
-  readonly countries = COUNTRIES.sort((a, b) => a.name.localeCompare(b.name));
   readonly ratingOptions = [6, 7, 8, 9, 10];
   readonly capacityOptions = [2, 3, 4, 5, 6, 7, 8];
 
