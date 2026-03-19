@@ -10,25 +10,6 @@
       <booking-service-search-container-tags [form]="filterForm" />
 
       <!-- City -->
-      <div class="city-select-container">
-        <div class="label-container">
-          <span class="name-label"><strong>City</strong></span>
-        </div>
-        <mat-form-field>
-          <mat-label>City</mat-label>
-          <input
-            matInput
-            placeholder="Search city..."
-            formControlName="city"
-            [matAutocomplete]="cityAuto"
-          />
-          <mat-autocomplete #cityAuto="matAutocomplete">
-            @for (city of filteredCities(); track city) {
-              <mat-option [value]="city">{{ city }}</mat-option>
-            }
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
 
       <!-- Country -->
       <div class="country-select-container">

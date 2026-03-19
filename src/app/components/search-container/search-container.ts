@@ -1,9 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,7 +15,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { COUNTRIES } from '../../data/countries';
 import { SearchBar } from '../search-bar/search-bar';
 import { SearchContainerTags } from '../search-container-tags/search-container-tags';
-import { LocationService } from '../../services/location-service';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 
 @Component({
@@ -64,16 +61,7 @@ export class SearchContainer {
   readonly countries = COUNTRIES.sort((a, b) => a.name.localeCompare(b.name));
   readonly ratingOptions = [6, 7, 8, 9, 10];
   readonly capacityOptions = [2, 3, 4, 5, 6, 7, 8];
-  private readonly locationService = inject(LocationService);
-  readonly filteredCities = toSignal(
-    this.filterForm.controls.city.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      filter((query) => query !== null && query.trim().length >= 3 && query.length <= 30),
-      switchMap((query) => this.locationService.autocomplete(query!)),
-    ),
-    { initialValue: [] as string[] },
-  );
+
   private readonly router = inject(Router);
 
   get priceString(): string {
