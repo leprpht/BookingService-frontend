@@ -61,12 +61,6 @@ export class SearchContainer {
 
   private readonly router = inject(Router);
 
-  get priceString(): string {
-    const min = this.filterForm.get('minPrice')?.value ?? 10;
-    const max = this.filterForm.get('maxPrice')?.value ?? 205;
-    return `$${min} - ${max >= 205 ? '$200+' : '$' + max}`;
-  }
-
   setMinRating(value: number): void {
     const current = this.filterForm.controls.minRating.value;
     this.filterForm.controls.minRating.setValue(current === value ? null : value);

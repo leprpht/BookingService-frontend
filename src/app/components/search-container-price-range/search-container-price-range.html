@@ -1,0 +1,10 @@
+<div class="price-range-inputs" [formGroup]="form()">
+  <div class="label-container">
+    <span class="name-label"><strong>Budget (per night):</strong></span>
+    <span class="value-label">{{ ` ${priceString}` }}</span>
+  </div>
+  <mat-slider min="10" max="210" step="5">
+    <input matSliderStartThumb formControlName="minPrice" />
+    <input matSliderEndThumb formControlName="maxPrice" />
+  </mat-slider>
+</div>
