@@ -10,30 +10,8 @@
       <booking-service-search-container-tags [form]="filterForm" />
       <booking-service-search-container-city [form]="filterForm" />
       <booking-service-search-container-country [form]="filterForm" />
-
-      <!-- Price range -->
-
-      <!-- Min rating -->
-      <div class="min-rating-container">
-        <div class="label-container">
-          <span class="name-label"><strong>Minimum rating</strong></span>
-        </div>
-        <mat-button-toggle-group class="rating-toggle-group">
-          @for (rating of ratingOptions; track rating) {
-            <mat-button-toggle
-              [value]="rating"
-              [checked]="filterForm.controls.minRating.value === rating"
-              (change)="setMinRating(rating)"
-            >
-              @if (rating === 10) {
-                {{ rating }}
-              } @else {
-                {{ rating }}+
-              }
-            </mat-button-toggle>
-          }
-        </mat-button-toggle-group>
-      </div>
+      <booking-service-search-container-price-range [form]="filterForm" />
+      <booking-service-search-container-rating [form]="filterForm" />
 
       <!-- Capacities -->
       <div class="capacities-container">

@@ -15,6 +15,8 @@ import { SearchBar } from '../search-bar/search-bar';
 import { SearchContainerTags } from '../search-container-tags/search-container-tags';
 import { SearchContainerCity } from '../search-container-city/search-container-city';
 import { SearchContainerCountry } from '../search-container-country/search-container-country';
+import { SearchContainerPriceRange } from '../search-container-price-range/search-container-price-range';
+import { SearchContainerRating } from '../search-container-rating/search-container-rating';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 
 @Component({
@@ -36,6 +38,8 @@ import type { HousingFilterOptions } from '../../models/filters/housingFilterOpt
     SearchContainerTags,
     SearchContainerCity,
     SearchContainerCountry,
+    SearchContainerPriceRange,
+    SearchContainerRating,
   ],
   templateUrl: './search-container.html',
   styleUrl: './search-container.scss',
@@ -56,15 +60,9 @@ export class SearchContainer {
     capacities: new FormControl<number[]>([]),
   });
 
-  readonly ratingOptions = [6, 7, 8, 9, 10];
   readonly capacityOptions = [2, 3, 4, 5, 6, 7, 8];
 
   private readonly router = inject(Router);
-
-  setMinRating(value: number): void {
-    const current = this.filterForm.controls.minRating.value;
-    this.filterForm.controls.minRating.setValue(current === value ? null : value);
-  }
 
   toggleCapacity(value: number): void {
     const current = this.filterForm.controls.capacities.value ?? [];

@@ -1,0 +1,20 @@
+<div class="min-rating-container">
+  <div class="label-container">
+    <span class="name-label"><strong>Minimum rating</strong></span>
+  </div>
+  <mat-button-toggle-group class="rating-toggle-group">
+    @for (rating of ratingOptions; track rating) {
+      <mat-button-toggle
+        [value]="rating"
+        [checked]="checked(rating)"
+        (change)="setMinRating(rating)"
+      >
+        @if (rating === 10) {
+          {{ rating }}
+        } @else {
+          {{ rating }}+
+        }
+      </mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+</div>
