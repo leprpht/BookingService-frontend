@@ -17,6 +17,7 @@ import { SearchContainerCity } from '../search-container-city/search-container-c
 import { SearchContainerCountry } from '../search-container-country/search-container-country';
 import { SearchContainerPriceRange } from '../search-container-price-range/search-container-price-range';
 import { SearchContainerRating } from '../search-container-rating/search-container-rating';
+import { SearchContainerCapacities } from '../search-container-capacities/search-container-capacities';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 
 @Component({
@@ -40,6 +41,7 @@ import type { HousingFilterOptions } from '../../models/filters/housingFilterOpt
     SearchContainerCountry,
     SearchContainerPriceRange,
     SearchContainerRating,
+    SearchContainerCapacities,
   ],
   templateUrl: './search-container.html',
   styleUrl: './search-container.scss',
@@ -60,21 +62,7 @@ export class SearchContainer {
     capacities: new FormControl<number[]>([]),
   });
 
-  readonly capacityOptions = [2, 3, 4, 5, 6, 7, 8];
-
   private readonly router = inject(Router);
-
-  toggleCapacity(value: number): void {
-    const current = this.filterForm.controls.capacities.value ?? [];
-    const updated = current.includes(value)
-      ? current.filter((c) => c !== value)
-      : [...current, value];
-    this.filterForm.controls.capacities.setValue(updated);
-  }
-
-  isCapacitySelected(value: number): boolean {
-    return (this.filterForm.controls.capacities.value ?? []).includes(value);
-  }
 
   onSearch(): void {
     const raw = this.filterForm.getRawValue();

@@ -12,24 +12,7 @@
       <booking-service-search-container-country [form]="filterForm" />
       <booking-service-search-container-price-range [form]="filterForm" />
       <booking-service-search-container-rating [form]="filterForm" />
-
-      <!-- Capacities -->
-      <div class="capacities-container">
-        <div class="label-container">
-          <span class="name-label"><strong>Guests</strong></span>
-        </div>
-        <mat-button-toggle-group multiple class="capacity-toggle-group">
-          @for (cap of capacityOptions; track cap) {
-            <mat-button-toggle
-              [value]="cap"
-              [checked]="isCapacitySelected(cap)"
-              (change)="toggleCapacity(cap)"
-            >
-              {{ cap === 8 ? '8+' : cap }}
-            </mat-button-toggle>
-          }
-        </mat-button-toggle-group>
-      </div>
+      <booking-service-search-container-capacities [form]="filterForm" />
     </mat-expansion-panel>
   </mat-accordion>
 </form>

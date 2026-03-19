@@ -1,0 +1,12 @@
+<div class="capacities-container" [formGroup]="form()">
+  <div class="label-container">
+    <span class="name-label"><strong>Guests</strong></span>
+  </div>
+  <mat-button-toggle-group multiple class="capacity-toggle-group">
+    @for (cap of capacityOptions; track cap) {
+      <mat-button-toggle [value]="cap" [checked]="isSelected(cap)" (change)="toggleCapacity(cap)">
+        {{ cap === 8 ? '8+' : cap }}
+      </mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+</div>
