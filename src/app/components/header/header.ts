@@ -1,23 +1,33 @@
-import {Component, inject} from '@angular/core';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {SearchContainer} from '../search-container/search-container';
-import {Router} from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { SearchContainer } from '../search-container/search-container';
+import { NavigationEnd, Router } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map, startWith } from 'rxjs';
 
 @Component({
   standalone: true,
   selector: 'booking-service-header',
-  imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    SearchContainer
-  ],
+  imports: [MatToolbarModule, MatButtonModule, SearchContainer],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
 export class Header {
   private readonly router = inject(Router);
-  readonly currentRoute = this.router.url;
+
+  readonly currentRoute = toSignal(
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map((event) => (event as NavigationEnd).urlAfterRedirects),
+      startWith(this.router.url),
+    ),
+    { initialValue: this.router.url },
+  );
+
+  readonly showSearchContainer = computed(
+    () => this.currentRoute() === '/' || this.currentRoute().startsWith('/search'),
+  );
 
   goHome() {
     this.router.navigate(['/']);

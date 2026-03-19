@@ -1,0 +1,16 @@
+<div class="country-select-container" [formGroup]="form()">
+  <div class="label-container">
+    <span class="name-label"><strong>Country</strong></span>
+  </div>
+  <mat-form-field>
+    <mat-label>Country</mat-label>
+    <select matNativeControl formControlName="country">
+      <option value="" selected>Select a country</option>
+      <optgroup label="---">
+        @for (country of countries; track country) {
+          <option [value]="country.name">{{ country.emoji }} {{ country.name }}</option>
+        }
+      </optgroup>
+    </select>
+  </mat-form-field>
+</div>

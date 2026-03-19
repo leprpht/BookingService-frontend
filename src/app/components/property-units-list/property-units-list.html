@@ -6,8 +6,7 @@
     Available rooms
     @if (period()) {
       <span class="period-label">
-        · {{ dateRangeLabel() }}
-        ({{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }})
+        · {{ dateRangeLabel() }} ({{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }})
       </span>
     }
   </h3>

@@ -1,0 +1,68 @@
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .back-btn {
+      flex-shrink: 0;
+      color: var(--mat-sys-on-surface-variant);
+    }
+  }
+
+  .header-text {
+    .page-title {
+      margin: 0 0 4px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--mat-sys-on-surface);
+
+      .query-highlight {
+        color: var(--mat-sys-primary);
+      }
+    }
+
+    .page-subtitle {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--mat-sys-on-surface-variant);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .result-count {
+        font-weight: 600;
+        color: var(--mat-sys-on-surface);
+      }
+
+      .separator {
+        opacity: 0.4;
+      }
+
+      .loading-text {
+        animation: pulse 1.4s ease-in-out infinite;
+      }
+    }
+  }
+
+  .sort-field {
+    min-width: 180px;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

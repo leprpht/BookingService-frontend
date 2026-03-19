@@ -1,5 +1,5 @@
 export class GraphQLQueries {
-  static topPropertiesQuery: string = `
+  static topPropertiesQuery = `
     query topPropertiesByCity($city: String!, $count: Int) {
       topPropertiesByCity(city: $city, count: $count) {
         id
@@ -19,7 +19,7 @@ export class GraphQLQueries {
     }
   `;
 
-  static getPropertyDetails: string = `
+  static getPropertyDetails = `
     query GetPropertyDetails($propertyId: UUID!, $period: PeriodRequestInput!) {
       propertyDetails(propertyId: $propertyId, period: $period) {
         id

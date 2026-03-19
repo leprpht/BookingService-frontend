@@ -1,0 +1,27 @@
+<div class="search-bar-container" [formGroup]="form()">
+  <mat-form-field class="search-bar-field">
+    <mat-label>Search destinations</mat-label>
+    <input matInput type="text" formControlName="searchQuery" />
+    @if (searchQueryValue) {
+      <button matSuffix matIconButton aria-label="Clear" (click)="searchQuery.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker" formGroupName="period" [min]="minDate">
+      <input matStartDate formControlName="from" placeholder="Start date" />
+      <input matEndDate formControlName="to" placeholder="End date" />
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+  <button matButton="tonal" class="search-button" type="submit" [disabled]="!fromValue || !toValue">
+    Search
+    <mat-icon>search</mat-icon>
+  </button>
+</div>

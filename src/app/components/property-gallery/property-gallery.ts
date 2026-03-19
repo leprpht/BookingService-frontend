@@ -1,16 +1,12 @@
-import {Component, input, signal} from '@angular/core';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { Component, input } from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'booking-service-property-gallery',
   standalone: true,
-  imports: [
-    MatGridListModule,
-    MatButtonModule,
-    MatIconModule
-  ],
+  imports: [MatGridListModule, MatButtonModule, MatIconModule],
   templateUrl: './property-gallery.html',
   styleUrl: './property-gallery.scss',
 })

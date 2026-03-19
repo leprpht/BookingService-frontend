@@ -1,6 +1,5 @@
 @if (pictures().length > 0) {
   <div class="gallery-root">
-
     <div
       class="mosaic"
       [class.single]="visiblePictures().length === 1"
@@ -17,16 +16,10 @@
           role="button"
           tabindex="0"
         >
-          <img
-            [src]="pic"
-            [alt]="'Property photo ' + (i + 1)"
-            class="mosaic-img"
-            loading="lazy"
-          />
+          <img [src]="pic" [alt]="'Property photo ' + (i + 1)" class="mosaic-img" loading="lazy" />
         </div>
       }
     </div>
-
   </div>
 } @else {
   <div class="no-photos">

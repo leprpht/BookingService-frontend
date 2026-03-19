@@ -1,4 +1,4 @@
-import {PeriodRequest} from '../requests/periodRequest';
+import { PeriodRequest } from '../requests/periodRequest';
 
 export interface HousingFilterOptions {
   period: PeriodRequest;

@@ -1,3 +1,5 @@
+@use '../../../styles' as s;
+
 .unit-card {
   border-radius: 12px !important;
   transition: box-shadow 0.2s ease;
@@ -52,8 +54,8 @@
   }
 
   .urgent-chip {
-    --mdc-chip-label-text-color: #92400e;
-    --mdc-chip-container-color: #fef3c7;
+    --mdc-chip-label-text-color: #{s.$color-urgent-text};
+    --mdc-chip-container-color: #{s.$color-urgent-bg};
     font-size: 11px !important;
     height: 22px !important;
   }
@@ -79,12 +81,16 @@
 
     &.available {
       color: var(--mat-sys-primary);
-      mat-icon { color: var(--mat-sys-primary); }
+      mat-icon {
+        color: var(--mat-sys-primary);
+      }
     }
 
     &.full {
       color: var(--mat-sys-error);
-      mat-icon { color: var(--mat-sys-error); }
+      mat-icon {
+        color: var(--mat-sys-error);
+      }
     }
   }
 }

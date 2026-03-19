@@ -8,9 +8,8 @@ describe('PropertyHeader', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PropertyHeader]
-    })
-    .compileComponents();
+      imports: [PropertyHeader],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PropertyHeader);
     component = fixture.componentInstance;
