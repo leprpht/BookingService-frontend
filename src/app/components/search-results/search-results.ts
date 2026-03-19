@@ -13,8 +13,7 @@ import { SearchResultsFilterChips } from '../search-results-filter-chips/search-
 import { SearchResultsCard } from '../search-results-card/search-results-card';
 import type { PropertyCard } from '../../models/types/propertyCard';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
-
-export type SortOption = 'best-match' | 'price-asc' | 'price-desc' | 'rating-desc' | 'reviews-desc';
+import type { SortOption } from '../../models/filters/sortOption';
 
 const PAGE_SIZE = 12;
 

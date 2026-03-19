@@ -15,7 +15,6 @@
 
   <mat-divider />
 
-  <!-- Error state -->
   @if (error()) {
     <div class="empty-state">
       <mat-icon class="empty-icon">error_outline</mat-icon>
@@ -25,7 +24,6 @@
     </div>
   }
 
-  <!-- Loading skeletons -->
   @if (loading()) {
     <div class="results-grid">
       @for (s of skeletons; track $index) {
@@ -52,7 +50,6 @@
     </div>
   }
 
-  <!-- Results grid -->
   @if (!loading() && !error() && sortedResults().length > 0) {
     <div class="results-grid">
       @for (property of sortedResults(); track property.id) {
@@ -64,7 +61,6 @@
       }
     </div>
 
-    <!-- Load more -->
     @if (hasMore()) {
       <div class="load-more-wrap">
         @if (loadingMore()) {
@@ -79,7 +75,6 @@
     }
   }
 
-  <!-- Empty state -->
   @if (!loading() && !error() && sortedResults().length === 0) {
     <div class="empty-state">
       <mat-icon class="empty-icon">search_off</mat-icon>
