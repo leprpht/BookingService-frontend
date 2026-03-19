@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,11 +38,15 @@ export class SearchContainerCity {
   private readonly locationService = inject(LocationService);
 
   readonly filteredCities = toSignal(
-    this.cityControl.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      filter((query) => query !== null && query.trim().length >= 3 && query.length <= 30),
-      switchMap((query) => this.locationService.autocomplete(query!)),
+    toObservable(this.form).pipe(
+      switchMap((form) =>
+        (form.get('city') as FormControl<string>).valueChanges.pipe(
+          debounceTime(300),
+          distinctUntilChanged(),
+          filter((query) => query !== null && query.trim().length >= 3 && query.length <= 30),
+          switchMap((query) => this.locationService.autocomplete(query!)),
+        ),
+      ),
     ),
     { initialValue: [] as string[] },
   );

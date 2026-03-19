@@ -1,0 +1,47 @@
+<div class="page-header">
+  <div class="header-left">
+    <button mat-icon-button class="back-btn" (click)="goHome.emit()" matTooltip="Back to home">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="header-text">
+      <h1 class="page-title">
+        @if (activeFilter()?.searchQuery) {
+          Results for "<span class="query-highlight">{{ activeFilter()!.searchQuery }}</span
+          >"
+        } @else if (activeFilter()?.city) {
+          Stays in <span class="query-highlight">{{ activeFilter()!.city }}</span>
+        } @else {
+          Available properties
+        }
+      </h1>
+
+      <p class="page-subtitle">
+        @if (!loading()) {
+          <span class="result-count">{{ resultCount() }}{{ hasMore() ? '+' : '' }} properties</span>
+          @if (nightsCount() > 0) {
+            <span class="separator">·</span>
+            <span>{{ dateRangeLabel() }}</span>
+            <span class="separator">·</span>
+            <span>{{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }}</span>
+          }
+        } @else {
+          <span class="loading-text">Searching...</span>
+        }
+      </p>
+    </div>
+  </div>
+
+  @if (!loading() && resultCount() > 0) {
+    <mat-form-field class="sort-field" appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Sort by</mat-label>
+      <mat-select [value]="sortBy()" (selectionChange)="sortChange.emit($event.value)">
+        <mat-option value="best-match">Best match</mat-option>
+        <mat-option value="price-asc">Price: low → high</mat-option>
+        <mat-option value="price-desc">Price: high → low</mat-option>
+        <mat-option value="rating-desc">Top rated</mat-option>
+        <mat-option value="reviews-desc">Most reviewed</mat-option>
+      </mat-select>
+    </mat-form-field>
+  }
+</div>

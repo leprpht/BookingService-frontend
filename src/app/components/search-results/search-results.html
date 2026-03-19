@@ -1,64 +1,17 @@
 <div class="search-page">
-  <!-- Page header -->
-  <div class="page-header">
-    <div class="header-left">
-      <button mat-icon-button class="back-btn" (click)="goHome()" matTooltip="Back to home">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
+  <booking-service-search-results-header
+    [loading]="loading()"
+    [activeFilter]="activeFilter()"
+    [resultCount]="allResults().length"
+    [hasMore]="hasMore()"
+    [nightsCount]="nightsCount()"
+    [dateRangeLabel]="dateRangeLabel()"
+    [sortBy]="sortBy()"
+    (goHome)="goHome()"
+    (sortChange)="onSortChange($event)"
+  />
 
-      <div class="header-text">
-        <h1 class="page-title">
-          @if (activeFilter()?.searchQuery) {
-            Results for "<span class="query-highlight">{{ activeFilter()!.searchQuery }}</span
-            >"
-          } @else if (activeFilter()?.city) {
-            Stays in <span class="query-highlight">{{ activeFilter()!.city }}</span>
-          } @else {
-            Available properties
-          }
-        </h1>
-
-        <p class="page-subtitle">
-          @if (!loading()) {
-            <span class="result-count"
-              >{{ allResults().length }}{{ hasMore() ? '+' : '' }} properties</span
-            >
-            @if (nightsCount() > 0) {
-              <span class="separator">·</span>
-              <span>{{ dateRangeLabel() }}</span>
-              <span class="separator">·</span>
-              <span>{{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }}</span>
-            }
-          } @else {
-            <span class="loading-text">Searching...</span>
-          }
-        </p>
-      </div>
-    </div>
-
-    <!-- Sort -->
-    @if (!loading() && allResults().length > 0) {
-      <mat-form-field class="sort-field" appearance="outline" subscriptSizing="dynamic">
-        <mat-label>Sort by</mat-label>
-        <mat-select [value]="sortBy()" (selectionChange)="onSortChange($event.value)">
-          <mat-option value="best-match">Best match</mat-option>
-          <mat-option value="price-asc">Price: low → high</mat-option>
-          <mat-option value="price-desc">Price: high → low</mat-option>
-          <mat-option value="rating-desc">Top rated</mat-option>
-          <mat-option value="reviews-desc">Most reviewed</mat-option>
-        </mat-select>
-      </mat-form-field>
-    }
-  </div>
-
-  <!-- Active filter chips -->
-  @if (activeFilterChips().length > 0) {
-    <div class="filter-chips">
-      @for (chip of activeFilterChips(); track chip) {
-        <mat-chip class="filter-chip" disableRipple>{{ chip }}</mat-chip>
-      }
-    </div>
-  }
+  <booking-service-search-results-filter-chips [chips]="activeFilterChips()" />
 
   <mat-divider />
 
@@ -103,73 +56,11 @@
   @if (!loading() && !error() && sortedResults().length > 0) {
     <div class="results-grid">
       @for (property of sortedResults(); track property.id) {
-        <mat-card class="property-card" appearance="outlined">
-          <!-- Image -->
-          <div class="card-image-wrap">
-            <img
-              mat-card-image
-              [src]="property.pictureUrl ?? 'assets/No-Image-Placeholder.png'"
-              [alt]="property.name"
-              class="card-img"
-            />
-
-            <!-- Rating badge -->
-            <div class="rating-badge">
-              <mat-icon>star</mat-icon>
-              {{ property.rating | number: '1.1-1' }}
-            </div>
-
-            <!-- Urgency badge -->
-            @if (property.availableUnits <= 2 && property.availableUnits > 0) {
-              <div class="urgency-badge">Only {{ property.availableUnits }} left!</div>
-            }
-          </div>
-
-          <!-- Header -->
-          <mat-card-header>
-            <mat-card-title class="card-title" [matTooltip]="property.name">
-              {{ property.name }}
-            </mat-card-title>
-            <mat-card-subtitle class="card-location">
-              <mat-icon class="loc-icon">location_on</mat-icon>
-              {{ property.city }}, {{ property.country }}
-            </mat-card-subtitle>
-          </mat-card-header>
-
-          <!-- Content -->
-          <mat-card-content class="card-body">
-            @if (property.tags.length > 0) {
-              <div class="tags-row">
-                @for (tag of property.tags.slice(0, 3); track tag) {
-                  <mat-chip class="tag-chip" disableRipple>{{ tag }}</mat-chip>
-                }
-              </div>
-            }
-
-            <div class="meta-row">
-              <span class="meta-item">
-                <mat-icon>rate_review</mat-icon>
-                {{ property.reviewCount }} review{{ property.reviewCount !== 1 ? 's' : '' }}
-              </span>
-              <span class="meta-item">
-                <mat-icon>hotel</mat-icon>
-                {{ property.availableUnits }} unit{{ property.availableUnits !== 1 ? 's' : '' }}
-                available
-              </span>
-            </div>
-          </mat-card-content>
-
-          <!-- Actions -->
-          <mat-card-actions class="card-actions">
-            <div class="price-block">
-              <span class="price">${{ property.price | number: '1.0-0' }}</span>
-              <span class="price-label"
-                >total · {{ nightsCount() }} night{{ nightsCount() > 1 ? 's' : '' }}</span
-              >
-            </div>
-            <button mat-flat-button class="view-btn">View deal</button>
-          </mat-card-actions>
-        </mat-card>
+        <booking-service-search-results-card
+          [property]="property"
+          [nightsCount]="nightsCount()"
+          (view)="navigateToProperty($event)"
+        />
       }
     </div>
 
@@ -188,6 +79,7 @@
     }
   }
 
+  <!-- Empty state -->
   @if (!loading() && !error() && sortedResults().length === 0) {
     <div class="empty-state">
       <mat-icon class="empty-icon">search_off</mat-icon>

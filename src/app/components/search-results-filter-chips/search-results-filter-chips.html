@@ -1,0 +1,7 @@
+@if (chips().length > 0) {
+  <div class="filter-chips">
+    @for (chip of chips(); track chip) {
+      <mat-chip class="filter-chip" disableRipple>{{ chip }}</mat-chip>
+    }
+  </div>
+}

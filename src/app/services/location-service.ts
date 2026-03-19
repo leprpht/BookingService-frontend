@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-const LOCATION_API_URL = `${environment.apiUrl}/api/locations`;
+const LOCATION_API_URL = `${environment.apiUrl}/api/location`;
 
 @Injectable({
   providedIn: 'root',

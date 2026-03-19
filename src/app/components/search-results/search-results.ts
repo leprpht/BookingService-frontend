@@ -1,17 +1,16 @@
 import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DecimalPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchService } from '../../services/search-service';
 import { withAppendLoadingState, withLoadingState } from '../../operators/with-loading-state';
+import { SearchResultsHeader } from '../search-results-header/search-results-header';
+import { SearchResultsFilterChips } from '../search-results-filter-chips/search-results-filter-chips';
+import { SearchResultsCard } from '../search-results-card/search-results-card';
 import type { PropertyCard } from '../../models/types/propertyCard';
 import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 
@@ -22,15 +21,14 @@ const PAGE_SIZE = 12;
 @Component({
   selector: 'booking-service-search-results',
   imports: [
-    DecimalPipe,
     MatCardModule,
-    MatChipsModule,
     MatIconModule,
     MatButtonModule,
-    MatSelectModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatTooltipModule,
+    SearchResultsHeader,
+    SearchResultsFilterChips,
+    SearchResultsCard,
   ],
   templateUrl: './search-results.html',
   styleUrl: './search-results.scss',
@@ -133,6 +131,10 @@ export class SearchResults implements OnDestroy {
 
   goHome(): void {
     this.router.navigate(['/']);
+  }
+
+  navigateToProperty(id: string): void {
+    this.router.navigate(['/property', id]);
   }
 
   dateRangeLabel(): string {

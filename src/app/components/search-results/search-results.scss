@@ -6,78 +6,6 @@
   margin: 0 auto;
 }
 
-.page-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 16px;
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    .back-btn {
-      flex-shrink: 0;
-      color: var(--mat-sys-on-surface-variant);
-    }
-  }
-
-  .header-text {
-    .page-title {
-      margin: 0 0 4px;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--mat-sys-on-surface);
-
-      .query-highlight {
-        color: var(--mat-sys-primary);
-      }
-    }
-
-    .page-subtitle {
-      margin: 0;
-      font-size: 0.875rem;
-      color: var(--mat-sys-on-surface-variant);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-
-      .result-count {
-        font-weight: 600;
-        color: var(--mat-sys-on-surface);
-      }
-
-      .separator {
-        opacity: 0.4;
-      }
-
-      .loading-text {
-        animation: pulse 1.4s ease-in-out infinite;
-      }
-    }
-  }
-
-  .sort-field {
-    min-width: 180px;
-  }
-}
-
-.filter-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 16px;
-
-  .filter-chip {
-    font-size: 0.75rem;
-    background: var(--mat-sys-secondary-container);
-    color: var(--mat-sys-on-secondary-container);
-  }
-}
-
 mat-divider {
   margin-bottom: 24px;
 }
@@ -98,173 +26,6 @@ mat-divider {
   }
 }
 
-.property-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  cursor: pointer;
-  transition:
-    box-shadow 220ms ease,
-    transform 220ms ease;
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-
-    .card-img {
-      transform: scale(1.05);
-    }
-  }
-
-  .card-image-wrap {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4 / 3;
-
-    .card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      margin: 0 !important;
-      transition: transform 350ms ease;
-    }
-
-    .rating-badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: s.$color-badge-overlay;
-      color: #fff;
-      border-radius: 20px;
-      padding: 3px 8px 3px 5px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      backdrop-filter: blur(6px);
-
-      mat-icon {
-        font-size: 13px;
-        width: 13px;
-        height: 13px;
-        color: s.$color-star;
-      }
-    }
-
-    .urgency-badge {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      background: var(--mat-sys-error);
-      color: var(--mat-sys-on-error);
-      border-radius: 4px;
-      padding: 2px 7px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-  }
-
-  mat-card-header {
-    padding: 10px 12px 0;
-
-    .card-title {
-      font-size: 0.9rem !important;
-      font-weight: 600 !important;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--mat-sys-on-surface);
-    }
-
-    .card-location {
-      display: flex !important;
-      align-items: center;
-      gap: 2px;
-      font-size: 0.75rem !important;
-      color: var(--mat-sys-on-surface-variant);
-
-      .loc-icon {
-        font-size: 13px;
-        width: 13px;
-        height: 13px;
-      }
-    }
-  }
-
-  .card-body {
-    flex: 1;
-    padding: 8px 12px 0 !important;
-
-    .tags-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-bottom: 8px;
-
-      .tag-chip {
-        height: 22px !important;
-        font-size: 0.66rem !important;
-        padding: 0 6px !important;
-        min-height: unset !important;
-      }
-    }
-
-    .meta-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-
-      .meta-item {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-        font-size: 0.72rem;
-        color: var(--mat-sys-on-surface-variant);
-
-        mat-icon {
-          font-size: 13px;
-          width: 13px;
-          height: 13px;
-        }
-      }
-    }
-  }
-
-  .card-actions {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px 12px 10px !important;
-
-    .price-block {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-
-      .price {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--mat-sys-on-surface);
-      }
-
-      .price-label {
-        font-size: 0.65rem;
-        color: var(--mat-sys-on-surface-variant);
-      }
-    }
-
-    .view-btn {
-      min-width: 84px;
-      font-size: 0.8rem;
-    }
-  }
-}
-
-// ── Skeleton card ─────────────────────────────────────────
 .property-card.skeleton {
   pointer-events: none;
   animation: pulse 1.5s ease-in-out infinite;
@@ -333,7 +94,6 @@ mat-divider {
   }
 }
 
-// ── Load more ─────────────────────────────────────────────
 .load-more-wrap {
   display: flex;
   justify-content: center;
@@ -348,5 +108,15 @@ mat-divider {
     mat-icon {
       font-size: 18px;
     }
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
   }
 }
