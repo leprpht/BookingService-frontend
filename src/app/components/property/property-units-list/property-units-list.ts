@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { PropertyUnitCard } from '../property-unit-card/property-unit-card';
-import type { UnitListItem } from '../../models/types/unitListItem';
+import type { UnitListItem } from '../../../models/types/unitListItem';
 
 @Component({
   selector: 'booking-service-property-units-list',

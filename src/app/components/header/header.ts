@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { SearchContainer } from '../search-container/search-container';
+import { SearchContainer } from '../search/search-container/search-container';
 import { NavigationEnd, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';

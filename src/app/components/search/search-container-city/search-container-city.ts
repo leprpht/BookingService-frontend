@@ -12,7 +12,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LocationService } from '../../services/location-service';
+import { LocationService } from '../../../services/location-service';
 
 @Component({
   selector: 'booking-service-search-container-city',

@@ -6,14 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
-import { SearchService } from '../../services/search-service';
-import { withAppendLoadingState, withLoadingState } from '../../operators/with-loading-state';
+import { SearchService } from '../../../services/search-service';
+import { withAppendLoadingState, withLoadingState } from '../../../operators/with-loading-state';
 import { SearchResultsHeader } from '../search-results-header/search-results-header';
 import { SearchResultsFilterChips } from '../search-results-filter-chips/search-results-filter-chips';
 import { SearchResultsCard } from '../search-results-card/search-results-card';
-import type { PropertyCard } from '../../models/types/propertyCard';
-import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
-import type { SortOption } from '../../models/filters/sortOption';
+import type { PropertyCard } from '../../../models/types/propertyCard';
+import type { HousingFilterOptions } from '../../../models/filters/housingFilterOptions';
+import type { SortOption } from '../../../models/filters/sortOption';
 
 const PAGE_SIZE = 12;
 

@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import type { UnitListItem } from '../../models/types/unitListItem';
+import type { UnitListItem } from '../../../models/types/unitListItem';
 
 @Component({
   selector: 'booking-service-property-unit-card',

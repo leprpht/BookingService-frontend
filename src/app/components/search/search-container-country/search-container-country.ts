@@ -10,7 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { COUNTRIES } from '../../data/countries';
+import { COUNTRIES } from '../../../data/countries';
 
 @Component({
   selector: 'booking-service-search-container-country',

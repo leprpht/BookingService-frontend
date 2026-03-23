@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import type { PropertyCard } from '../../models/types/propertyCard';
+import type { PropertyCard } from '../../../models/types/propertyCard';
 
 @Component({
   selector: 'booking-service-search-results-card',

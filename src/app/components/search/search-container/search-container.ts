@@ -18,7 +18,7 @@ import { SearchContainerCountry } from '../search-container-country/search-conta
 import { SearchContainerPriceRange } from '../search-container-price-range/search-container-price-range';
 import { SearchContainerRating } from '../search-container-rating/search-container-rating';
 import { SearchContainerCapacities } from '../search-container-capacities/search-container-capacities';
-import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
+import type { HousingFilterOptions } from '../../../models/filters/housingFilterOptions';
 
 @Component({
   selector: 'booking-service-search-container',

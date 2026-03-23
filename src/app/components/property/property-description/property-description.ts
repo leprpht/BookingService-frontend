@@ -2,7 +2,7 @@ import { Component, computed, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import type { PropertyDetails } from '../../models/types/propertyDetails';
+import type { PropertyDetails } from '../../../models/types/propertyDetails';
 
 const TRUNCATE_LENGTH = 320;
 

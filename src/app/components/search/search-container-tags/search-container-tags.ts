@@ -14,7 +14,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { TagOption } from '../../models/filters/tagOption';
+import { TagOption } from '../../../models/filters/tagOption';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 @Component({

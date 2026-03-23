@@ -3,8 +3,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
-import type { SortOption } from '../../models/filters/sortOption';
+import type { HousingFilterOptions } from '../../../models/filters/housingFilterOptions';
+import type { SortOption } from '../../../models/filters/sortOption';
 
 @Component({
   selector: 'booking-service-search-results-header',
