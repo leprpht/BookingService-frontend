@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
 import { SearchResults } from './components/search/search-results/search-results';
-import { PropertyDetailsPage } from './components/property/property-details-page/property-details-page';
+import { PropertyPage } from './components/property/property-page/property-page';
 
 export const routes: Routes = [
   {
@@ -14,6 +14,6 @@ export const routes: Routes = [
   },
   {
     path: 'property/:id',
-    component: PropertyDetailsPage,
+    component: PropertyPage,
   },
 ];

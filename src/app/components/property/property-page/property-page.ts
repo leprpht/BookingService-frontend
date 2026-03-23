@@ -28,10 +28,10 @@ import { withLoadingState } from '../../../operators/with-loading-state';
     Gallery,
     Description,
   ],
-  templateUrl: './property-details-page.html',
-  styleUrl: './property-details-page.scss',
+  templateUrl: './property-page.html',
+  styleUrl: './property-page.scss',
 })
-export class PropertyDetailsPage implements OnDestroy {
+export class PropertyPage implements OnDestroy {
   readonly property = signal<PropertyDetails | null>(null);
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
