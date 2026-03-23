@@ -6,12 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { PropertyService } from '../services/property-service';
-import { PropertyHeader } from '../property-header/property-header';
-import { PropertyUnitsList } from '../property-units-list/property-units-list';
+import { Header } from '../header/header';
+import { UnitsList } from '../units-list/units-list';
 import { UnitListItem } from '../../../models/types/unitListItem';
 import { PeriodRequest } from '../../../models/requests/periodRequest';
-import { PropertyGallery } from '../property-gallery/property-gallery';
-import { PropertyDescription } from '../property-description/property-description';
+import { Gallery } from '../gallery/gallery';
+import { Description } from '../description/description';
 import type { PropertyDetails } from '../../../models/types/propertyDetails';
 import type { HousingFilterOptions } from '../../../models/filters/housingFilterOptions';
 import { withLoadingState } from '../../../operators/with-loading-state';
@@ -23,10 +23,10 @@ import { withLoadingState } from '../../../operators/with-loading-state';
     MatIconModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    PropertyHeader,
-    PropertyUnitsList,
-    PropertyGallery,
-    PropertyDescription,
+    Header,
+    UnitsList,
+    Gallery,
+    Description,
   ],
   templateUrl: './property-details-page.html',
   styleUrl: './property-details-page.scss',

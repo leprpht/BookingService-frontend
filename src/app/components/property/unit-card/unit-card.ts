@@ -9,10 +9,10 @@ import type { UnitListItem } from '../../../models/types/unitListItem';
 @Component({
   selector: 'booking-service-property-unit-card',
   imports: [DecimalPipe, MatButtonModule, MatCardModule, MatChipsModule, MatIconModule],
-  templateUrl: './property-unit-card.html',
-  styleUrl: './property-unit-card.scss',
+  templateUrl: './unit-card.html',
+  styleUrl: './unit-card.scss',
 })
-export class PropertyUnitCard {
+export class UnitCard {
   readonly unit = input.required<UnitListItem>();
   readonly nightsCount = input.required<number>();
 

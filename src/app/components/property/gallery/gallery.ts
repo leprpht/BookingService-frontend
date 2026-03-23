@@ -7,10 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'booking-service-property-gallery',
   standalone: true,
   imports: [MatGridListModule, MatButtonModule, MatIconModule],
-  templateUrl: './property-gallery.html',
-  styleUrl: './property-gallery.scss',
+  templateUrl: './gallery.html',
+  styleUrl: './gallery.scss',
 })
-export class PropertyGallery {
+export class Gallery {
   readonly pictures = input.required<string[]>();
 
   readonly MAX_VISIBLE = 5;

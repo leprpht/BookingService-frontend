@@ -10,10 +10,10 @@ const TRUNCATE_LENGTH = 320;
   selector: 'booking-service-property-description',
   standalone: true,
   imports: [MatButtonModule, MatIconModule, MatDividerModule],
-  templateUrl: './property-description.html',
-  styleUrl: './property-description.scss',
+  templateUrl: './description.html',
+  styleUrl: './description.scss',
 })
-export class PropertyDescription {
+export class Description {
   readonly property = input.required<PropertyDetails>();
 
   readonly expanded = signal(false);

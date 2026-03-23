@@ -7,10 +7,10 @@ import type { PropertyDetails } from '../../../models/types/propertyDetails';
 @Component({
   selector: 'booking-service-property-header',
   imports: [DecimalPipe, MatDividerModule, MatIconModule],
-  templateUrl: './property-header.html',
-  styleUrl: './property-header.scss',
+  templateUrl: './header.html',
+  styleUrl: './header.scss',
 })
-export class PropertyHeader {
+export class Header {
   readonly property = input.required<PropertyDetails>();
 
   readonly location = computed(() => {
