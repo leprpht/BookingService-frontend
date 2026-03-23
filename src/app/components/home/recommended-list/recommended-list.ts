@@ -6,11 +6,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { DecimalPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { GraphQlService } from '../../services/graphql-service';
-import { PeriodRequest } from '../../models/requests/periodRequest';
-import { withLoadingState } from '../../operators/with-loading-state';
-import { FALLBACK_IMAGE_URL } from '../../data/fallback-image';
-import type { PropertyCard } from '../../models/types/propertyCard';
+import { RecommendedListService } from '../services/recommended-list-service-service';
+import { PeriodRequest } from '../../../models/requests/periodRequest';
+import { withLoadingState } from '../../../operators/with-loading-state';
+import { FALLBACK_IMAGE_URL } from '../../../data/fallback-image';
+import type { PropertyCard } from '../../../models/types/propertyCard';
 
 @Component({
   selector: 'booking-service-recommended-list',
@@ -30,7 +30,7 @@ export class RecommendedList {
   readonly properties = signal<PropertyCard[]>([]);
   readonly loading = signal(true);
 
-  private readonly graphQlService = inject(GraphQlService);
+  private readonly service = inject(RecommendedListService);
   private readonly router = inject(Router);
 
   private readonly defaultPeriod: PeriodRequest = {
@@ -40,7 +40,7 @@ export class RecommendedList {
 
   constructor() {
     effect(() => {
-      this.graphQlService
+      this.service
         .getTopPropertiesByCity(this.city())
         .pipe(withLoadingState({ loading: this.loading }))
         .subscribe((props) =>

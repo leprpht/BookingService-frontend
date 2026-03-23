@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { GraphQlService } from '../../../services/graphql-service';
+import { PropertyService } from '../services/property-service';
 import { PropertyHeader } from '../property-header/property-header';
 import { PropertyUnitsList } from '../property-units-list/property-units-list';
 import { UnitListItem } from '../../../models/types/unitListItem';
@@ -65,7 +65,7 @@ export class PropertyDetailsPage implements OnDestroy {
 
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly graphQlService = inject(GraphQlService);
+  private readonly service = inject(PropertyService);
   private readonly sub = new Subscription();
 
   constructor() {
@@ -149,7 +149,7 @@ export class PropertyDetailsPage implements OnDestroy {
 
   private fetchProperty(propertyId: string, period: PeriodRequest): void {
     this.sub.add(
-      this.graphQlService
+      this.service
         .getPropertyDetails(propertyId, period)
         .pipe(
           withLoadingState({
