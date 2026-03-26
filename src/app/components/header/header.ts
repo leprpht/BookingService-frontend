@@ -3,11 +3,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { SearchContainer } from '../search/search-container';
 import { NavigationEnd, Router } from '@angular/router';
-import { Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
-import { Login } from '../auth/login/login';
-import { Registration } from '../auth/registration/registration';
+import { Auth } from '../auth/auth';
+
+export type AuthDialogMode = 'login' | 'register';
 
 @Component({
   standalone: true,
@@ -33,22 +34,8 @@ export class Header {
     () => this.currentRoute() === '/' || this.currentRoute().startsWith('/search'),
   );
 
-  openLogin(): void {
-    const dialogRef = this.dialog.open<string>(Login);
-
-    dialogRef.closed.subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log('Dialog result:', result);
-    });
-  }
-
-  openRegistration(): void {
-    const dialogRef = this.dialog.open<string>(Registration);
-
-    dialogRef.closed.subscribe((result) => {
-      console.log('The dialog was closed');
-      console.log('Dialog result:', result);
-    });
+  openAuth(dialogMode: AuthDialogMode): void {
+    this.dialog.open(Auth, { data: dialogMode });
   }
 
   goHome() {

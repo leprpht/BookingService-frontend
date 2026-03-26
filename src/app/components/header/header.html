@@ -4,10 +4,16 @@
       >Booking Service</span
     >
     <section>
-      <button matButton="elevated" (click)="openRegistration()" (keyup.enter)="openRegistration()">
+      <button
+        matButton="elevated"
+        (click)="openAuth('register')"
+        (keyup.enter)="openAuth('register')"
+      >
         Register
       </button>
-      <button matButton="elevated" (click)="openLogin()" (keyup.enter)="openLogin()">Log in</button>
+      <button matButton="elevated" (click)="openAuth('login')" (keyup.enter)="openAuth('login')">
+        Log in
+      </button>
     </section>
   </div>
   @if (showSearchContainer()) {
