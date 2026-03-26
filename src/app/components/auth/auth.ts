@@ -11,13 +11,11 @@ import { AuthForm } from './auth-form/auth-form';
   styleUrl: './auth.scss',
 })
 export class Auth {
-  private readonly authType = inject<AuthDialogMode>(DIALOG_DATA);
+  readonly authType = inject<AuthDialogMode>(DIALOG_DATA);
 
   title = computed(() =>
     this.authType === 'login' ? 'Login to your account' : 'Create a new account',
   );
 
-  buttonLabel = computed(() =>
-    this.authType === 'login' ? 'Sign in' : 'Sign up',
-  );
+  buttonLabel = computed(() => (this.authType === 'login' ? 'Sign in' : 'Sign up'));
 }

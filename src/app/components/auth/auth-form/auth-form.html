@@ -1,5 +1,5 @@
-<form class="auth-form" [formGroup]="form">
+<form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <booking-service-auth-email-input [form]="form" />
   <booking-service-auth-password-input [form]="form" />
-  <button matButton="tonal" class="search-button" type="submit">{{buttonLabel()}}</button>
+  <button matButton="tonal" class="search-button" type="submit">{{ buttonLabel() }}</button>
 </form>
