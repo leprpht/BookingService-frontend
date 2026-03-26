@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RecommendedList } from '../recommended-list/recommended-list';
+import { RecommendedList } from './recommended-list/recommended-list';
 import { FEATURED_CITIES } from '../../data/featured-cities';
 
 @Component({
