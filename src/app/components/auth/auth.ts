@@ -16,4 +16,8 @@ export class Auth {
   title = computed(() =>
     this.authType === 'login' ? 'Login to your account' : 'Create a new account',
   );
+
+  buttonLabel = computed(() =>
+    this.authType === 'login' ? 'Sign in' : 'Sign up',
+  );
 }

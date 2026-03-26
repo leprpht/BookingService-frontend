@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,6 +29,8 @@ import {
   styleUrl: './auth-form.scss',
 })
 export class AuthForm {
+  buttonLabel = input.required<string>();
+
   readonly form = new FormGroup({
     email: new FormControl<string>('', [
       Validators.required,

@@ -5,22 +5,29 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { merge } from 'rxjs';
 
 @Component({
   selector: 'booking-service-auth-password-input',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './password-input.html',
   styleUrl: './password-input.scss',
 })
 export class PasswordInput implements OnInit {
   readonly form = input.required<FormGroup>();
+  private readonly destroyRef = inject(DestroyRef);
 
   hide = signal(true);
 
   errorMessage = signal('');
-
-  private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit() {
     merge(this.password.statusChanges, this.password.valueChanges)
