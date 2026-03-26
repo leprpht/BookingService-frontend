@@ -24,12 +24,4 @@ export class AuthService {
     const request: AuthRequest = { email, password };
     return this.http.post(`${API_URL}/register`, request, { withCredentials: true });
   }
-
-  refresh() {
-    return this.http.post(`${API_URL}/refresh`, { withCredentials: true });
-  }
-  
-  revoke() {
-    return this.http.post(`${API_URL}/revoke`, { withCredentials: true });
-  }
 }
