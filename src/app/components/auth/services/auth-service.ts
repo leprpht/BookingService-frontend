@@ -17,11 +17,19 @@ export class AuthService {
 
   login(email: string, password: string) {
     const request: AuthRequest = { email, password };
-    return this.http.post<{ token: string }>(`${API_URL}/login`, request);
+    return this.http.post(`${API_URL}/login`, request, { withCredentials: true });
   }
 
   register(email: string, password: string) {
     const request: AuthRequest = { email, password };
-    return this.http.post<{ token: string }>(`${API_URL}/register`, request);
+    return this.http.post(`${API_URL}/register`, request, { withCredentials: true });
+  }
+
+  refresh() {
+    return this.http.post(`${API_URL}/refresh`, { withCredentials: true });
+  }
+  
+  revoke() {
+    return this.http.post(`${API_URL}/revoke`, { withCredentials: true });
   }
 }

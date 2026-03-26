@@ -16,6 +16,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'booking-service-auth-form',
@@ -34,11 +35,13 @@ import { DialogRef } from '@angular/cdk/dialog';
 })
 export class AuthForm {
   private readonly service = inject(AuthService);
+  private readonly router = inject(Router);
+
   buttonLabel = input.required<string>();
   authType = input.required<AuthDialogMode>();
   dialogRef = input.required<DialogRef>();
 
-  readonly loading = signal(true);
+  readonly loading = signal(false);
   readonly error = signal<string | null>(null);
 
   readonly form = new FormGroup({
@@ -55,32 +58,30 @@ export class AuthForm {
   });
 
   onSubmit() {
-    if (this.form.valid) {
-      const { email, password } = this.form.value;
-      if (!email || !password) return;
+    if (!this.form.valid) return;
 
-      if (this.authType() === 'login') {
-        this.service
-          .login(email, password)
-          .pipe(
-            withLoadingState({
-              loading: this.loading,
-              error: this.error,
-            }),
-          )
-          .subscribe();
-          this.dialogRef().close();
-      } else {
-        this.service
-          .register(email, password)
-          .pipe(
-            withLoadingState({
-              loading: this.loading,
-              error: this.error,
-            }),
-          )
-          .subscribe();
-      }
+    const { email, password } = this.form.value;
+    if (!email || !password) return;
+
+    if (this.authType() === 'login') {
+      this.service
+        .login(email, password)
+        .pipe(withLoadingState({ loading: this.loading, error: this.error }))
+        .subscribe({
+          next: () => {
+            this.dialogRef().close();
+          },
+        });
+    } else {
+      this.service
+        .register(email, password)
+        .pipe(withLoadingState({ loading: this.loading, error: this.error }))
+        .subscribe({
+          next: () => {
+            this.dialogRef().close();
+            this.router.navigate(['/']);
+          },
+        });
     }
   }
 }
