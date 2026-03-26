@@ -3,6 +3,7 @@ import { Header } from './header/header';
 import { AuthDialogMode } from '../header/header';
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { AuthForm } from './auth-form/auth-form';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'booking-service-auth',
@@ -12,6 +13,7 @@ import { AuthForm } from './auth-form/auth-form';
 })
 export class Auth {
   readonly authType = inject<AuthDialogMode>(DIALOG_DATA);
+  dialogRef = inject(DialogRef);
 
   title = computed(() =>
     this.authType === 'login' ? 'Login to your account' : 'Create a new account',

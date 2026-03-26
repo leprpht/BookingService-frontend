@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,6 +7,7 @@ import { EmailInput } from '../email-input/email-input';
 import { PasswordInput } from '../password-input/password-input';
 import { AuthService } from '../services/auth-service';
 import { AuthDialogMode } from '../../header/header';
+import { withLoadingState } from '../../../operators/with-loading-state';
 import {
   FormControl,
   FormGroup,
@@ -14,6 +15,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'booking-service-auth-form',
@@ -34,6 +36,10 @@ export class AuthForm {
   private readonly service = inject(AuthService);
   buttonLabel = input.required<string>();
   authType = input.required<AuthDialogMode>();
+  dialogRef = input.required<DialogRef>();
+
+  readonly loading = signal(true);
+  readonly error = signal<string | null>(null);
 
   readonly form = new FormGroup({
     email: new FormControl<string>('', [
@@ -54,23 +60,26 @@ export class AuthForm {
       if (!email || !password) return;
 
       if (this.authType() === 'login') {
-        this.service.login(email, password).subscribe({
-          next: (res) => {
-            console.log('Login successful:', res);
-          },
-          error: (err) => {
-            console.error('Login failed:', err);
-          },
-        });
+        this.service
+          .login(email, password)
+          .pipe(
+            withLoadingState({
+              loading: this.loading,
+              error: this.error,
+            }),
+          )
+          .subscribe();
+          this.dialogRef().close();
       } else {
-        this.service.register(email, password).subscribe({
-          next: (res) => {
-            console.log('Registration successful:', res);
-          },
-          error: (err) => {
-            console.error('Registration failed:', err);
-          },
-        });
+        this.service
+          .register(email, password)
+          .pipe(
+            withLoadingState({
+              loading: this.loading,
+              error: this.error,
+            }),
+          )
+          .subscribe();
       }
     }
   }
