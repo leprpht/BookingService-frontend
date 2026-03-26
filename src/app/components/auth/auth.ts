@@ -2,12 +2,11 @@ import { Component, computed, inject } from '@angular/core';
 import { Header } from './header/header';
 import { AuthDialogMode } from '../header/header';
 import { DIALOG_DATA } from '@angular/cdk/dialog';
-import { EmailInput } from './email-input/email-input';
-import { PasswordInput } from './password-input/password-input';
+import { AuthForm } from './auth-form/auth-form';
 
 @Component({
   selector: 'booking-service-auth',
-  imports: [Header, EmailInput, PasswordInput],
+  imports: [Header, AuthForm],
   templateUrl: './auth.html',
   styleUrl: './auth.scss',
 })

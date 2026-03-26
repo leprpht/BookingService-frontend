@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
@@ -11,14 +11,15 @@ import { merge } from 'rxjs';
   templateUrl: './email-input.html',
   styleUrl: './email-input.scss',
 })
-export class EmailInput {
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
-
+export class EmailInput implements OnInit {
+  readonly form = input.required<FormGroup>();
   errorMessage = signal('');
 
-  constructor() {
+  private readonly destroyRef = inject(DestroyRef);
+
+  ngOnInit() {
     merge(this.email.statusChanges, this.email.valueChanges)
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.updateErrorMessage());
   }
 
@@ -27,8 +28,14 @@ export class EmailInput {
       this.errorMessage.set('You must enter a value');
     } else if (this.email.hasError('email')) {
       this.errorMessage.set('Not a valid email');
+    } else if (this.email.hasError('maxlength')) {
+      this.errorMessage.set('Email must be at most 100 characters long');
     } else {
       this.errorMessage.set('');
     }
+  }
+
+  get email(): FormControl<string> {
+    return this.form().get('email') as FormControl<string>;
   }
 }
