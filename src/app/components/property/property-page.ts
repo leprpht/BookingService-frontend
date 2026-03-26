@@ -5,16 +5,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { PropertyService } from '../services/property-service';
-import { Header } from '../header/header';
-import { UnitsList } from '../units-list/units-list';
-import { UnitListItem } from '../../../models/types/unitListItem';
-import { PeriodRequest } from '../../../models/requests/periodRequest';
-import { Gallery } from '../gallery/gallery';
-import { Description } from '../description/description';
-import type { PropertyDetails } from '../../../models/types/propertyDetails';
-import type { HousingFilterOptions } from '../../../models/filters/housingFilterOptions';
-import { withLoadingState } from '../../../operators/with-loading-state';
+import { PropertyService } from './services/property-service';
+import { Header } from './header/header';
+import { UnitsList } from './units-list/units-list';
+import { UnitListItem } from '../../models/types/unitListItem';
+import { PeriodRequest } from '../../models/requests/periodRequest';
+import { Gallery } from './gallery/gallery';
+import { Description } from './description/description';
+import type { PropertyDetails } from '../../models/types/propertyDetails';
+import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
+import { withLoadingState } from '../../operators/with-loading-state';
 
 @Component({
   selector: 'booking-service-property-details',

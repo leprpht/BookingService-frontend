@@ -11,14 +11,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { Bar } from '../bar/bar';
-import { Tags } from '../tags/tags';
-import { City } from '../city/city';
-import { Country } from '../country/country';
-import { PriceRange } from '../price-range/price-range';
-import { Rating } from '../rating/rating';
-import { Capacities } from '../capacities/capacities';
-import type { HousingFilterOptions } from '../../../../models/filters/housingFilterOptions';
+import { Bar } from './container/bar/bar';
+import { Tags } from './container/tags/tags';
+import { City } from './container/city/city';
+import { Country } from './container/country/country';
+import { PriceRange } from './container/price-range/price-range';
+import { Rating } from './container/rating/rating';
+import { Capacities } from './container/capacities/capacities';
+import type { HousingFilterOptions } from '../../models/filters/housingFilterOptions';
 
 @Component({
   selector: 'booking-service-search-container',
