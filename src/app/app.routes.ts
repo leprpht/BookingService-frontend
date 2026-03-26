@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Home } from './components/home/home';
 import { SearchResults } from './components/search/results/search-results/search-results';
-import { PropertyPage } from './components/property/property-page/property-page';
+import { PropertyPage } from './components/property/property-page';
 
 export const routes: Routes = [
   {
