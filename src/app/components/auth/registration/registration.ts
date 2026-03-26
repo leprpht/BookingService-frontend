@@ -7,6 +7,4 @@ import { Header } from '../shared/header/header';
   templateUrl: './registration.html',
   styleUrl: './registration.scss',
 })
-export class Registration {
-
-}
+export class Registration {}
