@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { Header } from '../shared/header/header';
 
 @Component({
   selector: 'booking-service-registration',
-  imports: [],
+  imports: [Header],
   templateUrl: './registration.html',
   styleUrl: './registration.scss',
 })
