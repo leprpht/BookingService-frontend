@@ -7,8 +7,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
 import { AuthButtons } from './auth-buttons/auth-buttons';
 
-export type AuthDialogMode = 'login' | 'register';
-
 @Component({
   standalone: true,
   selector: 'booking-service-header',

@@ -1,6 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { Header } from './header/header';
-import { AuthDialogMode } from '../header/header';
+import { AuthDialogMode } from '../header/auth-buttons/auth-buttons';
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import { AuthForm } from './auth-form/auth-form';
 import { DialogRef } from '@angular/cdk/dialog';
