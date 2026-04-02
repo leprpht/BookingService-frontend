@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { SearchContainer } from '../search/search-container';
@@ -6,6 +6,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
 import { AuthButtons } from './auth-buttons/auth-buttons';
+import { UserService } from '../../shared/services/user-service';
+import { UserInfo } from '../../models/types/userInfo';
 
 @Component({
   standalone: true,
@@ -16,6 +18,9 @@ import { AuthButtons } from './auth-buttons/auth-buttons';
 })
 export class Header {
   private readonly router = inject(Router);
+  private readonly userService = inject(UserService);
+  readonly user = signal<UserInfo | null>(null);
+  readonly isAuthenticated = signal(false);
 
   readonly currentRoute = toSignal(
     this.router.events.pipe(
@@ -29,6 +34,19 @@ export class Header {
   readonly showSearchContainer = computed(
     () => this.currentRoute() === '/' || this.currentRoute().startsWith('/search'),
   );
+
+  constructor() {
+    this.userService.getUser().subscribe({
+      next: (user) => {
+        this.isAuthenticated.set(!!user);
+        this.user.set(user);
+      },
+      error: () => {
+        this.user.set(null);
+        this.isAuthenticated.set(false);
+      },
+    });
+  }
 
   goHome() {
     this.router.navigate(['/']);
