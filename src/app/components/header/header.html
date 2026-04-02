@@ -3,18 +3,7 @@
     <span role="button" tabindex="0" (click)="goHome()" (keyup.enter)="goHome()"
       >Booking Service</span
     >
-    <section>
-      <button
-        matButton="elevated"
-        (click)="openAuth('register')"
-        (keyup.enter)="openAuth('register')"
-      >
-        Register
-      </button>
-      <button matButton="elevated" (click)="openAuth('login')" (keyup.enter)="openAuth('login')">
-        Log in
-      </button>
-    </section>
+    <booking-service-header-auth-buttons />
   </div>
   @if (showSearchContainer()) {
     <booking-service-search-container />

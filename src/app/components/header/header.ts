@@ -3,23 +3,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { SearchContainer } from '../search/search-container';
 import { NavigationEnd, Router } from '@angular/router';
-import { Dialog } from '@angular/cdk/dialog';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
-import { Auth } from '../auth/auth';
+import { AuthButtons } from './auth-buttons/auth-buttons';
 
 export type AuthDialogMode = 'login' | 'register';
 
 @Component({
   standalone: true,
   selector: 'booking-service-header',
-  imports: [MatToolbarModule, MatButtonModule, SearchContainer],
+  imports: [MatToolbarModule, MatButtonModule, SearchContainer, AuthButtons],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
 export class Header {
   private readonly router = inject(Router);
-  private readonly dialog = inject(Dialog);
 
   readonly currentRoute = toSignal(
     this.router.events.pipe(
@@ -33,10 +31,6 @@ export class Header {
   readonly showSearchContainer = computed(
     () => this.currentRoute() === '/' || this.currentRoute().startsWith('/search'),
   );
-
-  openAuth(dialogMode: AuthDialogMode): void {
-    this.dialog.open(Auth, { data: dialogMode });
-  }
 
   goHome() {
     this.router.navigate(['/']);
