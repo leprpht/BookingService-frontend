@@ -8,11 +8,13 @@ import { filter, map, startWith } from 'rxjs';
 import { AuthButtons } from './auth-buttons/auth-buttons';
 import { UserService } from '../../shared/services/user-service';
 import { UserInfo } from '../../models/types/userInfo';
+import { FALLBACK_IMAGE_URL } from '../../data/fallback-image';
+import { ProfileButton } from './profile-button/profile-button';
 
 @Component({
   standalone: true,
   selector: 'booking-service-header',
-  imports: [MatToolbarModule, MatButtonModule, SearchContainer, AuthButtons],
+  imports: [MatToolbarModule, MatButtonModule, SearchContainer, AuthButtons, ProfileButton],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
@@ -35,9 +37,12 @@ export class Header {
     () => this.currentRoute() === '/' || this.currentRoute().startsWith('/search'),
   );
 
+  readonly showAuthButtons = computed(() => !this.isAuthenticated());
+
   constructor() {
     this.userService.getUser().subscribe({
       next: (user) => {
+        user.profilePictureUrl ??= FALLBACK_IMAGE_URL;
         this.isAuthenticated.set(!!user);
         this.user.set(user);
       },

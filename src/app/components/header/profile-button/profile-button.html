@@ -1,0 +1,12 @@
+<button matButton="elevated" class="profile-button">
+  <div class="profile-content">
+    <img [src]="user().profilePictureUrl" alt="User Profile Picture" class="profile-picture" />
+    <p class="profile-name">
+      @if (user().middleName) {
+        {{ user().firstName }} {{ user().middleName }} {{ user().lastName }}
+      } @else {
+        {{ user().firstName }} {{ user().lastName }}
+      }
+    </p>
+  </div>
+</button>

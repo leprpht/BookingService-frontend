@@ -1,10 +1,10 @@
 export interface UserInfo {
   id: string;
   firstName: string;
-  middleName: string | null;
+  middleName?: string;
   lastName: string;
   email: string;
-  profilePictureUrl: string | null;
+  profilePictureUrl?: string;
   dateOfBirth: Date;
   role: string;
 }
