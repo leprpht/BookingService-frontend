@@ -3,10 +3,12 @@
     <span role="button" tabindex="0" (click)="goHome()" (keyup.enter)="goHome()"
       >Booking Service</span
     >
-    @if (showAuthButtons()) {
-      <booking-service-header-auth-buttons />
-    } @else {
-      <booking-service-header-profile-button [user]="user()!" />
+    @if (showProfileNavigation()) {
+      @if (showAuthButtons()) {
+        <booking-service-header-auth-buttons />
+      } @else {
+        <booking-service-header-profile-button [user]="user()!" />
+      }
     }
   </div>
   @if (showSearchContainer()) {

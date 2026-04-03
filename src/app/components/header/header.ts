@@ -31,11 +31,15 @@ export class Header {
     { initialValue: this.router.url },
   );
 
+  readonly showProfileNavigation = computed(
+    () => !this.currentRoute().startsWith('/profile-setup'),
+  );
+
   readonly showSearchContainer = computed(
     () => this.currentRoute() === '/' || this.currentRoute().startsWith('/search'),
   );
 
-  readonly showAuthButtons = computed(() => !this.isAuthenticated());
+  readonly showAuthButtons = computed(() => !this.isAuthenticated() && !this.user());
 
   constructor() {
     this.userState.refresh();
