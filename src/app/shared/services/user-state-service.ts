@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { UserService } from './user-service';
 import { UserInfo } from '../../models/types/userInfo';
-import { FALLBACK_IMAGE_URL } from '../../data/fallback-image';
+import { FALLBACK_AVATAR_URL } from '../../data/image-placeholders';
 import { catchError, EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -30,7 +30,7 @@ export class UserStateService {
         }),
       )
       .subscribe((u) => {
-        u.profilePictureUrl ??= FALLBACK_IMAGE_URL;
+        u.profilePictureUrl ??= FALLBACK_AVATAR_URL;
         this.user.set(u);
         this.isAuthenticated.set(true);
         this.loading.set(false);
