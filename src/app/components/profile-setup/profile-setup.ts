@@ -11,7 +11,14 @@ import { withLoadingState } from '../../operators/with-loading-state';
 
 @Component({
   selector: 'booking-service-profile-setup',
-  imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatCard, MatButton],
+  imports: [
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCard,
+    MatButton,
+  ],
   templateUrl: './profile-setup.html',
   styleUrl: './profile-setup.scss',
 })
