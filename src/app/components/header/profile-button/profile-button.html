@@ -1,4 +1,4 @@
-<button matButton="elevated" class="profile-button">
+<button matButton="elevated" class="profile-button" [matMenuTriggerFor]="profileMenu">
   <div class="profile-content">
     <img [src]="user().profilePictureUrl" alt="User Profile Picture" class="profile-picture" />
     <p class="profile-name">
@@ -10,3 +10,17 @@
     </p>
   </div>
 </button>
+<mat-menu #profileMenu="matMenu" class="profile-menu" xPosition="before" yPosition="below">
+  <button mat-menu-item class="profile-menu-item" (click)="goToProfile()">
+    <mat-icon>person</mat-icon>
+    <span class="profile-menu-text">Profile</span>
+  </button>
+  <button mat-menu-item class="profile-menu-item" (click)="goToSettings()">
+    <mat-icon>settings</mat-icon>
+    <span class="profile-menu-text">Settings</span>
+  </button>
+  <button mat-menu-item class="profile-menu-item" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span class="profile-menu-text">Logout</span>
+  </button>
+</mat-menu>

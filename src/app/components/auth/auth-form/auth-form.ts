@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { EmailInput } from './email-input/email-input';
 import { PasswordInput } from './password-input/password-input';
-import { AuthService } from '../services/auth-service';
+import { AuthService } from '../../../shared/services/auth-service';
 import { AuthDialogMode } from '../../header/auth-buttons/auth-buttons';
 import { withLoadingState } from '../../../operators/with-loading-state';
 import {
