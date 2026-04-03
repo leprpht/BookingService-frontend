@@ -25,6 +25,7 @@ export class UserStateService {
           if (err.status !== 401) {
             console.error('Unexpected error fetching user', err);
           }
+          this.loading.set(false);
           return EMPTY;
         }),
       )
@@ -32,6 +33,7 @@ export class UserStateService {
         u.profilePictureUrl ??= FALLBACK_IMAGE_URL;
         this.user.set(u);
         this.isAuthenticated.set(true);
+        this.loading.set(false);
       });
   }
 }

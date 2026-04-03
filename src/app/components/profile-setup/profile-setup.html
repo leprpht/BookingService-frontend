@@ -1,0 +1,37 @@
+<div class="setup-wrapper">
+  <mat-card class="setup-card">
+    <h1 class="setup-title">Welcome! Let's set up your profile</h1>
+    <p class="setup-subtitle">Tell us your name to get started.</p>
+
+    <form class="setup-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput formControlName="firstName" />
+        @if (form.controls.firstName.invalid && form.controls.firstName.touched) {
+          <mat-error>First name is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Middle name (optional)</mat-label>
+        <input matInput formControlName="middleName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input matInput formControlName="lastName" />
+        @if (form.controls.lastName.invalid && form.controls.lastName.touched) {
+          <mat-error>Last name is required</mat-error>
+        }
+      </mat-form-field>
+
+      @if (error()) {
+        <p class="setup-error">{{ error() }}</p>
+      }
+
+      <button matButton="elevated" type="submit" [disabled]="loading()">
+        {{ loading() ? 'Saving…' : 'Continue' }}
+      </button>
+    </form>
+  </mat-card>
+</div>

@@ -75,21 +75,21 @@ export class AuthForm {
             this.dialogRef().close();
           },
         });
-      } else {
-        this.service
-          .register(email, password)
-          .pipe(withLoadingState({ loading: this.loading, error: this.error }))
-          .subscribe({
-            next: () => {
-              this.service.login(email, password).subscribe({
-                next: () => {
-                  this.userState.refresh();
-                  this.dialogRef().close();
-                  this.router.navigate(['/']);
-                },
-              });
-            },
-          });
-      }
+    } else {
+      this.service
+        .register(email, password)
+        .pipe(withLoadingState({ loading: this.loading, error: this.error }))
+        .subscribe({
+          next: () => {
+            this.service.login(email, password).subscribe({
+              next: () => {
+                this.userState.refresh();
+                this.dialogRef().close();
+                this.router.navigate(['/']);
+              },
+            });
+          },
+        });
+    }
   }
 }
