@@ -7,7 +7,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs';
 import { AuthButtons } from './auth-buttons/auth-buttons';
 import { ProfileButton } from './profile-button/profile-button';
-import { UserStateService } from '../../shared/services/user-state-service';
+import { UserStateService } from '../../shared/services';
 
 @Component({
   standalone: true,

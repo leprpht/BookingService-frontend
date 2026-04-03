@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { CanActivateFn, Router } from '@angular/router';
 import { filter, map, take } from 'rxjs';
-import { UserStateService } from '../shared/services/user-state-service';
+import { UserStateService } from '../shared/services';
 
 export const nameSetupGuard: CanActivateFn = () => {
   const userState = inject(UserStateService);

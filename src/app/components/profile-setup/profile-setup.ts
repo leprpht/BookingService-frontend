@@ -4,8 +4,7 @@ import { MatButtonModule, MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCard } from '@angular/material/card';
-import { UserService } from '../../shared/services/user-service';
-import { UserStateService } from '../../shared/services/user-state-service';
+import { UserService, UserStateService } from '../../shared/services';
 import { withLoadingState } from '../../operators/with-loading-state';
 
 @Component({

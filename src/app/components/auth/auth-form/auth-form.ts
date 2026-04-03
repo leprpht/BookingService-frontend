@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { EmailInput } from './email-input/email-input';
 import { PasswordInput } from './password-input/password-input';
-import { AuthService } from '../../../shared/services/auth-service';
+import { AuthService, UserStateService } from '../../../shared/services';
 import { AuthDialogMode } from '../../header/auth-buttons/auth-buttons';
 import { withLoadingState } from '../../../operators/with-loading-state';
 import {
@@ -17,7 +17,6 @@ import {
 } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Router } from '@angular/router';
-import { UserStateService } from '../../../shared/services/user-state-service';
 
 @Component({
   selector: 'booking-service-auth-form',

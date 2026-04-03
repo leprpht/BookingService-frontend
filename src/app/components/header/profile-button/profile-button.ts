@@ -4,7 +4,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { UserInfo } from '../../../models/types/userInfo';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../shared/services/auth-service';
+import { AuthService } from '../../../shared/services';
 
 @Component({
   selector: 'booking-service-header-profile-button',
