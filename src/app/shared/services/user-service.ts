@@ -13,6 +13,6 @@ export class UserService {
   readonly http = inject(HttpClient);
 
   getUser(): Observable<UserInfo> {
-    return this.http.get<UserInfo>(`${API_URL}/current`, { withCredentials: true });
+    return this.http.get<UserInfo>(`${API_URL}`, { withCredentials: true });
   }
 }

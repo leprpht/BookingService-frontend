@@ -17,6 +17,7 @@ import {
 } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Router } from '@angular/router';
+import { UserStateService } from '../../../shared/services/user-state-service';
 
 @Component({
   selector: 'booking-service-auth-form',
@@ -36,6 +37,7 @@ import { Router } from '@angular/router';
 export class AuthForm {
   private readonly service = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly userState = inject(UserStateService);
 
   buttonLabel = input.required<string>();
   authType = input.required<AuthDialogMode>();
@@ -69,19 +71,25 @@ export class AuthForm {
         .pipe(withLoadingState({ loading: this.loading, error: this.error }))
         .subscribe({
           next: () => {
+            this.userState.refresh();
             this.dialogRef().close();
           },
         });
-    } else {
-      this.service
-        .register(email, password)
-        .pipe(withLoadingState({ loading: this.loading, error: this.error }))
-        .subscribe({
-          next: () => {
-            this.dialogRef().close();
-            this.router.navigate(['/']);
-          },
-        });
-    }
+      } else {
+        this.service
+          .register(email, password)
+          .pipe(withLoadingState({ loading: this.loading, error: this.error }))
+          .subscribe({
+            next: () => {
+              this.service.login(email, password).subscribe({
+                next: () => {
+                  this.userState.refresh();
+                  this.dialogRef().close();
+                  this.router.navigate(['/']);
+                },
+              });
+            },
+          });
+      }
   }
 }
