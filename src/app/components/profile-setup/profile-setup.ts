@@ -43,7 +43,7 @@ export class ProfileSetup {
       .subscribe({
         next: () => {
           this.userState.refresh();
-          this.router.navigate(['/']);
+          window.location.reload();
         },
       });
   }

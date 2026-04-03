@@ -73,6 +73,7 @@ export class AuthForm {
           next: () => {
             this.userState.refresh();
             this.dialogRef().close();
+            window.location.reload();
           },
         });
     } else {
@@ -85,7 +86,7 @@ export class AuthForm {
               next: () => {
                 this.userState.refresh();
                 this.dialogRef().close();
-                this.router.navigate(['/']);
+                window.location.reload();
               },
             });
           },
