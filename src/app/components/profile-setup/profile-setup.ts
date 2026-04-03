@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MatButtonModule, MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,14 +10,20 @@ import { withLoadingState } from '../../operators/with-loading-state';
 
 @Component({
   selector: 'booking-service-profile-setup',
-  imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatCard, MatButton],
+  imports: [
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCard,
+    MatButton,
+  ],
   templateUrl: './profile-setup.html',
   styleUrl: './profile-setup.scss',
 })
 export class ProfileSetup {
   private readonly userService = inject(UserService);
   private readonly userState = inject(UserStateService);
-  private readonly router = inject(Router);
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
