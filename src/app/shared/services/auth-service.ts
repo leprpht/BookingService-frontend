@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   logout() {
-    this.http.post(`${API_URL}/revoke`, {}, { withCredentials: true }).subscribe(() => {
+    this.http.post(`${API_URL}/revoke`, { withCredentials: true }).subscribe(() => {
       this.userState.user.set(null);
       this.userState.isAuthenticated.set(false);
       window.location.reload();
