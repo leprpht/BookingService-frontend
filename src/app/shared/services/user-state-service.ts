@@ -13,6 +13,7 @@ export class UserStateService {
 
   readonly user = signal<UserInfo | null>(null);
   readonly isAuthenticated = signal(false);
+  readonly loading = signal(true);
 
   refresh() {
     this.userService
