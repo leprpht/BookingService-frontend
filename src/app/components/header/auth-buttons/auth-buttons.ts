@@ -3,7 +3,10 @@ import { MatButton } from '@angular/material/button';
 import { Auth } from '../../auth/auth';
 import { Dialog } from '@angular/cdk/dialog';
 
-export type AuthDialogMode = 'login' | 'register';
+export enum AuthDialogMode {
+  LOGIN,
+  REGISTER,
+}
 
 @Component({
   selector: 'booking-service-header-auth-buttons',

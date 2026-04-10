@@ -16,8 +16,8 @@ export class Auth {
   dialogRef = inject(DialogRef);
 
   title = computed(() =>
-    this.authType === 'login' ? 'Login to your account' : 'Create a new account',
+    this.authType === AuthDialogMode.LOGIN ? 'Login to your account' : 'Create a new account',
   );
 
-  buttonLabel = computed(() => (this.authType === 'login' ? 'Sign in' : 'Sign up'));
+  buttonLabel = computed(() => (this.authType === AuthDialogMode.LOGIN ? 'Sign in' : 'Sign up'));
 }
