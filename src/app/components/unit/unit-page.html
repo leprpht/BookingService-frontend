@@ -1,1 +1,23 @@
-<p>unit-page works!</p>
+<!-- Loading state -->
+@if (loading()) {
+  <div class="page-loading">
+    <mat-spinner diameter="48" />
+    <p>Loading property details…</p>
+  </div>
+}
+
+<!-- Error state -->
+@if (!loading() && error()) {
+  <div class="empty-state">
+    <mat-icon class="empty-icon">error_outline</mat-icon>
+    <h2>Something went wrong</h2>
+    <p>{{ error() }}</p>
+  </div>
+}
+
+<!-- Content -->
+@if (!loading() && !error() && unit()) {
+  <div class="details-page">
+    <div class="content-layout"></div>
+  </div>
+}

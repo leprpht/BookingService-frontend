@@ -23,7 +23,7 @@
       <booking-service-property-unit-card
         [unit]="unit"
         [nightsCount]="nightsCount()"
-        (book)="bookUnit.emit($event)"
+        [period]="period()"
       />
     }
   </div>

@@ -1,0 +1,17 @@
+<div class="unit-header">
+  <div class="unit-name">
+    <h1 class="unit-name-title">{{ name }}</h1>
+    <h1>·</h1>
+    <h1 class="unit-price">
+      {{ price | number: '1.0-0' }}
+    </h1>
+  </div>
+  <h3 class="unit-size">
+    <mat-icon>straighten</mat-icon>
+    {{ size }} m²
+  </h3>
+  <h3 class="unit-capacity">
+    <mat-icon>people</mat-icon>
+    {{ capacity }}
+  </h3>
+</div>

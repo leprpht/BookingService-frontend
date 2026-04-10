@@ -1,10 +1,11 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import type { UnitListItem } from '../../../models/types/unitListItem';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'booking-service-property-unit-card',
@@ -13,14 +14,20 @@ import type { UnitListItem } from '../../../models/types/unitListItem';
   styleUrl: './unit-card.scss',
 })
 export class UnitCard {
+  readonly router = inject(Router);
+
   readonly unit = input.required<UnitListItem>();
   readonly nightsCount = input.required<number>();
-
-  readonly book = output<UnitListItem>();
+  readonly period = input.required<{ from: string; to: string } | null>();
 
   selectUnit() {
     if (this.unit().availableRooms > 0) {
-      this.book.emit(this.unit());
+      this.router.navigate(['/unit', this.unit().id], {
+        queryParams: {
+          from: this.period()?.from,
+          to: this.period()?.to,
+        },
+      });
     }
   }
 }

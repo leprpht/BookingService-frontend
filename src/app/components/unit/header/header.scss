@@ -1,0 +1,11 @@
+@use '../../../../styles' as s;
+
+.unit-name {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+
+  .unit-price {
+    color: s.$color-brand-dark;
+  }
+}
