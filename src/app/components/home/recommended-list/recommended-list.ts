@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { RecommendedListService } from '../services/recommended-list-service-service';
 import { PeriodRequest } from '../../../models/requests/periodRequest';
 import { withLoadingState } from '../../../operators/with-loading-state';
-import { FALLBACK_IMAGE_URL } from '../../../data/fallback-image';
+import { FALLBACK_IMAGE_URL } from '../../../data/image-placeholders';
 import type { PropertyCard } from '../../../models/types/propertyCard';
 
 @Component({

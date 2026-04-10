@@ -1,0 +1,16 @@
+@use '../../../../styles.scss' as s;
+
+.auth-header {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: s.$color-brand-dark;
+
+  .auth-header-title {
+    font-size: 32px;
+    margin: 0;
+  }
+}

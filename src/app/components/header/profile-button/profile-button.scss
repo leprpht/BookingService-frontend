@@ -1,0 +1,32 @@
+.profile-button {
+  width: 100%;
+  padding: 7px;
+  justify-content: flex-start;
+
+  .profile-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .profile-picture {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .profile-name {
+    margin: 0;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+  }
+}
+
+.profile-menu-text {
+  padding: 0 30px;
+}

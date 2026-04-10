@@ -1,0 +1,23 @@
+import { Component, computed, inject } from '@angular/core';
+import { Header } from './header/header';
+import { AuthDialogMode } from '../header/auth-buttons/auth-buttons';
+import { DIALOG_DATA } from '@angular/cdk/dialog';
+import { AuthForm } from './auth-form/auth-form';
+import { DialogRef } from '@angular/cdk/dialog';
+
+@Component({
+  selector: 'booking-service-auth',
+  imports: [Header, AuthForm],
+  templateUrl: './auth.html',
+  styleUrl: './auth.scss',
+})
+export class Auth {
+  readonly authType = inject<AuthDialogMode>(DIALOG_DATA);
+  dialogRef = inject(DialogRef);
+
+  title = computed(() =>
+    this.authType === AuthDialogMode.LOGIN ? 'Login to your account' : 'Create a new account',
+  );
+
+  buttonLabel = computed(() => (this.authType === AuthDialogMode.LOGIN ? 'Sign in' : 'Sign up'));
+}

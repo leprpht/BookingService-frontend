@@ -1,4 +1,4 @@
-@use '../../../styles' as s;
+@use '../../../styles.scss' as s;
 
 mat-toolbar {
   display: flex;
@@ -22,11 +22,6 @@ mat-toolbar {
       font-weight: 500;
       color: s.$color-brand;
       cursor: pointer;
-    }
-
-    section {
-      display: flex;
-      gap: 10px;
     }
   }
 }

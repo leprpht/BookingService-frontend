@@ -1,0 +1,15 @@
+.auth-form {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+
+  .search-button {
+    width: 30%;
+    margin-top: 20px;
+    font-size: 15px;
+  }
+}

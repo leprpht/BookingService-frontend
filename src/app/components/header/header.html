@@ -3,10 +3,13 @@
     <span role="button" tabindex="0" (click)="goHome()" (keyup.enter)="goHome()"
       >Booking Service</span
     >
-    <section>
-      <a matButton="elevated">Register</a>
-      <a matButton="elevated">Log in</a>
-    </section>
+    @if (showProfileNavigation()) {
+      @if (showAuthButtons()) {
+        <booking-service-header-auth-buttons />
+      } @else {
+        <booking-service-header-profile-button [user]="user()!" />
+      }
+    }
   </div>
   @if (showSearchContainer()) {
     <booking-service-search-container />
