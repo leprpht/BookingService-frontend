@@ -23,14 +23,14 @@
         <mat-icon>arrow_back</mat-icon>
       </button>
       <p
-          role="button"
-          tabindex="0"
-          (click)="goBack()"
-          (keyup.enter)="goBack()"
-          class="details-title"
-        >
-          {{ propertyName }}
-        </p>
+        role="button"
+        tabindex="0"
+        (click)="goBack()"
+        (keyup.enter)="goBack()"
+        class="details-title"
+      >
+        {{ propertyName }}
+      </p>
     </div>
 
     <div class="details-content">
@@ -38,6 +38,7 @@
         [unitHeaderData]="headerData()"
         [dates]="dates()"
       ></booking-service-unit-header>
+      <booking-service-unit-gallery [pictures]="pictures()"></booking-service-unit-gallery>
     </div>
   </div>
 }
