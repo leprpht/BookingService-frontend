@@ -17,7 +17,15 @@
     </div>
     <div class="details-item">
       <mat-icon>event</mat-icon>
-      <h3 class="stay-period">{{ from | date: 'MMM d, y' }} - {{ to | date: 'MMM d, y' }}</h3>
+      <h3
+        class="stay-period"
+        (click)="searchByDates()"
+        (keyup.enter)="searchByDates()"
+        role="button"
+        tabindex="0"
+      >
+        {{ from | date: 'MMM d, y' }} - {{ to | date: 'MMM d, y' }}
+      </h3>
     </div>
   </div>
 </div>

@@ -1,9 +1,10 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { UnitHeaderData } from '../unit-page';
 import { DecimalPipe } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { PeriodRequest } from '../../../models/requests/periodRequest';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'booking-service-unit-header',
@@ -12,6 +13,8 @@ import { DatePipe } from '@angular/common';
   styleUrl: './header.scss',
 })
 export class Header {
+  readonly router = inject(Router);
+
   readonly unitHeaderData = input.required<UnitHeaderData | null>();
   readonly dates = input.required<PeriodRequest | null>();
 
@@ -37,5 +40,19 @@ export class Header {
 
   get to(): string {
     return this.dates()?.to ?? '';
+  }
+
+  searchByDates(): void {
+    this.router.navigate(['/search'], {
+      queryParams: { filter: this.buildSearchQueryParams() }
+    });
+  }
+
+  buildSearchQueryParams(): string {
+    const period = {
+      from: this.from,
+      to: this.to,
+    }
+    return encodeURIComponent(JSON.stringify({ period }));
   }
 }
