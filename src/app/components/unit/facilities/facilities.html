@@ -1,0 +1,14 @@
+@for (facility of facilities(); track facility) {
+  <mat-card class="facility-card" appearance="outlined">
+    <div class="facility-card-content">
+      <h3 class="facility-type">{{ facility.type }}</h3>
+      <ul>
+        @for (t of facility.text; track t) {
+          <li>
+            <p class="facility-text">{{ t }}</p>
+          </li>
+        }
+      </ul>
+    </div>
+  </mat-card>
+}

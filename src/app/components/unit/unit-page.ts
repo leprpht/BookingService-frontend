@@ -8,7 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { Header } from './header/header';
 import { Gallery } from './gallery/gallery';
-import { UnitDetails } from '../../models/types/unitDetails';
+import { Facilities } from './facilities/facilities';
+import { UnitCustomization, UnitDetails } from '../../models/types/unitDetails';
 import { MatButtonModule } from '@angular/material/button';
 
 export interface UnitHeaderData {
@@ -20,7 +21,7 @@ export interface UnitHeaderData {
 
 @Component({
   selector: 'booking-service-unit-page',
-  imports: [MatProgressSpinnerModule, MatIconModule, Header, Gallery, MatButtonModule],
+  imports: [MatProgressSpinnerModule, MatIconModule, Header, Gallery, Facilities, MatButtonModule],
   templateUrl: './unit-page.html',
   styleUrl: './unit-page.scss',
 })
@@ -45,7 +46,8 @@ export class UnitPage {
     } as UnitHeaderData;
   });
 
-  readonly pictures = computed(() => this.unit()?.pictures ?? []);
+  readonly pictures = computed(() => (this.unit()?.pictures as string[]) ?? []);
+  readonly facilities = computed(() => (this.unit()?.customizations as UnitCustomization[]) ?? []);
 
   constructor() {
     combineLatest({
