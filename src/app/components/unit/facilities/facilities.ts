@@ -2,10 +2,11 @@ import { Component, input } from '@angular/core';
 import { UnitCustomization } from '../../../models/types/unitDetails';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'booking-service-unit-facilities',
-  imports: [MatCardModule, MatIconModule],
+  imports: [MatCardModule, MatIconModule, MatDivider],
   templateUrl: './facilities.html',
   styleUrl: './facilities.scss',
 })
