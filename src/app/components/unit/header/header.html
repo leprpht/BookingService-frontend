@@ -3,21 +3,22 @@
     <h1 class="unit-name-title">{{ name }}</h1>
     <h1>·</h1>
     <h1 class="unit-price">${{ price | number: '1.0-0' }}</h1>
+    <h5 class="days-count">for {{ daysCount }} {{ daysCount === 1 ? 'night' : 'nights' }}</h5>
   </div>
   <div class="unit-details">
     <div class="details-item">
       <mat-icon>straighten</mat-icon>
-      <h3 class="unit-size">{{ size }} m²</h3>
+      <h4 class="unit-size">{{ size }} m²</h4>
     </div>
     <div class="details-item">
       <mat-icon>people</mat-icon>
-      <h3 class="unit-capacity">
+      <h4 class="unit-capacity">
         {{ capacity }}
-      </h3>
+      </h4>
     </div>
     <div class="details-item">
       <mat-icon>event</mat-icon>
-      <h3
+      <h4
         class="stay-period"
         (click)="searchByDates()"
         (keyup.enter)="searchByDates()"
@@ -25,7 +26,7 @@
         tabindex="0"
       >
         {{ from | date: 'MMM d, y' }} - {{ to | date: 'MMM d, y' }}
-      </h3>
+      </h4>
     </div>
   </div>
 </div>

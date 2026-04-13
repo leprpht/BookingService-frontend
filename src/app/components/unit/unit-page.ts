@@ -17,6 +17,7 @@ export interface UnitHeaderData {
   capacity: number;
   price: number;
   size: number;
+  daysCount: number;
 }
 
 @Component({
@@ -43,6 +44,12 @@ export class UnitPage {
       capacity: unit.capacity,
       price: unit.price,
       size: unit.size,
+      daysCount: this.dates()
+        ? Math.ceil(
+            (new Date(this.dates()!.to).getTime() - new Date(this.dates()!.from).getTime()) /
+              (1000 * 3600 * 24),
+          )
+        : 0,
     } as UnitHeaderData;
   });
 

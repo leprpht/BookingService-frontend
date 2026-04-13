@@ -1,14 +1,14 @@
 import { Component, inject, input } from '@angular/core';
 import { UnitHeaderData } from '../unit-page';
 import { DecimalPipe } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { PeriodRequest } from '../../../models/requests/periodRequest';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'booking-service-unit-header',
-  imports: [DecimalPipe, MatIcon, DatePipe],
+  imports: [DecimalPipe, MatIconModule, DatePipe],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
@@ -42,9 +42,13 @@ export class Header {
     return this.dates()?.to ?? '';
   }
 
+  get daysCount(): number {
+    return this.unitHeaderData()?.daysCount ?? 0;
+  }
+
   searchByDates(): void {
     this.router.navigate(['/search'], {
-      queryParams: { filter: this.buildSearchQueryParams() }
+      queryParams: { filter: this.buildSearchQueryParams() },
     });
   }
 
@@ -52,7 +56,7 @@ export class Header {
     const period = {
       from: this.from,
       to: this.to,
-    }
+    };
     return encodeURIComponent(JSON.stringify({ period }));
   }
 }
