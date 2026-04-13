@@ -133,7 +133,12 @@ export class SearchResults implements OnDestroy {
   }
 
   navigateToProperty(id: string): void {
-    this.router.navigate(['/property', id]);
+    this.router.navigate(['/property', id], {
+      queryParams: {
+        from: this.activeFilter()?.period.from,
+        to: this.activeFilter()?.period.to,
+      },
+    });
   }
 
   dateRangeLabel(): string {
