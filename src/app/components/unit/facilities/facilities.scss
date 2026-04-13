@@ -5,16 +5,25 @@
   .facility-card-content {
     padding: 16px;
 
-    .facility-type {
-      margin: 0;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--mat-sys-on-surface);
+    .facility-title {
+      display: flex;
+      align-items: start;
+      gap: 8px;
+      margin-bottom: 14px;
+
+      .facility-icon {
+        font-size: 18px;
+      }
+
+      .facility-type {
+        margin: 0;
+        font-weight: 600;
+        color: var(--mat-sys-on-surface);
+      }
     }
 
     .facility-text {
       margin: 4px 0 0;
-      font-size: 12px;
       color: var(--mat-sys-on-surface-variant);
     }
   }
