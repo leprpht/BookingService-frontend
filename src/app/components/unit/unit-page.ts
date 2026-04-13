@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { Header } from './header/header';
 import { UnitDetails } from '../../models/types/unitDetails';
+import { MatButtonModule } from '@angular/material/button';
 
 export interface UnitHeaderData {
   name: string;
@@ -18,7 +19,7 @@ export interface UnitHeaderData {
 
 @Component({
   selector: 'booking-service-unit-page',
-  imports: [MatProgressSpinnerModule, MatIconModule, Header],
+  imports: [MatProgressSpinnerModule, MatIconModule, Header, MatButtonModule],
   templateUrl: './unit-page.html',
   styleUrl: './unit-page.scss',
 })
@@ -29,6 +30,19 @@ export class UnitPage {
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
   readonly unit = signal<UnitDetails | null>(null);
+  readonly dates = signal<PeriodRequest | null>(null);
+
+  readonly headerData = computed(() => {
+    const unit = this.unit();
+    if (!unit) return null;
+
+    return {
+      name: unit.name,
+      capacity: unit.capacity,
+      price: unit.price,
+      size: unit.size,
+    } as UnitHeaderData;
+  });
 
   constructor() {
     combineLatest({
@@ -45,19 +59,9 @@ export class UnitPage {
     });
   }
 
-  readonly headerData = computed(() => {
-    const unit = this.unit();
-    if (!unit) return null;
-
-    return {
-      name: unit.name,
-      capacity: unit.capacity,
-      price: unit.price,
-      size: unit.size,
-    } as UnitHeaderData;
-  });
-
-  readonly dates = signal<PeriodRequest | null>(null);
+  get propertyName(): string {
+    return this.unit()?.propertyName ?? '';
+  }
 
   goBack() {
     window.history.back();

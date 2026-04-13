@@ -22,6 +22,15 @@
       <button mat-icon-button class="back-btn" (click)="goBack()" matTooltip="Back">
         <mat-icon>arrow_back</mat-icon>
       </button>
+      <p
+          role="button"
+          tabindex="0"
+          (click)="goBack()"
+          (keyup.enter)="goBack()"
+          class="details-title"
+        >
+          {{ propertyName }}
+        </p>
     </div>
 
     <div class="details-content">

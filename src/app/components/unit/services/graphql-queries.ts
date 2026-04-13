@@ -4,6 +4,7 @@ export class GraphQLQueries {
       unitById(unitId: $unitId, period: $period) {
         id
         name
+        propertyName
         capacity
         price
         size

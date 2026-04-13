@@ -18,12 +18,21 @@
     align-items: center;
     gap: 8px;
     margin-bottom: 24px;
+    color: var(--mat-sys-on-surface-variant);
 
     .back-btn {
-      color: var(--mat-sys-on-surface-variant);
       flex-shrink: 0;
       background: none;
       border: none;
+    }
+
+    .details-title {
+      font-weight: 400;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
   }
 

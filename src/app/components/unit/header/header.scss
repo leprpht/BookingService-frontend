@@ -1,11 +1,29 @@
 @use '../../../../styles' as s;
 
-.unit-name {
+.unit-header {
   display: flex;
-  gap: 18px;
-  align-items: baseline;
+  flex-direction: column;
 
-  .unit-price {
-    color: s.$color-brand-dark;
+  .unit-name {
+    display: flex;
+    gap: 18px;
+    align-items: baseline;
+  
+    .unit-price {
+      color: s.$color-brand-dark;
+    }
+  }
+
+  .unit-details {
+    display: flex;
+    gap: 34px;
+    font-size: 14px;
+
+    .details-item {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+    }
   }
 }

@@ -6,6 +6,7 @@ export interface UnitCustomization {
 export interface UnitDetails {
   id: string;
   name: string;
+  propertyName: string;
   capacity: number;
   price: number;
   size: number;
