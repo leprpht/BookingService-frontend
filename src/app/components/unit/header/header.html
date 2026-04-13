@@ -2,9 +2,7 @@
   <div class="unit-name">
     <h1 class="unit-name-title">{{ name }}</h1>
     <h1>·</h1>
-    <h1 class="unit-price">
-      {{ price | number: '1.0-0' }}
-    </h1>
+    <h1 class="unit-price">${{ price | number: '1.0-0' }}</h1>
   </div>
   <h3 class="unit-size">
     <mat-icon>straighten</mat-icon>
@@ -14,4 +12,8 @@
     <mat-icon>people</mat-icon>
     {{ capacity }}
   </h3>
+  <h5 class="stay-period">
+    <mat-icon>event</mat-icon>
+    {{ from | date: 'MMM d, y' }} - {{ to | date: 'MMM d, y' }}
+  </h5>
 </div>

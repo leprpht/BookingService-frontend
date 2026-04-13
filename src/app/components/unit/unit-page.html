@@ -16,8 +16,19 @@
 }
 
 <!-- Content -->
-@if (!loading() && !error() && unit()) {
+@if (!loading() && !error()) {
   <div class="details-page">
-    <div class="content-layout"></div>
+    <div class="details-top-bar">
+      <button mat-icon-button class="back-btn" (click)="goBack()" matTooltip="Back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <div class="details-content">
+      <booking-service-unit-header
+        [unitHeaderData]="headerData()"
+        [dates]="dates()"
+      ></booking-service-unit-header>
+    </div>
   </div>
 }

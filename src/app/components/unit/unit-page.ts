@@ -3,9 +3,11 @@ import { UnitService } from './services/unit-service';
 import { PeriodRequest } from '../../models/requests/periodRequest';
 import { withLoadingState } from '../../operators/with-loading-state';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatIcon } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
+import { Header } from './header/header';
+import { UnitDetails } from '../../models/types/unitDetails';
 
 export interface UnitHeaderData {
   name: string;
@@ -16,7 +18,7 @@ export interface UnitHeaderData {
 
 @Component({
   selector: 'booking-service-unit-page',
-  imports: [MatProgressSpinnerModule, MatIcon],
+  imports: [MatProgressSpinnerModule, MatIconModule, Header],
   templateUrl: './unit-page.html',
   styleUrl: './unit-page.scss',
 })
@@ -26,7 +28,7 @@ export class UnitPage {
 
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
-  readonly unit = signal<UnitHeaderData | null>(null);
+  readonly unit = signal<UnitDetails | null>(null);
 
   constructor() {
     combineLatest({
@@ -38,6 +40,7 @@ export class UnitPage {
         from: queryParams['from'] as string,
         to: queryParams['to'] as string,
       };
+      this.dates.set(period);
       this.fetchUnit(unitId, period);
     });
   }
@@ -51,8 +54,10 @@ export class UnitPage {
       capacity: unit.capacity,
       price: unit.price,
       size: unit.size,
-    };
+    } as UnitHeaderData;
   });
+
+  readonly dates = signal<PeriodRequest | null>(null);
 
   goBack() {
     window.history.back();

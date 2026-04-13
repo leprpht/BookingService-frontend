@@ -14,7 +14,7 @@ interface GraphQlResponse<T> {
 }
 
 interface UnitDetailsData {
-  getUnitById: UnitDetails;
+  unitById: UnitDetails;
 }
 
 @Injectable({
@@ -34,7 +34,7 @@ export class UnitService {
           if (res.errors?.length) {
             throw new Error(res.errors.map((e) => e.message).join(', '));
           }
-          return res.data.getUnitById;
+          return res.data.unitById;
         }),
       );
   }
