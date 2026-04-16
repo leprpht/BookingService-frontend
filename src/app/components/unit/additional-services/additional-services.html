@@ -1,1 +1,20 @@
-<p>additional-services works!</p>
+<h2>Additional Services</h2>
+<div class="additional-services-container">
+  @for (s of additionalServices(); track s.id) {
+    <mat-card class="unit-card" appearance="outlined" (click)="toggleService(s.id)">
+      <mat-checkbox
+        class="service-checkbox"
+        [checked]="isSelected(s.id)"
+        (change)="toggleService(s.id)"
+      ></mat-checkbox>
+      <mat-card-content class="service-card">
+        <div class="service-info">
+          <mat-card-title class="service-name">{{ s.name }}</mat-card-title>
+        </div>
+        <div class="service-price">
+          <span class="price">${{ s.price | number: '1.0-0' }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

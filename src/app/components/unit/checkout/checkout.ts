@@ -5,17 +5,18 @@ import { UnitService } from '../services/unit-service';
 import { withLoadingState } from '../../../operators/with-loading-state';
 import { PeriodRequest } from '../../../models/requests/periodRequest';
 import { UnitDetails } from '../../../models/types/unitDetails';
+import { AdditionalServices } from '../additional-services/additional-services';
 
 @Component({
   selector: 'booking-service-unit-checkout',
-  imports: [],
+  imports: [AdditionalServices],
   templateUrl: './checkout.html',
   styleUrl: './checkout.scss',
 })
 export class Checkout {
   readonly route = inject(ActivatedRoute);
   readonly service = inject(UnitService);
-  
+
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
   readonly unit = signal<UnitDetails | null>(null);
@@ -45,15 +46,15 @@ export class Checkout {
   }
 
   private fetchUnit(unitId: string, period: PeriodRequest) {
-      this.service
-        .getUnitById(unitId, period)
-        .pipe(
-          withLoadingState({
-            loading: this.loading,
-            error: this.error,
-            errorMessage: 'Failed to load unit details. Please try again.',
-          }),
-        )
-        .subscribe((prop) => this.unit.set(prop));
-    }
+    this.service
+      .getUnitById(unitId, period)
+      .pipe(
+        withLoadingState({
+          loading: this.loading,
+          error: this.error,
+          errorMessage: 'Failed to load unit details. Please try again.',
+        }),
+      )
+      .subscribe((prop) => this.unit.set(prop));
+  }
 }
