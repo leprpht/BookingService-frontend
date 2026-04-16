@@ -4,7 +4,7 @@ import { PeriodRequest } from '../../models/requests/periodRequest';
 import { withLoadingState } from '../../operators/with-loading-state';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { Header } from './header/header';
 import { Gallery } from './gallery/gallery';
@@ -29,6 +29,7 @@ export interface UnitHeaderData {
 export class UnitPage {
   readonly service = inject(UnitService);
   readonly route = inject(ActivatedRoute);
+  readonly router = inject(Router);
 
   readonly loading = signal(true);
   readonly error = signal<string | null>(null);
@@ -77,6 +78,15 @@ export class UnitPage {
 
   goBack() {
     window.history.back();
+  }
+
+  goToCheckout() {
+    this.router.navigate(['checkout', this.unit()?.id], {
+      queryParams: {
+        from: this.dates()?.from,
+        to: this.dates()?.to,
+      },
+    });
   }
 
   private fetchUnit(unitId: string, period: PeriodRequest) {

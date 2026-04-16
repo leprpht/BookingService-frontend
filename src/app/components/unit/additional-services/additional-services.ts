@@ -27,6 +27,6 @@ export class AdditionalServices {
     return this.service
       .getUnitAdditionalServices(this.unitId())
       .pipe(withLoadingState({ loading: this.loading }))
-      .subscribe((services) => this.additionalServices.set(services));
+      .subscribe((s) => this.additionalServices.set(s));
   }
 }
