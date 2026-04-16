@@ -2,14 +2,14 @@
 <div class="additional-services-container">
   @for (s of additionalServices(); track s.id) {
     <mat-card class="unit-card" appearance="outlined" (click)="toggleService(s.id)">
-      <mat-checkbox
-        class="service-checkbox"
-        [checked]="isSelected(s.id)"
-        (change)="toggleService(s.id)"
-      ></mat-checkbox>
       <mat-card-content class="service-card">
-        <div class="service-info">
-          <mat-card-title class="service-name">{{ s.name }}</mat-card-title>
+        <div class="service-title">
+          <mat-checkbox
+            class="service-checkbox"
+            [checked]="isSelected(s.id)"
+            (change)="toggleService(s.id)"
+          ></mat-checkbox>
+          <h3 class="service-name">{{ s.name }}</h3>
         </div>
         <div class="service-price">
           <span class="price">${{ s.price | number: '1.0-0' }}</span>
