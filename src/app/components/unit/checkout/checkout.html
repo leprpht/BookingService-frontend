@@ -1,3 +1,154 @@
-<div class="checkout-page">
-  <booking-service-unit-additional-services [unitId]="unitId" />
-</div>
+<!-- Loading -->
+@if (loading()) {
+  <div class="page-loading">
+    <mat-spinner diameter="48" />
+    <p>Loading checkout…</p>
+  </div>
+}
+
+<!-- Error -->
+@if (!loading() && error()) {
+  <div class="empty-state">
+    <mat-icon class="empty-icon">error_outline</mat-icon>
+    <h2>Something went wrong</h2>
+    <p>{{ error() }}</p>
+    <button mat-flat-button (click)="goBack()">Go back</button>
+  </div>
+}
+
+<!-- Confirmed -->
+@if (confirmed()) {
+  <div class="empty-state confirmed-state">
+    <mat-icon class="empty-icon confirmed-icon">check_circle</mat-icon>
+    <h2>Booking Confirmed!</h2>
+    <p>
+      Your stay at <strong>{{ unit()?.propertyName }}</strong> has been reserved for
+      {{ nightsCount() }} night{{ nightsCount() !== 1 ? 's' : '' }}.
+    </p>
+    <button mat-flat-button (click)="goBack()">Back to property</button>
+  </div>
+}
+
+<!-- Content -->
+@if (!loading() && !error() && !confirmed() && unit()) {
+  <div class="checkout-page">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <button mat-icon-button (click)="goBack()" matTooltip="Back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="top-bar-text">
+        <span class="property-name">{{ unit()!.propertyName }}</span>
+        <mat-icon class="sep-icon">chevron_right</mat-icon>
+        <span>Checkout</span>
+      </div>
+    </div>
+
+    <div class="checkout-layout">
+      <!-- Left column -->
+      <div class="left-col">
+        <!-- Unit summary card -->
+        <section class="summary-card">
+          <h2 class="section-heading">
+            <mat-icon>hotel</mat-icon>
+            Your Stay
+          </h2>
+
+          <div class="stay-grid">
+            <div class="stay-item">
+              <span class="stay-label">Unit</span>
+              <span class="stay-value">{{ unit()!.name }}</span>
+            </div>
+            <div class="stay-item">
+              <span class="stay-label">Property</span>
+              <span class="stay-value">{{ unit()!.propertyName }}</span>
+            </div>
+            <div class="stay-item">
+              <span class="stay-label">Check-in</span>
+              <span class="stay-value">{{ dates()!.from | date: 'EEE, MMM d, y' }}</span>
+            </div>
+            <div class="stay-item">
+              <span class="stay-label">Check-out</span>
+              <span class="stay-value">{{ dates()!.to | date: 'EEE, MMM d, y' }}</span>
+            </div>
+            <div class="stay-item">
+              <span class="stay-label">Duration</span>
+              <span class="stay-value"
+                >{{ nightsCount() }} night{{ nightsCount() !== 1 ? 's' : '' }}</span
+              >
+            </div>
+            <div class="stay-item">
+              <span class="stay-label">Guests</span>
+              <span class="stay-value"
+                >Up to {{ unit()!.capacity }} guest{{ unit()!.capacity !== 1 ? 's' : '' }}</span
+              >
+            </div>
+            <div class="stay-item">
+              <span class="stay-label">Size</span>
+              <span class="stay-value">{{ unit()!.size }} m²</span>
+            </div>
+            <div class="stay-item">
+              <span class="stay-label">Rate</span>
+              <span class="stay-value">${{ unit()!.price | number: '1.0-0' }} / night</span>
+            </div>
+          </div>
+        </section>
+
+        <mat-divider />
+
+        <!-- Additional services -->
+        <section class="services-section">
+          @if (unitId) {
+            <booking-service-unit-additional-services
+              [unitId]="unitId"
+              (selectionChange)="onServicesChange($event)"
+            />
+          }
+        </section>
+      </div>
+
+      <!-- Right column – sticky order summary -->
+      <aside class="order-panel">
+        <div class="order-card">
+          <h3 class="order-title">Order Summary</h3>
+          <mat-divider />
+
+          <div class="order-lines">
+            <div class="order-line">
+              <span
+                >${{ unit()!.price | number: '1.0-0' }} × {{ nightsCount() }} night{{
+                  nightsCount() !== 1 ? 's' : ''
+                }}</span
+              >
+              <span>${{ baseTotal() | number: '1.0-0' }}</span>
+            </div>
+
+            @for (svc of selectedServices(); track svc.id) {
+              <div class="order-line service-line">
+                <span>{{ svc.name }}</span>
+                <span>+${{ svc.price | number: '1.0-0' }}</span>
+              </div>
+            }
+          </div>
+
+          <mat-divider />
+
+          <div class="order-total">
+            <span>Total</span>
+            <span class="total-amount">${{ grandTotal() | number: '1.0-0' }}</span>
+          </div>
+
+          <button mat-flat-button class="confirm-btn" (click)="confirmBooking()">
+            <mat-icon>event_available</mat-icon>
+            Confirm Booking
+          </button>
+
+          <p class="no-charge-note">
+            <mat-icon>info</mat-icon>
+            You won't be charged yet
+          </p>
+        </div>
+      </aside>
+    </div>
+  </div>
+}

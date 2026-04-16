@@ -1,20 +1,37 @@
-<h2>Additional Services</h2>
-<div class="additional-services-container">
-  @for (s of additionalServices(); track s.id) {
-    <mat-card class="unit-card" appearance="outlined" (click)="toggleService(s.id)">
-      <mat-card-content class="service-card">
-        <div class="service-title">
-          <mat-checkbox
-            class="service-checkbox"
-            [checked]="isSelected(s.id)"
-            (change)="toggleService(s.id)"
-          ></mat-checkbox>
-          <h3 class="service-name">{{ s.name }}</h3>
-        </div>
-        <div class="service-price">
-          <span class="price">${{ s.price | number: '1.0-0' }}</span>
-        </div>
-      </mat-card-content>
-    </mat-card>
+<div class="additional-services-wrapper">
+  <h2 class="section-title">
+    <mat-icon>room_service</mat-icon>
+    Additional Services
+  </h2>
+
+  @if (loading()) {
+    <div class="services-loading">
+      <mat-spinner diameter="32" />
+    </div>
+  } @else if (additionalServices().length === 0) {
+    <p class="no-services">No additional services available for this unit.</p>
+  } @else {
+    <div class="additional-services-container">
+      @for (s of additionalServices(); track s.id) {
+        <mat-card
+          class="service-card"
+          appearance="outlined"
+          [class.selected]="isSelected(s.id)"
+          (click)="toggleService(s.id)"
+        >
+          <mat-card-content class="service-card-content">
+            <div class="service-left">
+              <mat-checkbox
+                [checked]="isSelected(s.id)"
+                (click)="$event.stopPropagation()"
+                (change)="toggleService(s.id)"
+              />
+              <span class="service-name">{{ s.name }}</span>
+            </div>
+            <span class="service-price">+${{ s.price | number: '1.0-0' }}</span>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
   }
 </div>
