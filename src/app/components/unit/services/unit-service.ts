@@ -5,6 +5,7 @@ import { GraphQLQueries } from './graphql-queries';
 import type { UnitDetails } from '../../../models/types/unitDetails';
 import type { PeriodRequest } from '../../../models/requests/periodRequest';
 import { environment } from '../../../../environments/environment';
+import { UnitAdditionalService } from '../../../models/types/unitAdditionalServices';
 
 const GRAPHQL_URL = `${environment.apiUrl}/graphql`;
 
@@ -15,6 +16,10 @@ interface GraphQlResponse<T> {
 
 interface UnitDetailsData {
   unitById: UnitDetails;
+}
+
+interface UnitAdditionalServicesData {
+  unitAdditionalServices: UnitAdditionalService[];
 }
 
 @Injectable({
@@ -35,6 +40,22 @@ export class UnitService {
             throw new Error(res.errors.map((e) => e.message).join(', '));
           }
           return res.data.unitById;
+        }),
+      );
+  }
+
+  getUnitAdditionalServices(unitId: string): Observable<UnitAdditionalService[]> {
+    return this.http
+      .post<GraphQlResponse<UnitAdditionalServicesData>>(GRAPHQL_URL, {
+        query: GraphQLQueries.getUnitAdditionalServices,
+        variables: { unitId },
+      })
+      .pipe(
+        map((res) => {
+          if (res.errors?.length) {
+            throw new Error(res.errors.map((e) => e.message).join(', '));
+          }
+          return res.data.unitAdditionalServices;
         }),
       );
   }

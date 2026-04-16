@@ -3,6 +3,7 @@ import { Home } from './components/home/home';
 import { SearchResults } from './components/search/results/search-results/search-results';
 import { PropertyPage } from './components/property/property-page';
 import { UnitPage } from './components/unit/unit-page';
+import { Checkout } from './components/unit/checkout/checkout';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'unit/:id',
     component: UnitPage,
+  },
+  {
+    path: 'checkout/:id',
+    component: Checkout,
   },
 ];

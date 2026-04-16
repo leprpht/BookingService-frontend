@@ -16,4 +16,14 @@ export class GraphQLQueries {
       }
     }
   `;
+
+  static getUnitAdditionalServices = `
+    query GetUnitAdditionalServices($unitId: UUID!) {
+      unitAdditionalServices(unitId: $unitId) {
+        id
+        name
+        price
+      }
+    }
+  `;
 }
